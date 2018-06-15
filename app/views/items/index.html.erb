@@ -1,0 +1,24 @@
+<%= link_to "New Item", "items/new" %>
+
+<table class="itemstable">
+	<tr class="tableheader">
+		<th>ID</th>
+		<th>Name</th>
+		<th>Category</th>
+		<th>Description</th>
+		<th>Condition</th>
+		<th>Time Created</th>
+		<th>Time Updated</th>
+	</tr>
+	<% @items.each do |i| %>
+	<tr class="item">
+		<td class="id"><%= i.id %></td>
+		<td class="name"><%= i.name %></td>
+		<td class="category"><%= i.category_id %></td>
+		<td class="description"><%= i.description %></td>
+		<td class="condition"><%= case i.condition; when 0; "Poor"; when 1; "Fair"; when 2; "Good"; when 3; "Very Good"; when 4; "New"; end %></td>
+		<td class="created-at"><%= i.created_at %></td>
+		<td class="updated-at"><%= i.updated_at %></td>
+	</tr>
+	<% end %>
+</table>

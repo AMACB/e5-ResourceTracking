@@ -1,0 +1,16 @@
+<h1>Log In</h1>
+<div class="container-fluid well well-sm">
+	<% if flash[:error] %>
+	<div class="alert alert-danger" role="alert">
+		<% flash[:error].to_a.each do |e| %>
+			<%= e %>
+			<br>
+		<% end %>
+	</div>
+	<% end %>
+	<%= form_for(:session, url: login_path) do |f| %>
+		<%= f.email_field :email, :placeholder => "Email" %> <br>
+	 	<%= f.password_field :password, :placeholder => "Password" %> <br><br>
+		<%= f.submit "Login" %> <br>
+	<% end %>
+</div>

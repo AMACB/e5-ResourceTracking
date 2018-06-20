@@ -1,0 +1,45 @@
+<h1>My Cart</h1>
+<%= link_to "Browse", items_path, class: "btn btn-primary", role: "button" %>
+
+<% if !@order_item.nil? && @order_item.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+    <% @order_item.errors.full_messages.each do |e| %>
+      <li><%= e %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<% if @checkout_items.size == 0 %>
+  <p class="text-center">
+    There are no items in your shopping cart.  Please <%= link_to "go back", items_path %> and add some items to your cart.
+  </p>
+<% else %>
+<table class="carttable tables-responsive table table-striped">
+  <thead>
+    <tr>
+      <th>Item Name</th>
+      <th>Category</th>
+      <th>Quantity</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @checkout_items.each do |c| %>
+    <%= form_for c, remote: true do |f| %>
+    <%= f.hidden_field :item_id, value: c.item.id %>
+    <tr>
+      <th><%= c.item.name %></th>
+      <th><%= c.item.category.name %></th>
+      <th><%= f.number_field :quantity, value: c.quantity.to_i, min: 1 %></th>
+      <th><%= f.submit "Update Quantity", class: "btn btn-primary" %>
+      <th><%= link_to "Delete", c, class: "btn btn-sm btn-danger", role: "button", remote: true, data: {confirm: "Are you sure you want to delete this item?", method: "delete"} %>
+      </th>
+
+    </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
+<% end %>

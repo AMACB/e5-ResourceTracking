@@ -1,0 +1,23 @@
+<tr class="item">
+	<td class="name"><%= link_to i.name, item_path(i) %></td>
+	<td class="category"><%= i.category.name %></td>
+	<td class="description"><%= i.description.nil? ? nil : (i.description[0..100].to_s + "...") %></td>
+	<td class="notes"><%= i.notes %></td>
+	<td class="age"><%= i.age %></td>
+	<td class="quantity"><%= i.quantity %></td>
+	<%# <td class="price"><%= i.price.nil? ? nil : number_to_currency(i.price / 100.0) %>
+	</td>
+	<% if current_user %>
+		<%= form_for checkout_item, remote: true do |f| %>
+		<%= f.hidden_field :item_id, value: i.id %>
+		<td class="add-to-cart-qty"><%= f.number_field :quantity, value: 1, min: 1 %></td>
+		<td class="add-to-cart"><%= f.submit "Add to Cart", class: "btn btn-sm btn-primary" %> </td>
+	<% end %>
+	<% if current_user && current_user.admin? %>
+		<td class="edit-link"><%= link_to "Edit", edit_item_path(i), class: "btn btn-sm btn-primary", role: "button" %></td>
+		<td class="delete-link"><%= link_to "Delete", item_path(i), class: "btn btn-sm btn-danger", role: "button", data: {confirm: "Are you sure you want to delete \"#{i.name}\"?", method: "delete"} %></td>
+		<td class="created-at"><%= i.created_at.in_time_zone("Central Time (US & Canada)").strftime("%-I:%M %p, %b %-d, %Y") %></td>
+		<td class="updated-at"><%= i.updated_at.in_time_zone("Central Time (US & Canada)").strftime("%-I:%M %p, %b %-d, %Y") %></td>
+	<% end %>
+</tr>
+<% end %>

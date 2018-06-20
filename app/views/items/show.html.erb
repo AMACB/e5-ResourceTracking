@@ -1,0 +1,21 @@
+<p class="back"><%= link_to "Back", items_path %></p>
+<% if current_user && current_user.admin? %>
+	<p class="edit"><%= link_to "Edit", edit_item_path(@item) %></p>
+	<p class="delete"><%= link_to "Delete", item_path(@item), data: {confirm: "Are you sure you want to delete #{@item.name}?", method: "delete"} %></p>
+<% end %>
+<p class="id"><b>ID: </b><%= @item.id %></p>
+<p class="name"><b>Name: </b><%= @item.name %></p>
+<p class="category"><b>Category: </b><%= @item.category.name %></p>
+<p class="description"><b>Description: </b><%= @item.description %></p>
+<p class="notes"><b>Notes: </b><%= @item.notes %></p>
+<p class="condition"><b>Condition: </b><%= case @item.condition; when 0; "Poor"; when 1; "Fair"; when 2; "Good"; when 3; "Very Good"; when 4; "New"; end %></p>
+<p class="age"><b>Age: </b><%= @item.age %></p>
+<p class="quantity"><b>Quantity: </b><%= @item.quantity %></p>
+<p class="price"><b>Price: </b><%= number_to_currency(@item.price / 100.0) %></p>
+	<div class="image">
+		<% if !@item.image.empty? %>
+			<%= image_tag(@item.image, alt: @item.name, width: "30%") %>
+		<% end %>
+	</div>
+<p class="created-at"><b>Created At: </b><%= @item.created_at.in_time_zone("Central Time (US & Canada)").strftime("%-I:%M %p, %b %-d, %Y") %></p>
+<p class="updated-at"><b>Updated At: </b><%= @item.updated_at.in_time_zone("Central Time (US & Canada)").strftime("%-I:%M %p, %b %-d, %Y") %></p>

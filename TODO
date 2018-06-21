@@ -1,8 +1,10 @@
 TODO
 
-make the h1s not look ugly
+make the <h1>s not look ugly
 
 search/sort through items (watch out when AJAX adding)
+
+when adding to cart, make "View Cart (x Items)" flash red or something
 
 update quantity in my cart
 	check for number available
@@ -11,8 +13,10 @@ update quantity in my cart
 in item manager: AJAX the contents of "Edit" when needed; clear the form when closed; close the form when submit
 	in edit form: add spacing, labels
 
+****
 add number available/number checked out
 check number avaialable before adding
+****
 
 contact us form/page
 homepage full

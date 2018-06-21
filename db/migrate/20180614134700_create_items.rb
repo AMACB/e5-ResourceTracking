@@ -6,11 +6,11 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.text        :notes
       t.string      :age
       t.integer     :condition
-      t.integer     :quantity
       t.integer     :price
       t.string      :image
 
       t.references  :category
+      t.references  :availability
       t.timestamps
     end
   end

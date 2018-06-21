@@ -1,0 +1,14 @@
+<%= form_for c, remote: true, authenticity_token: true do |f| %>
+  <div class="row <%= cycle('bg-white', 'bg-light') %>">
+    <%= f.hidden_field :item_id, value: c.item.id %>
+    <div class="col-6 table-item"><%= c.item.name %></div>
+    <div class="col table-item"><%= c.item.category.name %></div>
+    <div class="col table-item"><%= f.number_field :quantity, value: c.quantity.to_i, min: 1, class: "form-control" %></div>
+    <div class="col table-item">
+      <%= f.submit "Update Quantity", class: "btn btn-primary submittable" %>
+    </div>
+    <div class="col table-item">
+      <%= link_to "Delete", c, class: "btn btn-danger", role: "button", remote: true, data: {confirm: "Are you sure you want to delete this item?", method: "delete"} %>
+    </div>
+  </div>
+<% end %>

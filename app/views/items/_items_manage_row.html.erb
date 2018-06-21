@@ -1,13 +1,6 @@
-<tr class="item">
-	<td class="name"><%= link_to i.name, item_path(i) %></td>
-	<td class="category"><%= i.category.name %></td>
-	<td class="description"><%= i.description.nil? ? nil : (i.description[0..100].to_s + "...") %></td>
-	<td class="notes"><%= i.notes %></td>
-	<td class="age"><%= i.age %></td>
-	<td class="quantity"><%= i.quantity %></td>
-	<td class="price"><%= i.price.nil? ? nil : number_to_currency(i.price / 100.0) %></td>
-	<td class="edit-link"><%= link_to "Edit", edit_item_path(i), class: "btn btn-sm btn-primary", role: "button" %></td>
-	<td class="delete-link"><%= link_to "Delete", i, class: "btn btn-sm btn-danger", role: "button", remote: true, data: {confirm: "Are you sure you want to delete \"#{i.name}\"?", method: "delete"} %></td>
-	<td class="created-at"><%= i.created_at.in_time_zone("Central Time (US & Canada)").strftime("%-I:%M %p, %b %-d, %Y") %></td>
-	<td class="updated-at"><%= i.updated_at.in_time_zone("Central Time (US & Canada)").strftime("%-I:%M %p, %b %-d, %Y") %></td>
-</tr>
+<div class="row <%= cycle('bg-white', 'bg-light') %>" id="items_row_info_<%= i.id %>">
+	<%= render 'items_manage_row_info', i: i %>
+</div>
+<div id="edit_form_<%= i.id %>" class="modal fade" role="dialog">
+	<%= render 'items_manage_row_editform', i: i %>
+</div>

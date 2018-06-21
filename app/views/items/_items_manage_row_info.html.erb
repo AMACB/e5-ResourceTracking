@@ -1,0 +1,11 @@
+<div class="col-2 table-item name"><%= link_to i.name, item_path(i) %></div>
+<div class="col table-item category"><%= i.category.name %></div>
+<div class="col-3 table-item description" ><%= i.description.nil? ? nil : (i.description[0..200].to_s + "..." if i.description.length > 200 ) %></div>
+<div class="col-2 table-item notes"><%= i.notes %></div>
+<div class="col table-item age"><%= i.age %></div>
+<div class="col table-item quantity"><%= i.quantity %></div>
+<div class="col table-item price"><%= i.price.nil? ? nil : number_to_currency(i.price / 100.0) %></div>
+<div class="col table-item edit-link"><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#edit_form_<%= i.id %>">Edit</button></div>
+<div class="col table-item delete-link"><%= link_to "Delete", i, class: "btn btn-sm btn-danger", role: "button", remote: true, data: {confirm: "Are you sure you want to delete \"#{i.name}\"?", method: "delete"} %></div>
+<%# <div class="col table-item created-at"><%= i.created_at.in_time_zone("Central Time (US & Canada)").strftime("%-I:%M %p, %b %-d, %Y") %>
+<%# <div class="col table-item updated-at"><%= i.updated_at.in_time_zone("Central Time (US & Canada)").strftime("%-I:%M %p, %b %-d, %Y") %>

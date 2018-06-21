@@ -1,0 +1,27 @@
+<%= form_for i, remote: true, authenticity_token: true do |f| %>
+<div class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h4 class="modal-title">Editing Item</h4>
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+		</div>
+		<div class="modal-body">
+			<div class="field">
+				<div class=""><%= f.text_field :name, placeholder: "Name", class: "form-control" %></div>
+				<div class=""><%= collection_select(:item, :category_id, Category.all, :id, :name, {class: "form-control"}) %></div>
+				<div class=""><%= f.text_area :description, placeholder: "Description", class: "form-control" %></div>
+				<div class=""><%= f.text_area :notes, placeholder: "Notes", class: "form-control" %></div>
+				<div class=""><%= f.select :condition, [["New", 4], ["Very Good", 3], ["Good", 2], ["Fair", 1], ["Poor", 0]], class: "form-control" %></div>
+				<div class=""><%= f.text_field :age, placeholder: "Ages", class: "form-control" %></div>
+				<div class=""><%= f.text_field :quantity, placeholder: "Quantity", class: "form-control" %></div>
+				<div class=""><%= f.text_field :price, placeholder: "Price (cents)", class: "form-control" %></div>
+				<div class=""><%= f.text_field :image, placeholder: "Image URL", class: "form-control" %></div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			<%= f.submit "Save Changes", class: "btn btn-primary" %>
+		</div>
+	</div>
+</div>
+<% end %>

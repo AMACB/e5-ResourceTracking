@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to items_path
+      redirect_to items_manage_path
     else
       render 'new'
     end
@@ -35,10 +35,15 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
-    if @item.update_attributes(item_params)
-      redirect_to items_path
-    else
-      render 'edit'
+    respond_to do |format|
+      if @item.update(item_params)
+        format.html { redirect_to @item, notice: "Item edited successfully"}
+        format.js
+        format.json { render json: @item, status: :updated, location: @item }
+      else 
+        format.html { render action: "update" }
+        format.json { render json: @item.errors, status: :unprocessable_entity }
+      end
     end
   end
 

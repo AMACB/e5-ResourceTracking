@@ -5,13 +5,28 @@
 		</ul>
 	</nav>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-		<ul class="navbar-nav">
-			<li class="nav-item <%= 'active' if active == 'home' %>"><%= link_to "Home", "/", class: "nav-link" %></li>
-			<li class="nav-item <%= 'active' if active == 'items' %>"><%= link_to "Items", items_path, class: "nav-link" %></li>
-			<% if current_user && current_user.admin? %>
-				<li class="nav-item <%= 'active' if active == 'manage-items' %>"><%= link_to "Manage Items", "/items/manage", class: "nav-link" %></li>
-			<% end %>
-			<li class="nav-item cart-text <%= 'active' if active == 'cart' %>"><%= render 'layouts/cart_text' %></li>
-		</ul>
+		<div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse-2">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item <%= 'active' if active == 'home' %>"><%= link_to "Home", "/", class: "nav-link" %></li>
+				<li class="nav-item <%= 'active' if active == 'items' %>"><%= link_to "Items", items_path, class: "nav-link" %></li>
+				<% if current_user && current_user.admin? %>
+					<li class="nav-item <%= 'active' if active == 'manage-items' %>"><%= link_to "Manage Items", "/items/manage", class: "nav-link" %></li>
+				<% end %>
+				<li class="nav-item cart-text <%= 'active' if active == 'cart' %>"><%= render 'layouts/cart_text' %></li>
+			</ul>
+		</div>
+		<div class="mx-auto order-0">
+			<%= link_to "APRD Resource Management System", '/', class: "navbar-brand" %>
+		</div>
+		<div class="navbar-collapse collapse w-100 order-2 dual-collapse-2">
+			<ul class="navbar-nav ml-auto">
+				<% unless current_user %>
+					<li class="nav-item <%= 'active' if active == 'login' %>"><%= link_to "Log In", login_path, class: "nav-link" %></li>
+					<li class="nav-item <%= 'active' if active == 'signup' %>"><%= link_to "Signup", signup_path, class: "nav-link" %></li>
+				<% else %>
+					<li class="nav-item"><%= link_to "Log Out (#{current_user.email})", logout_path, class: "nav-link", method: "delete" %></li>
+				<% end %>
+			</ul>
+		</div>
 	</nav>
 </div>

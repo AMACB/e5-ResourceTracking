@@ -1,19 +1,19 @@
 <%= render 'layouts/navbar', active: 'items' %>
 
 <div class="itemstable container-fluid">
-	<tr class="tableheader">
-		<th>Name</th>
-		<th>Category</th>
-		<th>Description</th>
-		<th>Notes</th>
-		<th>Age</th>
-		<th>Quantity</th>
+	<div class="row tableheader bg-primary text-light">
+		<div class="col-2 name table-item table-item-head">Name</div>
+		<div class="col category table-item table-item-head">Category</div>
+		<div class="col-4 description table-item table-item-head">Description</div>
+		<div class="col note table-item table-item-head">Notes</div>
+		<div class="col age table-item table-item-head">Age</div>
+		<div class="col quantity table-item table-item-head">Quantity</div>
 		<% if current_user %>
-			<th></th>
-			<th></th>
+			<div class="col table-item table-item-head"></div>
+			<div class="col table-item table-item-head"></div>
 		<% end %>
-	</tr>
+	</div>
 	<div class="items-body"> 
-		<%= render 'items_all', items: @items %>
+		<%= render 'items/items_all', items: @items %>
 	</div>
 </table>

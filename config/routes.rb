@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get       'items/new'         => 'items#new'
   post      'items'             => 'items#create'
   get       'items/:id'         => 'items#show'
-  get       'items/:id/edit'    => 'items#edit'       , as: :edit_destination
+# get       'items/:id/edit'    => 'items#edit'       , as: :edit_destination
   patch     'items/:id'         => 'items#update'
   delete    'items/:id'         => 'items#destroy'
 

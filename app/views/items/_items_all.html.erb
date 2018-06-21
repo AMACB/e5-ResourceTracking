@@ -1,3 +1,5 @@
 <% items.each do |i| %>
-	<%= render "item_row", i: i, checkout_item: @checkout_item %>
+<div id="item_row_<%= i.id %>">
+	<%= render "items/item_row", i: i, checkout_item: @checkout_item %>
+</div>
 <% end %>

@@ -1,3 +1,4 @@
+<%= render 'layouts/navbar', active: 'login' %>
 <h1>Log In</h1>
 <div class="container-fluid well well-sm">
 	<% if flash[:error] %>
@@ -8,9 +9,18 @@
 		<% end %>
 	</div>
 	<% end %>
-	<%= form_for(:session, url: login_path) do |f| %>
-		<%= f.email_field :email, :placeholder => "Email" %> <br>
-	 	<%= f.password_field :password, :placeholder => "Password" %> <br><br>
-		<%= f.submit "Login" %> <br>
-	<% end %>
+	<div class="login container card card-body bg-faded">
+		<%= form_for(:session, url: login_path) do |f| %>
+		<div class="email">
+			<%= f.email_field :email, placeholder: "Email", class: "form-control" %>
+		</div>
+		<div class="password">
+		 	<%= f.password_field :password, placeholder: "Password", class: "form-control" %>
+		 </div>
+		 <br>
+		 <div class="submit">
+			<%= f.submit "Login", class: "form-control btn btn-primary" %>
+		</div>
+		<% end %>
+	</div>
 </div>

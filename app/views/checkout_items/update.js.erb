@@ -1,2 +1,2 @@
-$(".cart-text").html("<%= escape_javascript(render 'layouts/cart_text') %>")
-$(".shopping-cart").html("<%= escape_javascript(render 'carts/cart') %>")
+$(".cart-text").html("<%= j render 'layouts/cart_text' %>");
+$(".shopping-cart").html("<%= j render 'carts/cart', checkout_items: @checkout_items %>");

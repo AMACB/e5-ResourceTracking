@@ -3,12 +3,16 @@ Rails.application.routes.draw do
   get 'checkout_items/create'
   get 'checkout_items/update'
   get 'checkout_items/destroy'
-  get 'carts/show'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get       '/'                 => 'pages#home'
 
+
+  get       'items/manage'      => 'items#manage'     , as: :items_manage
+
   resources :items
+
   get       'items'             => 'items#index'
   get       'items/new'         => 'items#new'
   post      'items'             => 'items#create'
@@ -16,6 +20,7 @@ Rails.application.routes.draw do
   get       'items/:id/edit'    => 'items#edit'       , as: :edit_destination
   patch     'items/:id'         => 'items#update'
   delete    'items/:id'         => 'items#destroy'
+
 
   resources :users
   get       'signup'            => 'users#new'

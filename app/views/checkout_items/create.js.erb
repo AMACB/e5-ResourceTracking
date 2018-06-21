@@ -1,5 +1,5 @@
 <% if @checkout.errors.any? || @checkout_item.errors.any? %>
 	alert("An error occurred. Try again later.");
 <% else %>
-	$('.cart-text').html("<%= escape_javascript(render 'layouts/cart_text') %>");
+	$('.cart-text').html("<%= j render 'layouts/cart_text' %>");
 <% end %>

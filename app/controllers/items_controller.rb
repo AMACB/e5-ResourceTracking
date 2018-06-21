@@ -1,11 +1,15 @@
 class ItemsController < ApplicationController
-  before_action :require_admin, only: [:new, :create, :edit, :update, :destroy]
+  before_action :require_admin, only: [:new, :create, :edit, :update, :destroy, :manage]
 
   def index
     @items = Item.all
     if !current_checkout.nil?
       @checkout_item = current_checkout.checkout_items.new
     end
+  end
+
+  def manage
+    @items = Item.all
   end
 
   def new
@@ -39,9 +43,13 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    @items = Item.all
+    if !current_checkout.nil?
+      @checkout_item = current_checkout.checkout_items.new
+    end
+
     @item = Item.find(params[:id])
     @item.destroy
-    redirect_to items_path
   end
 
   private

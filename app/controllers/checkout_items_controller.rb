@@ -14,6 +14,7 @@ class CheckoutItemsController < ApplicationController
     @checkout = current_checkout
     @checkout_item = @checkout.checkout_items.find(params[:id])
     @checkout_items = @checkout.checkout_items
+
     respond_to do |format|
       if @checkout_item.update(checkout_item_params)
         format.html { redirect_to @checkout_items, notice: "Quantity updated successfully"}
@@ -21,6 +22,7 @@ class CheckoutItemsController < ApplicationController
         format.json { render json: @checkout_items, status: :updated, location: @checkout_items }
       else 
         format.html { render action: "update" }
+        format.js
         format.json { render json: @checkout_item.errors, status: :unprocessable_entity }
       end
     end 
@@ -38,5 +40,11 @@ class CheckoutItemsController < ApplicationController
   private
   def checkout_item_params
     params.require(:checkout_item).permit(:quantity, :item_id, :checkout_id)
+  end
+
+  def ensure_quantity_valid(ci)
+    unless ci[:quantity] <= ci[:item][:available]
+      throw Exception
+    end
   end
 end

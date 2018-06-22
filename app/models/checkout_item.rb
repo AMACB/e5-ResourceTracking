@@ -5,6 +5,9 @@ class CheckoutItem < ApplicationRecord
   validates :quantity, numericality: {only_integer: true, greater_than: 0}
   validate :item_present
   validate :checkout_present
+  validate :enough_available
+
+  validates_uniqueness_of :item_id, scope: :checkout_id
 
   private
   def item_present
@@ -15,7 +18,13 @@ class CheckoutItem < ApplicationRecord
 
   def checkout_present
     if checkout.nil?
-      errors.add(:checkout, " is not a valid checkout")
+      errors.add(:checkout, " is not valid")
+    end
+  end
+
+  def enough_available
+    if item.available < quantity
+      errors.add(:item, "does not have enough available")
     end
   end
 end

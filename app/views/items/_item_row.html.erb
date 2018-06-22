@@ -4,7 +4,7 @@
 	<div class="col-4 table-item description"><%= i.description.nil? ? nil : (i.description[0..100].to_s + "...") %></div>
 	<div class="col table-item notes"><%= i.notes %></div>
 	<div class="col table-item age"><%= i.age %></div>
-	<div class="col table-item quantity"><%= i.quantity %></div>
+	<div class="col table-item available"><%= i.available %></div>
 	<%# <td class="price"><%= i.price.nil? ? nil : number_to_currency(i.price / 100.0) %>
 	</td>
 	<% if current_user %>

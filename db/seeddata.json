@@ -208,11 +208,20 @@
     },
     {
         "category": "Games: Carnival",
-        "name": "Spectrum Eggs and Spoons",
+        "name": "Spectrum Eggs and Spoons (Large)",
         "description": "Excellent for use in school, gym or at home. Passing an egg from one person to another can help develop coordination skills. Eye hand coordination, motor skill refinement are important developmental skills taught early in life. Each set includes 6 big colored eggs, 6 spoons and 6 head placements. Screen reader support enabled.",
         "age": "6+",
-        "quantity": 4,
-        "notes": "2 sets are large and 2 sets are small",
+        "quantity": 2,
+        "notes": null,
+        "price": 21
+    },
+    {
+        "category": "Games: Carnival",
+        "name": "Spectrum Eggs and Spoons (Small)",
+        "description": "Excellent for use in school, gym or at home. Passing an egg from one person to another can help develop coordination skills. Eye hand coordination, motor skill refinement are important developmental skills taught early in life. Each set includes 6 big colored eggs, 6 spoons and 6 head placements. Screen reader support enabled.",
+        "age": "6+",
+        "quantity": 2,
+        "notes": null,
         "price": 21
     },
     {

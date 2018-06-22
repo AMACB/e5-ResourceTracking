@@ -13,8 +13,9 @@
 				<div class=""><%= f.text_area :notes, placeholder: "Notes", class: "form-control" %></div>
 				<div class=""><%= f.select :condition, [["New", 4], ["Very Good", 3], ["Good", 2], ["Fair", 1], ["Poor", 0]], {}, class: "form-control" %></div>
 				<div class=""><%= f.text_field :age, placeholder: "Ages", class: "form-control" %></div>
-				<div class=""><%= f.text_field :quantity, placeholder: "Quantity", class: "form-control" %></div>
-				<div class=""><%= f.text_field :price, placeholder: "Price (cents)", class: "form-control" %></div>
+				<div class=""><%= f.number_field :price, placeholder: "Price (cents)", class: "form-control" %></div>
+				<div class=""><%= f.number_field :unavailable, placeholder: "No. Unavailable", class: "form-control" %></div>
+				<div class=""><%= f.number_field :total, placeholder: "No. Total", class: "form-control" %></div>
 				<div class=""><%= f.text_field :image, placeholder: "Image URL", class: "form-control" %></div>
 			</div>
 		</div>

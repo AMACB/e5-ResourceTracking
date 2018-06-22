@@ -23,8 +23,7 @@ end
 data.each do |i|
   cat = i["category"]
   cat_id = categories[cat].id
-  newitem = Item.create(category_id: cat_id, name: i["name"], description: i["description"], condition: nil, notes: i["notes"], age: i["age"], price: (i["price"].nil? ? nil : (i["price"]*100).to_i), image: "")
-  a = availability.new
+  newitem = Item.create!(category_id: cat_id, name: i["name"], description: i["description"], condition: 4, notes: i["notes"], age: i["age"], price: (i["price"].nil? ? nil : (i["price"]*100).to_i), image: "", total: i["quantity"].nil? ? 0 : i["quantity"])
 end
 
 

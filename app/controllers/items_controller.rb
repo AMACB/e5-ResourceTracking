@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :require_admin, only: [:new, :create, :edit, :update, :destroy, :manage]
+  after_action :update_available, only: [:edit]
 
   def index
     @items = Item.all
@@ -10,6 +11,7 @@ class ItemsController < ApplicationController
 
   def manage
     @items = Item.all
+    @new_item = Item.new
   end
 
   def new
@@ -36,7 +38,7 @@ class ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     respond_to do |format|
-      if @item.update(item_params)
+      if @item.update(item_edit_params)
         format.html { redirect_to @item, notice: "Item edited successfully"}
         format.js
         format.json { render json: @item, status: :updated, location: @item }
@@ -59,6 +61,10 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:name, :description, :notes, :age, :condition, :quantity, :price, :image, :category_id)
+    params.require(:item).permit(:name, :description, :notes, :age, :condition, :quantity, :price, :image, :category_id, :total)
+  end
+
+  def item_edit_params
+    params.require(:item).permit(:name, :description, :notes, :age, :condition, :quantity, :price, :image, :category_id, :total, :unavailable)
   end
 end

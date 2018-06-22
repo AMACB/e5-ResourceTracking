@@ -1,2 +1,6 @@
-$(".cart-text").html("<%= j render 'layouts/cart_text' %>");
-$("#cart_row_<%= @checkout_item.id %>").html("<%= j render 'carts/cart_row', c: @checkout_item %>");
+<% if @checkout.errors.any? || @checkout_item.errors.any? %>
+	alert("Error(s) occurred:\n<%= @checkout_item.errors.full_messages.join('\n') %>\nRefresh the page, then try again.");
+<% else %>
+	$(".cart-text").html("<%= j render 'layouts/cart_text' %>");
+	$("#cart_row_<%= @checkout_item.id %>").html("<%= j render 'carts/cart_row', c: @checkout_item %>");
+<% end %>

@@ -9,8 +9,12 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.integer     :price
       t.string      :image
 
+      t.integer     :available, default: 0
+      t.integer     :checked_out, default: 0
+      t.integer     :unavailable, default: 0
+      t.integer     :total, default: 0
+
       t.references  :category
-      t.references  :availability
       t.timestamps
     end
   end

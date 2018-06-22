@@ -7,6 +7,11 @@ class ItemsController < ApplicationController
     if !current_checkout.nil?
       @checkout_item = current_checkout.checkout_items.new
     end
+
+    @checked_out_items = Array.new
+    current_checkout.checkout_items.each do |i|
+      @checked_out_items.push(i.item_id)
+    end
   end
 
   def manage
@@ -56,6 +61,8 @@ class ItemsController < ApplicationController
     end
 
     @item = Item.find(params[:id])
+    # instead of just destroying, go and notify users of removal
+    @item.checkout_items.destroy_all
     @item.destroy
   end
 

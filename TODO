@@ -1,8 +1,11 @@
 TODO
 
 POSSIBLE BUGS - modifying the num_available by admin OR admin approving a checkout needs to notify users too many of the item in their cart
+	(if item is destroyed, notify users with it in cart)
 	at checkout time
 	// if the cart is already submitted, it needs to "unsubmit it" and notify the user
+
+remove items/:id/edit and items/new
 
 make the <h1>s not look ugly
 login/signup error <br>s to <ul> with <li>
@@ -16,14 +19,16 @@ search/sort through items (watch out when AJAX adding)
 
 when adding to cart, make "View Cart (x Items)" flash red or something
 
-in item manager: AJAX the contents of "Edit" when needed; clear the form when closed; close the form when submit
-	in edit form: add spacing, labels; show errors **
+**in item manager: AJAX the contents of "Edit" when needed; clear the form when closed; close the form when submit
+	in edit form: add spacing, labels; show errors
 
-client-side prevention for add item to checkout error (item already exists in cart, not enough available)
+optimize the "Already added" error detection
 
 user email verification; check for city email?
 
-checkout button; update status
+ADD NOTIFICATIONS FOR USERS (can be viewed in "profile" or something)
+
+chckout button; update status
 admin approve checkouts
 when approved, notify users who also have a **pending checkout** that contained a checked-out item that is no longer available
 view status of checkout

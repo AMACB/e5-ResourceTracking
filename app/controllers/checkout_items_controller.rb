@@ -7,6 +7,11 @@ class CheckoutItemsController < ApplicationController
     @checkout.save
     @current_user.update_attribute :current_checkout_id, @checkout.id
     @checkout_items = @checkout.checkout_items
+
+    @checked_out_items = Array.new
+    @checkout_items.each do |i|
+      @checked_out_items.push(i.item_id)
+    end
   end
 
   # TODO ensure that user can only modify their own

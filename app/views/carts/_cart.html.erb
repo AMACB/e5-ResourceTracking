@@ -1,4 +1,15 @@
-<h1>My Cart</h1>
+<div class="card card-body">
+  <h1>My Cart</h1>
+  <div class="align-left">
+    <% if checkout_items.size != 0 %>
+      <%= link_to "Check Out", checkout_begin_path, class: "btn btn-primary" %>
+    <% else %>
+      <p class="text-center">
+        There are no items in your cart.  Please <%= link_to "go back", items_path %> and add some items to your cart.
+      </p>
+    <% end %>
+  </div>
+</div>
 
 <% if !@order_item.nil? && @order_item.errors.any? %>
   <div class="alert alert-danger">
@@ -10,9 +21,7 @@
   </div>
 <% end %>
 <% if checkout_items.size == 0 %>
-  <p class="text-center">
-    There are no items in your cart.  Please <%= link_to "go back", items_path %> and add some items to your cart.
-  </p>
+  
 <% else %>
 <div class="carttable container-fluid">
   <div class="row bg-primary text-light">

@@ -1,36 +1,31 @@
 Rails.application.routes.draw do
 
-  get 'checkout_items/create'
-  get 'checkout_items/update'
-  get 'checkout_items/destroy'
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
   get       '/'                 => 'pages#home'
 
+  get       'items/manage'      => 'items#manage', as: :items_manage
+  resources :items, only: [:index, :create, :show, :update, :destroy]
 
-  get       'items/manage'      => 'items#manage'     , as: :items_manage
-
-  resources :items
-
-  get       'items'             => 'items#index'
-  get       'items/new'         => 'items#new'
-  post      'items'             => 'items#create'
-  get       'items/:id'         => 'items#show'
-# get       'items/:id/edit'    => 'items#edit'       , as: :edit_destination
-  patch     'items/:id'         => 'items#update'
-  delete    'items/:id'         => 'items#destroy'
+# get       'items'             => 'items#index'
+# post      'items'             => 'items#create'
+# get       'items/:id'         => 'items#show'
+# patch     'items/:id'         => 'items#update'
+# delete    'items/:id'         => 'items#destroy'
 
 
-  resources :users
+  resources :users, only: [:create]
   get       'signup'            => 'users#new'
   get       'login'             => 'sessions#new'
   post      'login'             => 'sessions#create'
   delete    'logout'            => 'sessions#destroy'
 
 
-  resources :checkout, :checkout_items
+  resources :checkout
+
   get       'checkouts'         => 'checkouts#index'
-  get       'cart'              => 'carts#show'
+  resources :checkout_items, only: [:create, :update, :destroy]
+
+  get       'cart'              => 'carts#show', as: :cart
+  get       'cart/checkout'     => 'carts#checkout_begin', as: :checkout_begin
+  post      'cart/checkout'     => 'carts#checkout'
 
 end

@@ -1,7 +1,7 @@
 <div class="row <%= cycle('bg-white', 'bg-light') %>">
 	<div class="col-2 table-item name"><%= link_to i.name, item_path(i) %></div>
 	<div class="col-2 table-item"><%= i.category.name %></div>
-	<div class="col-3 table-item description"><%= i.description.nil? ? nil : (i.description[0..100].to_s + "...") %></div>
+	<div class="col-2 table-item description" data-toggle="tooltip" data-placement="bottom" title="<%= i.description.nil? ? nil : i.description %>"><%= i.description.nil? ? nil : (i.description[0..100].to_s + "...") %></div>
 	<div class="col-2 table-item notes"><%= i.notes %></div>
 	<div class="col-1 table-item age"><%= i.age %></div>
 	<div class="col-1 table-item available"><%= i.available %></div>
@@ -9,11 +9,11 @@
 	</td>
 	<% if current_user %>
 		<% if i.available <= 0 %>
-			<div class="col-1 table-item add-to-cart text-muted">
+			<div class="col-2 table-item add-to-cart text-muted">
 				<em>None available</em>
 			</div>
 		<% elsif checked_out_items.include? i.id %>
-			<div class="col-1 table-item add-to-cart text-muted">
+			<div class="col-2 table-item add-to-cart text-muted">
 				<% if newly_added %>
 					<em>Added</em>
 				<% else %>
@@ -23,9 +23,15 @@
 		<% else %>
 			<%= form_for checkout_item, remote: true do |f| %>
 			<%= f.hidden_field :item_id, value: i.id %>
-			<div class="col-1 table-item add-to-cart">
-				<%= f.number_field :quantity, value: 1, min: 1, max: i.available, class: "form-control", style: "width: 75px" %>
-				<%= f.submit "Add", class: "btn btn-sm btn-primary", id: "add_item_#{i.id}"%>
+			<div class="col-2 form-row table-item add-to-cart">
+				<div class="col">
+					<%= f.number_field :quantity, value: 1, min: 1, max: i.available, class: "form-control", style: "width: 50px" %>
+				</div>
+				<div class="col">
+					<%= button_tag type: "submit", class: "btn btn-md btn-primary", id: "add_item_#{i.id}" do %>
+						<%= octicon 'plus', fill: 'white', class: "align-middle text-center" %>
+					<% end %>
+				</div>
 			</div>
 			<% end %>
 		<% end %>

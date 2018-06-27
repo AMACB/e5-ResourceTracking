@@ -1,0 +1,8 @@
+class Notification < ApplicationRecord
+  belongs_to :user
+  scope :unread, -> {where read_at: nil}
+
+  def mark_as_read
+    self['read_at'] = Time.zone.now
+  end
+end

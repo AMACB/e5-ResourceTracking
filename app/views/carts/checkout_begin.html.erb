@@ -1,0 +1,19 @@
+<%= render 'layouts/navbar', active: '' %>
+
+<div class="card card-body">
+	<h1>Reviewing Your Cart</h1>
+	<hr>
+	<div class="align-left container container-fluid">
+		<ul class="list-group">
+			<% @checkout_items.each do |c| %>
+				<li class="list-group-item"><%= c.item.name %> <span class="badge badge-pill badge-dark"><%= c.quantity %></span></li>
+			<% end %>
+		</ul>
+	</div>
+	<br>
+	<div class="container">
+		<div class="alert alert-dark">
+			Once you press submit, your items will be put into a queue for admin review. You will be able to review the status of your request as well as ???
+		</div>
+	</div>
+</div>

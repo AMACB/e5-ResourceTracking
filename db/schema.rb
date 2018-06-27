@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_19_162834) do
+ActiveRecord::Schema.define(version: 2018_06_25_133257) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -31,6 +31,9 @@ ActiveRecord::Schema.define(version: 2018_06_19_162834) do
 
   create_table "checkouts", force: :cascade do |t|
     t.integer "status"
+    t.datetime "checkout_time"
+    t.date "need_by"
+    t.date "return_by"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -53,6 +56,17 @@ ActiveRecord::Schema.define(version: 2018_06_19_162834) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_items_on_category_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "read_at"
+    t.string "notif_type"
+    t.string "head"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

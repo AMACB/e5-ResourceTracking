@@ -1,0 +1,4 @@
+var $newrow = $("<div>" , {id: "items_row_<%= @item.id %>"});
+$newrow.html('<%= j render "items/items_manage_row", i: @item %>');
+$('.items-body').append($newrow)
+updateColors();

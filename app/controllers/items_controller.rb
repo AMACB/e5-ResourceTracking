@@ -6,12 +6,13 @@ class ItemsController < ApplicationController
     @items = Item.all
     if !current_checkout.nil?
       @checkout_item = current_checkout.checkout_items.new
+      @checked_out_items = Array.new
+      current_checkout.checkout_items.each do |i|
+        @checked_out_items.push(i.item_id)
+      end
     end
 
-    @checked_out_items = Array.new
-    current_checkout.checkout_items.each do |i|
-      @checked_out_items.push(i.item_id)
-    end
+    
   end
 
   def manage
@@ -25,10 +26,14 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    if @item.save
-      redirect_to items_manage_path
-    else
-      render 'new'
+    respond_to do |format|
+      if @item.save
+        format.html { redirect_to @item, notice: "Item created successfully"}
+        format.js
+        format.json { render json: @item, status: :updated, location: @item }
+      else
+        format.json { render json: @item.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -44,11 +49,10 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     respond_to do |format|
       if @item.update(item_edit_params)
-        format.html { redirect_to @item, notice: "Item edited successfully"}
+        format.html { redirect_to @item, notice: "Item edited successfully" }
         format.js
         format.json { render json: @item, status: :updated, location: @item }
-      else 
-        format.html { render action: "update" }
+      else
         format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end

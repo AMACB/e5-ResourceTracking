@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   validates :total, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :condition, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than: 5 }
 
-  before_save :update_available
+  before_validation :update_available
 
   def update_available
     self[:available] = self[:total] - self[:checked_out] - self[:unavailable]

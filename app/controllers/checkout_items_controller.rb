@@ -12,6 +12,12 @@ class CheckoutItemsController < ApplicationController
     @checkout_items.each do |i|
       @checked_out_items.push(i.item_id)
     end
+
+    respond_to do |format|
+      format.html { redirect_to @checkout_items, notice: "New item created successfully"}
+      format.js
+      format.json
+    end
   end
 
   # TODO ensure that user can only modify their own

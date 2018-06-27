@@ -22,9 +22,11 @@
 			<ul class="navbar-nav ml-auto">
 				<% unless current_user %>
 					<li class="nav-item <%= 'active' if active == 'login' %>"><%= link_to "Log In", login_path, class: "nav-link" %></li>
-					<li class="nav-item <%= 'active' if active == 'signup' %>"><%= link_to "Signup", signup_path, class: "nav-link" %></li>
+					<li class="nav-item <%= 'active' if active == 'signup' %>"><%= link_to "Sign Up", signup_path, class: "nav-link" %></li>
 				<% else %>
-					<li class="nav-item"><%= link_to "Log Out (#{current_user.email})", logout_path, class: "nav-link", method: "delete" %></li>
+					<% notifs = current_user.notifications.size %>
+					<li class="nav-item <%= 'active' if active == 'notifications' %>"><%= button_tag type: "button", class: "text-center align-middle btn #{notifs > 0 ? 'btn-danger' : 'btn-disabled btn-primary'}" do %><span class="badge"><%= notifs == 0 ? nil : "#{notifs} " %></span> <span class="align-middle"><%= octicon 'bell', fill: "white"%></span><% end %></li>
+					<li class="nav-item active"><%= link_to "Log Out (#{current_user.email})", logout_path, class: "nav-link", method: "delete" %></li>
 				<% end %>
 			</ul>
 		</div>

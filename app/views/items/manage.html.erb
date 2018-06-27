@@ -1,17 +1,15 @@
 <%= render 'layouts/navbar', active: 'manage-items' %>
 
-<h1>Item Catalog Manager</h1>
-<div class="">
 <div class="itemstable container-fluid">
 	<div class="row tableheader bg-primary text-light">
 		<div class="col-2 table-item table-item-head">Name</div>
 		<div class="col table-item table-item-head">Category</div>
-		<div class="col-3 table-item table-item-head">Description</div>
+		<div class="col-2 table-item table-item-head">Description</div>
 		<div class="col-2 table-item table-item-head">Notes</div>
 		<div class="col table-item table-item-head">Age</div>
 		<div class="col table-item table-item-head">Price</div>
-		<div class="col-2 table-item table-item-head">Total - Unavailable - Checked Out - Available</div>
-		<div class="col table-item table-item-head">
+		<div class="col-2 table-item table-item-head">T - U - CO - A <span class="align-middle text-center" data-toggle="tooltip" data-placement="bottom" title="Total - Unavailable - Checked Out - Available"> <%= octicon 'question', fill: 'white' %></span></div>
+		<div class="col-2 table-item table-item-head">
 			<span class="new-button align-middle text-center"><button type="button" class="btn btn-light" data-toggle="modal" data-target="#new_item"><%= octicon "plus", fill: "black", class: "align-middle text-center" %> New</button></span>
 		</div>
 

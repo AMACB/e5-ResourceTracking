@@ -32,10 +32,12 @@
     <div class="col table-item table-item-head"></div>
     <div class="col table-item table-item-head"></div>
   </div>
+  <div class="cartbody">
   <% checkout_items.each do |c| %>
     <div id="cart_row_<%= c.id %>">
       <%= render 'cart_row', c: c %>
     </div>
   <% end %>
-</table>
+  </div>
+</div>
 <% end %>

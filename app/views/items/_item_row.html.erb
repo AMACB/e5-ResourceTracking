@@ -1,9 +1,8 @@
-<div class="row <%= cycle('bg-white', 'bg-light') %>">
+<div class="row zebra <%= cycle('bg-white', 'bg-light') %>">
 	<div class="col-2 table-item name"><%= link_to i.name, item_path(i) %></div>
 	<div class="col-2 table-item"><%= i.category.name %></div>
-	<div class="col-2 table-item description" data-toggle="tooltip" data-placement="bottom" title="<%= i.description.nil? ? nil : i.description %>"><%= i.description.nil? ? nil : (i.description[0..100].to_s + "...") %></div>
-	<div class="col-2 table-item notes"><%= i.notes %></div>
-	<div class="col-1 table-item age"><%= i.age %></div>
+	<div class="<%= current_user ? 'col-3' : 'col-4' %> table-item description" data-toggle="tooltip" data-placement="bottom" title="<%= i.description.nil? ? nil : i.description %>"><%= i.description.nil? ? nil : (i.description.size > 200 ? i.description[0..200].to_s + "..." : i.description) %></div>
+	<div class="<%= current_user ? 'col-2' : 'col-3' %> table-item notes"><%= i.notes %></div>
 	<div class="col-1 table-item available"><%= i.available %></div>
 	<%# <td class="price"><%= i.price.nil? ? nil : number_to_currency(i.price / 100.0) %>
 	</td>
@@ -21,19 +20,17 @@
 				<% end %>
 			</div>
 		<% else %>
-			<%= form_for checkout_item, remote: true do |f| %>
-			<%= f.hidden_field :item_id, value: i.id %>
 			<div class="col-2 form-row table-item add-to-cart">
-				<div class="col">
-					<%= f.number_field :quantity, value: 1, min: 1, max: i.available, class: "form-control", style: "width: 50px" %>
-				</div>
-				<div class="col">
-					<%= button_tag type: "submit", class: "btn btn-md btn-primary", id: "add_item_#{i.id}" do %>
-						<%= octicon 'plus', fill: 'white', class: "align-middle text-center" %>
-					<% end %>
-				</div>
+				<%= form_for checkout_item, remote: true, htclass: "form-inline" do |f| %>
+					<%= f.hidden_field :item_id, value: i.id %>
+					<div class="form-group row">
+						<%= f.number_field :quantity, value: 1, min: 1, max: i.available, class: "form-control", style: "width: 75px" %>
+						<%= button_tag type: "submit", class: "btn btn-md btn-primary", id: "add_item_#{i.id}" do %>
+							<%= octicon 'plus', fill: 'white', class: "align-middle text-center" %>
+						<% end %>
+					</div>
+				<% end %>
 			</div>
-			<% end %>
 		<% end %>
 	<% end %>
 </div>

@@ -26,6 +26,6 @@ Rails.application.routes.draw do
 
   get       'cart'              => 'carts#show', as: :cart
   get       'cart/checkout'     => 'carts#checkout_begin', as: :checkout_begin
-  post      'cart/checkout'     => 'carts#checkout'
+  patch     'cart/checkout'     => 'carts#checkout_end', as: :checkout_end
 
 end

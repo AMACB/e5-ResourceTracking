@@ -1,10 +1,10 @@
 <div class="col-2 table-item name"><%= link_to i.name, item_path(i) %></div>
 <div class="col table-item category"><%= i.category.name %></div>
-<div class="col-3 table-item description" ><%= i.description.nil? ? nil : (i.description[0..200].to_s + "..." if i.description.length > 200 ) %></div>
+<div class="col-2 table-item description" ><%= i.description.nil? ? nil : (i.description[0..200].to_s + "..." if i.description.length > 200 ) %></div>
 <div class="col-2 table-item notes"><%= i.notes %></div>
 <div class="col table-item age"><%= i.age %></div>
 <div class="col table-item price"><%= i.price.nil? ? nil : number_to_currency(i.price / 100.0) %></div>
-<div class="col-2 table-item total"><%= i.total %> - <%= i.unavailable %> - <%= i.checked_out %> - <%= i.available %></div>
+<div class="col table-item total"><%= i.total %> - <%= i.unavailable %> - <%= i.checked_out %> - <%= i.available %></div>
 <div class="col table-item">
 	<span class="edit-button "><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit_form_<%= i.id %>"><%= octicon "pencil", fill: "white", class: "align-middle text-center" %></button></span>
 	<span class="delete-button"><%= link_to octicon("x", fill: "white", class: "align-middle text-center"), i, class: "btn btn-danger", role: "button", remote: true, data: {confirm: "Are you sure you want to delete \"#{i.name}\"?", method: "delete"} %></span>

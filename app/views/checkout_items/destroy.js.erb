@@ -3,4 +3,5 @@
 <% else %>
 	$(".cart-text").html("<%= j render 'layouts/cart_text' %>");
 	$("#cart_row_<%= @checkout_item.id %>").remove();
+	updateColors();
 <% end %>

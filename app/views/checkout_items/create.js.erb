@@ -3,4 +3,5 @@
 <% else %>
 	$('.cart-text').html("<%= j render 'layouts/cart_text' %>");
 	$('#item_row_<%= @checkout_item.item_id %>').html("<%= j render 'items/item_row', i: @checkout_item.item, checkout_item: @checkout_item, checked_out_items: @checked_out_items, newly_added: true %>");
+	updateColors();
 <% end %>

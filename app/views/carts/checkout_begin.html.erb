@@ -1,17 +1,47 @@
+<% content_for :title, "Reviewing Your Cart - APRD Resource Management" %>
 <%= render 'layouts/navbar', active: '' %>
 
 <div class="card card-body">
 	<h1>Reviewing Your Cart</h1>
 	<hr>
 	<div class="align-left container container-fluid">
+		<% if flash[:error] %>
+				<ul class="list-group">
+				<% flash[:error].to_a.each do |e| %>
+					<li class="list-group-item list-group-item-danger"><%= e %></li>
+				<% end %>
+				</ul>
+				<br>
+			<% end %>
 		<ul class="list-group">
 			<% @checkout_items.each do |c| %>
 				<li class="list-group-item"><%= c.item.name %> <span class="badge badge-pill badge-dark"><%= c.quantity %></span></li>
 			<% end %>
 		</ul>
 	</div>
-	<br>
+
 	<div class="container">
+		<%= form_for @checkout, url: checkout_end_path do |f| %>
+		<div class="row">
+			<div class="col">
+				<%= f.label :need_by, "When do you need these items by?" %>
+			</div>
+			<div class="col">
+				<%= f.text_field :need_by, class: "form-control", 'data-provide': "datepicker", 'data-date-format': 'yyyy-mm-dd' %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<%= f.label :return_by, "When can you first return these items by?" %>
+			</div>
+			<div class="col">
+				<%= f.text_field :return_by, class: "form-control", 'data-provide': "datepicker", 'data-date-format': 'yyyy-mm-dd' %>
+			</div>
+		</div>
+		<div class="col-auto">
+			<%= f.submit "Submit", class: "form-control btn btn-primary btn-lg" %>
+		</div>
+		<% end %>
 		<div class="alert alert-dark">
 			Once you press submit, your items will be put into a queue for admin review. You will be able to review the status of your request as well as ???
 		</div>

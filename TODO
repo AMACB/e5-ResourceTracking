@@ -5,8 +5,6 @@ POSSIBLE BUGS - modifying the num_available by admin OR admin approving a checko
 	// if the cart is already submitted, it needs to "unsubmit it" and notify the user
 	
 
-make the <h1>s not look ugly
-login/signup error <br>s to <ul> with <li>
 make the items#show not look ugly
 add tooltips for description
 add images (use thumbnails in items#index)
@@ -33,10 +31,15 @@ email notifications?
 BUG:
 	when items#update fails (in the else block), need error message
 
-chckout button; update status
+verification of dates both client side and server side during checkout
 admin approve checkouts
 when approved, notify users who also have a **pending checkout** that contained a checked-out item that is no longer available
 view status of checkout
 
+moderation tools - disable user from submitting stuff, etc.
+
 TESTING
 go through stuff as non-user, user, and admin
+
+FEATURES (optional)
+reCAPTCHA integration

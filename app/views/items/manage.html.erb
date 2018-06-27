@@ -1,3 +1,4 @@
+<% content_for :title, "Manage Items - APRD Resource Management" %>
 <%= render 'layouts/navbar', active: 'manage-items' %>
 
 <div class="itemstable container-fluid">
@@ -8,8 +9,8 @@
 		<div class="col-2 table-item table-item-head">Notes</div>
 		<div class="col table-item table-item-head">Age</div>
 		<div class="col table-item table-item-head">Price</div>
-		<div class="col-2 table-item table-item-head">T - U - CO - A <span class="align-middle text-center" data-toggle="tooltip" data-placement="bottom" title="Total - Unavailable - Checked Out - Available"> <%= octicon 'question', fill: 'white' %></span></div>
-		<div class="col-2 table-item table-item-head">
+		<div class="col table-item table-item-head">T - U - CO - A <span class="align-middle text-center" data-toggle="tooltip" data-placement="bottom" title="Total - Unavailable - Checked Out - Available"> <%= octicon 'question', fill: 'white' %></span></div>
+		<div class="col table-item table-item-head">
 			<span class="new-button align-middle text-center"><button type="button" class="btn btn-light" data-toggle="modal" data-target="#new_item"><%= octicon "plus", fill: "black", class: "align-middle text-center" %> New</button></span>
 		</div>
 

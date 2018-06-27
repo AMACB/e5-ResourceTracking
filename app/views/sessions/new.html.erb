@@ -1,14 +1,15 @@
+<% content_for :title, "Log In - APRD Resource Management" %>
 <%= render 'layouts/navbar', active: 'login' %>
 <div class="card card-body card-fluid bg-light">
 	<h1>Log In</h1>
 	<div class="container-fluid col-4">
 		<% if flash[:error] %>
-		<div class="alert alert-danger" role="alert">
+			<ul class="list-group">
 			<% flash[:error].to_a.each do |e| %>
-				<%= e %>
-				<br>
+				<li class="list-group-item list-group-item-danger"><%= e %></li>
 			<% end %>
-		</div>
+			</ul>
+			<br>
 		<% end %>
 		<div class="login container card card-body bg-faded">
 			<%= form_for(:session, url: login_path) do |f| %>

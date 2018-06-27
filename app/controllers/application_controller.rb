@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     elsif !@current_user.current_checkout_id.nil?
       Checkout.find(@current_user.current_checkout_id)
     else
-      Checkout.new(user_id: @current_user.id)
+      Checkout.new(user_id: @current_user.id, status: 0)
     end
   end
 

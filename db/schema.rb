@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2018_06_25_133257) do
   end
 
   create_table "checkouts", force: :cascade do |t|
-    t.integer "status"
+    t.integer "status", default: 0
     t.datetime "checkout_time"
     t.date "need_by"
     t.date "return_by"

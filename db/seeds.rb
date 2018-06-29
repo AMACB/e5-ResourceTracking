@@ -7,9 +7,11 @@ data.each do |i|
 end
 cat = a.uniq.sort
 
+
 categories = Hash.new
 cat.each do |c|
-  categories[c] = Category.create(name: c, description: c)
+  categories[c] = Category.create(name: c, description: nil)
+  i += 1
 end
 
 data.each do |i|

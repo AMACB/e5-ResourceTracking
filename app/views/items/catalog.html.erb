@@ -1,0 +1,34 @@
+<% content_for :title, "Catalog - APRD Resource Management" %>
+<%= render 'layouts/navbar', active: 'catalog' %>
+
+<div class="jumbotron">
+	<div class="container">
+		<h1>Item Catalog</h1>
+		<%= form_tag items_path, method: 'get' do %>
+		<p class="lead">
+			<div class="input-group mb-3">
+			  <input name="search" type="text" class="form-control form-control-lg" placeholder="Search" aria-label="Recipient's username" aria-describedby="search-btn">
+			  <div class="input-group-append">
+			    <button id="search-btn" class="btn btn-primary" type="submit"><%= octicon 'search', fill: 'white', class: 'align-middle' %></button></span>
+			  </div>
+			</div>
+		</p>
+		<% end %>
+	</div>
+</div>
+<div class="container-fluid">
+	<h2 class="text-center">
+		Choose a Category
+	</h2>
+	<hr>
+	<div class="d-flex justify-content-around flex-wrap" style="">
+		<% @categories.each do |c| %>
+			<div class="card text-black bg-light" style="width: 18rem; margin-bottom: 12px;">
+				<div class="card-body">
+					<h5 class="card-title text-center"><%= link_to c.name, items_path(category: c.id) %></h5>
+					<p class="card-text"><%= c.description %></p>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>

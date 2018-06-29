@@ -1,5 +1,5 @@
-<% content_for :title, "Item Catalog - APRD Resource Management" %>
-<%= render 'layouts/navbar', active: 'items' %>
+<% content_for :title, "All Items - APRD Resource Management" %>
+<%= render 'layouts/navbar', active: '' %>
 
 <div class="itemstable container-fluid">
 	<div class="row tableheader bg-primary text-light">
@@ -13,6 +13,19 @@
 		<% end %>
 	</div>
 	<span class="items-body"> 
-		<%= render 'items/items_all', items: @items, checked_out_items: @checked_out_items %>
+		<% if @items.size == 0 %>
+			<div class="jumbotron" style="display: inline-flex; width: 100%; height: 100%">
+				<div class="container">
+					<h2>Nothing to see here.</h2>
+					<p class="lead">We couldn't find any items that matched your search.</p>
+					<hr class="my-4">
+					<p class="lead">
+						<%= link_to "Go Back", items_catalog_path, class: "btn btn-primary btn-lg", role: "button" %>
+					</p>
+				</div>
+			</div>
+		<% else %>
+			<%= render 'items/items_all', items: @items, checked_out_items: @checked_out_items %>
+		<% end %>
 	</span>
 </table>

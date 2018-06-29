@@ -12,6 +12,7 @@ Client-side password requirements
 Checkout queue for admin approval
 Calendar-based availability for items
 	- Ask for time required FIRST, then filter
+	- On catalog page, prompt user to enter dates or just browse
 Item images
 	- Uploading images
 Item management

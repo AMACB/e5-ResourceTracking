@@ -3,6 +3,9 @@ class Checkout < ApplicationRecord
   belongs_to :user
   validate :dates_are_valid
 
+  scope :approved, -> { where('status >= 2') }
+  scope :pending_approval, -> { where(status: 1) }
+
   def dates_are_valid
     unless self.status == 0
       if self.need_by.blank?

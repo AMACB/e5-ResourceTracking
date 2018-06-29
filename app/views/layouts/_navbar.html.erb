@@ -9,7 +9,7 @@
 		<div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse-2" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item <%= 'active' if active == 'home' %>"><%= link_to "Home", "/", class: "nav-link" %></li>
-				<li class="nav-item <%= 'active' if active == 'items' %>"><%= link_to "Items", items_path, class: "nav-link" %></li>
+				<li class="nav-item <%= 'active' if active == 'catalog' %>"><%= link_to "Catalog", items_catalog_path, class: "nav-link" %></li>
 				<% if current_user && current_user.admin? %>
 					<li class="nav-item <%= 'active' if active == 'manage-items' %>"><%= link_to "Manage Items", "/items/manage", class: "nav-link" %></li>
 				<% end %>

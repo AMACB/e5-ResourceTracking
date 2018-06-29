@@ -3,7 +3,21 @@ class ItemsController < ApplicationController
   after_action :update_available, only: [:edit]
 
   def index
-    @items = Item.all
+    if params[:category].nil?
+      @items = Item.all
+    else
+      cat = Category.find_by(id: params[:category])
+      if cat.nil?
+        @items = []
+      else
+        @items = cat.items
+      end
+    end
+
+    if not params[:search].nil?
+      @items = @items.select {|i| i.name.downcase.include? params[:search].downcase }
+    end
+
     if !current_checkout.nil?
       @checkout_item = current_checkout.checkout_items.new
       @checked_out_items = Array.new
@@ -11,8 +25,10 @@ class ItemsController < ApplicationController
         @checked_out_items.push(i.item_id)
       end
     end
+  end
 
-    
+  def catalog
+    @categories = Category.all
   end
 
   def manage

@@ -4,7 +4,6 @@ class Checkout < ApplicationRecord
   validate :dates_are_valid
 
   def dates_are_valid
-    # puts "STATUS = " + self.status.to_s
     unless self.status == 0
       if self.need_by.blank?
         errors.add :need_by, "can't be blank"
@@ -22,10 +21,5 @@ class Checkout < ApplicationRecord
         errors.add :return_by, "must be after the need by date"
       end
     end
-
-    # puts "ERRORS: "
-    # errors.full_messages.each do |e|
-    #   puts e
-    # end
   end
 end

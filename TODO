@@ -1,45 +1,51 @@
 TODO
 
-POSSIBLE BUGS - modifying the num_available by admin OR admin approving a checkout OR removing the item entirely needs to notify users too many of the item in their cart
-	(if item is destroyed, notify users with it in cart)
-	// if the cart is already submitted, it needs to "unsubmit it" and notify the user
-	
-
-make the items#show not look ugly
-add tooltips for description
-add images (use thumbnails in items#index)
-
-contact us form/page
-homepage full
-
-search/sort through items (watch out when AJAX adding)
-
-when adding to cart, make "View Cart (x Items)" flash red or something
-
-when My Cart removed to empty, refresh the page?
-
-**in item manager: AJAX the contents of "Edit" when needed; clear the form when closed; close the form when submit
+FEATURES
+Category/item cards
+Search/filter items
+	- Category-based index page
+	- API-like filtering/searching
+Notifications
+	- For important notifications, show them as a banner below the navbar until dismissed
+	- Bell notifications dropdown in navbar
+Client-side password requirements
+Checkout queue for admin approval
+Calendar-based availability for items
+	- Ask for time required FIRST, then filter
+Item images
+	- Uploading images
+Item management
+	- AJAX the contents of edit/new when needed instead of loading all; clear the form when closed; close the form when submitting
 	in edit form: add spacing, labels; show errors
+Password reset
+Email verification
+	- Ensure @austintexas.gov emails
+Items becoming unavailable
+	- Remove from checkout of users, unsubmit, notify user
 
-optimize the "Already added" error detection??
+STYLING
+Homepage
+Items#show
+	- Make this a modal?
 
-user email verification; check for city email?
+NICE-TO-HAVES
+Contact us page
+Moderation of users
+	- Disable account, reset password, etc.
+Popularity index for items
+reCAPTCHA integration
 
-ADD NOTIFICATIONS FOR USERS (can be viewed in "profile" or something)
-email notifications?
 
-BUG:
-	when items#update fails (in the else block), need error message
+BUGS
+When My Cart is removed to empty, the page is blank
+Modifying item.unavailable by admin/approving a checkout needs to notify users, check for errors
+	- Unsubmits cart if necessary
+Item can be destroyed while checked out
+Optimize the "already added" detection in item indexing
+Item manager
+	- Edit/new forms need labels, close when submitting, clear after cancel/submit
+	- Show error message when items#update or items#new fails
 
-verification of dates both client side and server side during checkout
 admin approve checkouts
 when approved, notify users who also have a **pending checkout** that contained a checked-out item that is no longer available
 view status of checkout
-
-moderation tools - disable user from submitting stuff, etc.
-
-TESTING
-go through stuff as non-user, user, and admin
-
-FEATURES (optional)
-reCAPTCHA integration

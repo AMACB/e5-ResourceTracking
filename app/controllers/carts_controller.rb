@@ -12,12 +12,10 @@ class CartsController < ApplicationController
 
   def checkout_end
     @checkout = current_checkout
-    # puts "params: " + checkout_params.to_s
     cps = checkout_params
     cps[:status] = 1
     cps[:checkout_time] = Time.zone.now
     if @checkout.update(cps)
-      # puts "updated!"
       current_user.update_attribute :current_checkout_id, nil
       redirect_to '/'
     else

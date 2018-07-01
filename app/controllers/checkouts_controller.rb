@@ -1,5 +1,10 @@
-class CartsController < ApplicationController
+class CheckoutsController < ApplicationController
   before_action :require_user
+  before_action :require_admin, only: [:review, :index]
+
+  def review
+    @checkouts = Checkout.pending_approval
+  end
 
   def show
     @checkout_items = current_checkout.checkout_items
@@ -8,6 +13,9 @@ class CartsController < ApplicationController
   def checkout_begin
     @checkout = current_checkout
     @checkout_items = current_checkout.checkout_items
+    if @checkout_items.size == 0
+      redirect_to cart_path
+    end
   end
 
   def checkout_end
@@ -26,6 +34,6 @@ class CartsController < ApplicationController
 
   private
   def checkout_params
-    params.require(:checkout).permit(:need_by, :return_by)
+    params.require(:checkout).permit(:need_by, :return_by, :reason, :notes)
   end
 end

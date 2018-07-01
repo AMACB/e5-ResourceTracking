@@ -22,11 +22,11 @@ Rails.application.routes.draw do
 
   resources :checkout
 
-  get       'checkouts'         => 'checkouts#index'
+  get       'checkouts/review'         => 'checkouts#review', as: :checkout_review
   resources :checkout_items, only: [:create, :update, :destroy]
 
-  get       'cart'              => 'carts#show', as: :cart
-  get       'cart/checkout'     => 'carts#checkout_begin', as: :checkout_begin
-  patch     'cart/checkout'     => 'carts#checkout_end', as: :checkout_end
+  get       'cart'              => 'checkouts#show', as: :cart
+  get       'cart/checkout'     => 'checkouts#checkout_begin', as: :checkout_begin
+  patch     'cart/checkout'     => 'checkouts#checkout_end', as: :checkout_end
 
 end

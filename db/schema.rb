@@ -32,6 +32,10 @@ ActiveRecord::Schema.define(version: 2018_06_25_133257) do
   create_table "checkouts", force: :cascade do |t|
     t.integer "status", default: 0
     t.datetime "checkout_time"
+    t.datetime "picked_up_at"
+    t.datetime "returned_at"
+    t.text "reason"
+    t.text "notes"
     t.date "need_by"
     t.date "return_by"
     t.integer "user_id"
@@ -48,6 +52,7 @@ ActiveRecord::Schema.define(version: 2018_06_25_133257) do
     t.integer "condition"
     t.integer "price"
     t.string "image"
+    t.text "tags"
     t.integer "available", default: 0
     t.integer "checked_out", default: 0
     t.integer "unavailable", default: 0

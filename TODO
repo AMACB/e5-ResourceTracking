@@ -1,5 +1,7 @@
 TODO
 
+NOW - ADMIN APPROVING A CHECKOUT
+
 FEATURES
 Category/item cards
 Search/filter items
@@ -8,21 +10,21 @@ Search/filter items
 Notifications
 	- For important notifications, show them as a banner below the navbar until dismissed
 	- Bell notifications dropdown in navbar
-Client-side password requirements
 Checkout queue for admin approval
+Confirmation page after submitting cart
 Calendar-based availability for items
 	- Ask for time required FIRST, then filter
 	- On catalog page, prompt user to enter dates or just browse
 Item images
 	- Uploading images
 Item management
-	- AJAX the contents of edit/new when needed instead of loading all; clear the form when closed; close the form when submitting
-	in edit form: add spacing, labels; show errors
+	- AJAX the contents of edit/new when needed instead of loading all at once
 Password reset
 Email verification
 	- Ensure @austintexas.gov emails
 Items becoming unavailable
 	- Remove from checkout of users, unsubmit, notify user
+Spam prevention
 
 STYLING
 Homepage

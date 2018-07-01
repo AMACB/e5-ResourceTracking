@@ -8,6 +8,10 @@ class Checkout < ApplicationRecord
 
   def dates_are_valid
     unless self.status == 0
+      if self.reason.blank?
+        errors.add :reason, "can't be blank"
+      end
+
       if self.need_by.blank?
         errors.add :need_by, "can't be blank"
       elsif self.need_by < Time.zone.today

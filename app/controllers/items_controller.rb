@@ -88,10 +88,10 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:name, :description, :notes, :age, :condition, :quantity, :price, :image, :category_id, :total)
+    params.require(:item).permit(:name, :description, :notes, :age, :quantity, :price, :image, :category_id, :total, :unavailable)
   end
 
   def item_edit_params
-    params.require(:item).permit(:name, :description, :notes, :age, :condition, :quantity, :price, :image, :category_id, :total, :unavailable)
+    params.require(:item).permit(:name, :description, :notes, :age, :quantity, :price, :image, :category_id, :total, :unavailable)
   end
 end

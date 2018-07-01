@@ -5,7 +5,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.text        :description
       t.text        :notes
       t.string      :age
-      t.integer     :condition
+      t.integer     :condition, default: 4
       t.integer     :price
       t.string      :image
 

@@ -14,10 +14,10 @@
 		<div class="login container card card-body bg-faded">
 			<%= form_for(:session, url: login_path) do |f| %>
 			<div class="email">
-				<%= f.email_field :email, placeholder: "Email", class: "form-control" %>
+				<%= f.email_field :email, placeholder: "Email", class: "form-control", required: true %>
 			</div>
 			<div class="password">
-			 	<%= f.password_field :password, placeholder: "Password", class: "form-control" %>
+			 	<%= f.password_field :password, placeholder: "Password", class: "form-control", required: true %>
 			 </div>
 			 <br>
 			 <div class="submit">

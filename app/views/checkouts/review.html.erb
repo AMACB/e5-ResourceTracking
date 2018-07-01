@@ -1,0 +1,8 @@
+<% content_for :title, "Reviewing Requests - APRD Resource Management" %>
+<%= render 'layouts/navbar', active: 'review' %>
+
+<% @checkouts.each do |c| %>
+	<%= c.checkout_items.collect {|x| x.item.name} %>
+	<%= c.user.email %>
+	<br>
+<% end %>

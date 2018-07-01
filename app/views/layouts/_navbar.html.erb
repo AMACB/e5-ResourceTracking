@@ -10,10 +10,21 @@
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item <%= 'active' if active == 'home' %>"><%= link_to "Home", "/", class: "nav-link" %></li>
 				<li class="nav-item <%= 'active' if active == 'catalog' %>"><%= link_to "Catalog", items_catalog_path, class: "nav-link" %></li>
-				<% if current_user && current_user.admin? %>
-					<li class="nav-item <%= 'active' if active == 'manage-items' %>"><%= link_to "Manage Items", "/items/manage", class: "nav-link" %></li>
-				<% end %>
 				<li class="nav-item cart-text <%= 'active' if active == 'cart' %>"><%= render 'layouts/cart_text' %></li>
+
+				<% if current_user && current_user.admin? %>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="admintools-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Admin Tools
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<% pending = Checkout.pending_approval.size %>
+							<%= link_to "Manage Items", items_manage_path, class: "dropdown-item #{'active' if active == 'manage-items'}" %>
+							<%= link_to (pending == 0 ? "Review Requests" : "Review Requests (#{pending})"), checkout_review_path, class: "dropdown-item #{'active' if active == 'review'}" %>
+						</div>
+					</li>
+				<% end %>
+				
 			</ul>
 		</div>
 		<div class="mx-auto order-0">

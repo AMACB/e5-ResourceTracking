@@ -3,7 +3,7 @@
 	<div class="modal-content">
 		<div class="modal-header">
 			<h4 class="modal-title">Editing Item</h4>
-			<button type="button" class="close" data-dismiss="modal" onclick="$('#edit_item_<%= i.id %>')[0].reset()">&times;</button>
+			<button type="button" class="close" data-dismiss="modal" onclick="">&times;</button>
 		</div>
 		<div class="modal-body">
 			<div class="field">
@@ -48,7 +48,7 @@
 			</div>
 		</div>
 		<div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal" onclick="$('#edit_item_<%= i.id %>')[0].reset()">Cancel</button>
+			<button type="button" class="btn btn-default" data-dismiss="modal" onclick="// $('#edit_item_<%= i.id %>')[0].reset()">Cancel</button>
 			<%= f.submit "Save Changes", class: "btn btn-primary" %>
 		</div>
 	</div>

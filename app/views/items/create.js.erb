@@ -2,3 +2,7 @@ var $newrow = $("<div>" , {id: "items_row_<%= @item.id %>"});
 $newrow.html('<%= j render "items/items_manage_row", i: @item %>');
 $('.items-body').append($newrow)
 updateColors();
+
+
+$('#new_item_modal').modal('hide');
+$('#new_item')[0].reset();

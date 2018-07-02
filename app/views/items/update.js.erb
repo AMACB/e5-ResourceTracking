@@ -1,1 +1,3 @@
-$('#items_row_info_<%= @item.id %>').html('<%= j render "items/items_manage_row_info", i: @item %>');
+$('#items_row_info_<%= @item.id %>').html('<%= j render "items/items_manage_row_info", i: @item, edit_now: true %>');
+
+$('#edit_form_<%= @item.id %>').modal('hide');

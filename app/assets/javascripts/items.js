@@ -9,3 +9,7 @@ function updateColors() {
 		white = !white;
 	});
 };
+
+function createEditForm(i) {
+	$.get('/items/editform/' + i);
+}

@@ -34,6 +34,14 @@ class ItemsController < ApplicationController
   def manage
     @items = Item.all
     @new_item = Item.new
+    @categories = Category.all
+  end
+
+  def editform
+    @item = Item.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
   end
 
   def new

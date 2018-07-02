@@ -1,5 +1,5 @@
 <% items.each do |i| %>
 	<div id="items_row_<%= i.id %>">
-		<%= render "items/items_manage_row", i: i %>
+		<%= render "items/items_manage_row", i: i, renderedit: false %>
 	</div>
 <% end %>

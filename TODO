@@ -5,6 +5,7 @@ NOW - ADMIN APPROVING A CHECKOUT
 FEATURES
 Category/item cards
 Search/filter items
+	- Show search/filters on /items
 	- Category-based index page
 	- API-like filtering/searching
 Notifications

@@ -1,0 +1,6 @@
+var e = $("#edit_form_<%= @item.id %>").first();
+if (e.is(":empty")) {
+	e.html("<%= j render 'items_manage_row_editform', i: @item %>");
+	$("#edit_form_toggle_<%= @item.id %>").attr("data-toggle","modal");
+	e.modal('toggle');
+} 

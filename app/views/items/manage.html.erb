@@ -11,16 +11,16 @@
 		<div class="col table-item table-item-head">Price</div>
 		<div class="col table-item table-item-head">Availability <span class="align-middle text-center" data-toggle="tooltip" data-placement="bottom" title="Total - Unavailable - Checked Out - Available"> <%= octicon 'question', fill: 'white' %></span></div>
 		<div class="col table-item table-item-head">
-			<span class="new-button align-middle text-center"><button type="button" class="btn btn-light" data-toggle="modal" data-target="#new_item"><%= octicon "plus", fill: "black", class: "align-middle text-center" %> New</button></span>
+			<span class="new-button align-middle text-center"><button type="button" class="btn btn-light" data-toggle="modal" data-target="#new_item_modal"><%= octicon "plus", fill: "black", class: "align-middle text-center" %> New</button></span>
 		</div>
 
-		<div id="new_item" class="modal fade text-dark" role="dialog">
+		<div id="new_item_modal" class="modal fade text-dark" role="dialog">
 			<%= form_for @new_item, remote: true, class: "form-inline", authenticity_token: true do |f| %>
 				<div class="modal-dialog modal-xl">
 					<div class="modal-content">
 						<div class="modal-header">
 							<h4 class="modal-title">New Item</h4>
-							<button type="button" class="close" data-dismiss="modal" onclick="$('#new_item_form')[0].reset()">&times;</button>
+							<button type="button" class="close" data-dismiss="modal" onclick="$('#new_item')[0].reset()">&times;</button>
 						</div>
 						<div class="modal-body">
 							<div class="field">
@@ -30,7 +30,7 @@
 								</div>
 								<div class="form-group">
 									<%= f.label :category_id, "Category" %>
-									<%= collection_select :item, :category_id, Category.all, :id, :name, {}, class: "form-control input-lg" %>
+									<%= collection_select :item, :category_id, @categories, :id, :name, {}, class: "form-control input-lg" %>
 								</div>
 								<div class="form-group">
 									<%= f.label :description, "Description" %>
@@ -65,8 +65,8 @@
 							</div>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal" onclick="$('#new_item_form')[0].reset()">Cancel</button>
-							<%= f.submit "Create Item", class: "btn btn-primary" %>
+							<button type="button" class="btn btn-default" data-dismiss="modal" onclick="$('#new_item')[0].reset()">Cancel</button>
+							<%= f.submit "Create Item", class: "btn btn-primary", onclick: "$('#new_item').modal('hide')" %>
 						</div>
 					</div>
 				</div>

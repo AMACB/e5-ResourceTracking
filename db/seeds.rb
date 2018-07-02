@@ -20,7 +20,6 @@ data.each do |i|
   # puts newitem.id.to_s + ": " + newitem.name
 end
 
-
 =begin
 food = Category.create(name: 'Food', description: 'Things that involve food')
 entertainment = Category.create(name: 'Entertainment', description: 'Things that involve entertainment')

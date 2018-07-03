@@ -1,11 +1,164 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# Food
+hotdog:
+  name: Hotdog
+  description: A juicy hotdog from three days ago
+  notes: ~
+  age: 12+
+  price: 200
+  image: ~
+  tags: hot, dog, food
+  total: 10
+  unavailable: 2
+  category: food
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+popcorn:
+  name: Popcorn
+  description: Popped corn with copious quantities of butter slathered upon itself
+  notes: Probably stale
+  age: 5-12
+  price: 699
+  image: ~
+  tags: pop, corn, food
+  total: 5
+  unavailable: 0
+  category: food
+
+soap:
+  name: Soap
+  description: A bar of soap straight from the bathroom
+  notes: Not actually a food
+  age: 12+
+  price: 99
+  image: ~
+  tags: soap, cleaning, food, bathroom
+  total: 1
+  unavailable: 0
+  category: food
+
+hamburger:
+  name: Hamburger
+  description: A rounded hotdog
+  notes: ~
+  age: 12+
+  price: 200
+  image: ~
+  tags: ham, burger, hamburger, food
+  total: 12
+  unavailable: 4
+  category: food
+
+# Drink
+tea:
+  name: Tea
+  description: Leaf juice
+  notes: ~
+  age: 5-12
+  price: 199
+  image: ~
+  tags: tea, refreshment, drink, leaves
+  total: 8
+  unavailable: 8 
+  category: drink
+
+cola:
+  name: Cola
+  description: Offbrand Coke
+  notes: Probably illegal
+  age: 12+
+  price: 999
+  image: ~
+  tags: cola, coke, refreshment, drink
+  total: 5
+  unavailable: 0
+  category: drink
+
+# Cooking
+pan:
+  name: Pan
+  description: Metal cooking thing
+  notes: Goes well with pots
+  age: 9-15
+  price: 4999
+  image: ~
+  tags: cooking, pan, metal
+  total: 1
+  unavailable: 0
+  category: cooking
+
+pot:
+  name: Pot
+  description: Metal cooking thing
+  notes: Goes well with pans
+  age: 9-15
+  price: 4999
+  image: ~
+  tags: cooking, pot, metal
+  total: 3
+  unavailable: 0
+  category: cooking
+
+fire:
+  name: Fire
+  description: A hot red thing
+  notes: Can be harmful to the skin
+  age: 18+
+  price: 0
+  image: ~
+  tags: fire, cooking, heat, flame
+  total: 1000
+  unavailable: 0
+  category: cooking
+
+# Electronics
+macbook:
+  name: Macbook
+  description: Not a dell
+  notes: ~
+  age: 11+
+  price: 99999
+  image: ~
+  tags: mac, book, macbook, apple, computer, laptop
+  total: 2
+  unavailable: 1
+  category: electronics
+
+dell:
+  name: Dell
+  description: Not a mac
+  notes: ~
+  age: 11+
+  price: 999
+  image: ~
+  tags: dell, laptop, windows, computer
+  total: 1
+  unavailable: 0
+  category: electronics
+
+asus:
+  name: Asus
+  description: Neither a dell nor a mac
+  notes: ~
+  age: 18+
+  price: 9999
+  image: ~
+  tags: asus, laptop, windows, computer
+  total: 3
+  unavailable: 0
+  category: electronics
+
+<% rng = Random.new(seed = 12345) %>
+<% (1..20).each do |n| %>
+<% h = rng.hex %>
+<%= h %>:
+  name: <%= h %>
+  description: It's a <%= h %>
+  notes: ~
+  age: <%= rng.rand(12) %>-<%= rng.rand(12)+12 %>
+  price: rng.rand(900) + 100
+  image: ~
+  tags: h
+  total: n
+  unavailable: 0
+  category: randomstuff
+<% end %>

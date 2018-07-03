@@ -7,12 +7,12 @@ class CheckoutItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get update" do
-    get checkout_items_update_url
+    get checkout_items_update_url(CheckoutItems.first)
     assert_response :success
   end
 
   test "should get destroy" do
-    get checkout_items_destroy_url
+    get checkout_items_destroy_url(CheckoutItems.first)
     assert_response :success
   end
 

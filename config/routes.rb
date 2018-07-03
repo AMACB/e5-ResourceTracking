@@ -26,7 +26,10 @@ Rails.application.routes.draw do
   resources :checkout
 
   get       'checkouts/review'  => 'checkouts#review', as: :checkout_review
-  resources :checkout_items, only: [:create, :update, :destroy]
+  post      'checkout_items'    => 'checkout_items#create', as: :checkout_items_create
+  patch     'checkout_items/:id'=> 'checkout_items#update', as: :checkout_items_update
+  put       'checkout_items/:id'=> 'checkout_items#update', as: :checkout_items_update2
+  delete    'checkout_items/:id'=> 'checkout_items#destroy', as: :checkout_items_destroy
 
   get       'cart'              => 'checkouts#show', as: :cart
   get       'cart/checkout'     => 'checkouts#checkout_begin', as: :checkout_begin

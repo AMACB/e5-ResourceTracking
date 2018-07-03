@@ -3,6 +3,7 @@ TODO
 NOW - ADMIN APPROVING A CHECKOUT
 
 FEATURES
+Checkout queue for admin approval
 When forced to login, redirect to the page you were attempting to access
 User profile page
 	- Resend email confirmation
@@ -16,21 +17,17 @@ Search/filter items
 Notifications
 	- For important notifications, show them as a banner below the navbar until dismissed
 	- Bell notifications dropdown in navbar
-Checkout queue for admin approval
 Confirmation page after submitting cart
 Calendar-based availability for items
 	- Ask for time required FIRST, then filter
 	- On catalog page, prompt user to enter dates or just browse
 Item images
 	- Uploading images
-Item management
-	- AJAX the contents of edit/new when needed instead of loading all at once
 Password reset
 Email verification
 	- Ensure @austintexas.gov emails
 Items becoming unavailable
 	- Remove from checkout of users, unsubmit, notify user
-Spam prevention
 
 STYLING
 Homepage
@@ -43,10 +40,12 @@ Moderation of users
 	- Disable account, reset password, etc.
 Popularity index for items
 reCAPTCHA integration
+Spam prevention
 
 
 BUGS
 When My Cart is removed to empty, the page is blank
+Email verification doesn't work when logged in to a different account
 Modifying item.unavailable by admin/approving a checkout needs to notify users, check for errors
 	- Unsubmits cart if necessary
 Item can be destroyed while checked out

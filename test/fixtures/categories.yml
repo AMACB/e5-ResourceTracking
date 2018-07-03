@@ -1,11 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+food:
+  name: Food
+  description: Delicious food items
+
+drink:
+  name: Drink
+  description: Ice-cold refreshing drinks
+
+cooking:
+  name: Cooking
+  description: Any gear related to cooking
+
+electronics:
+  name: Electronics
+  description: Electronic devices
+
+randomstuff:
+  name: Random Stuff
+  description: Literal random stuff

@@ -21,7 +21,7 @@
 			</div>
 		<% else %>
 			<div class="col-2 form-row table-item add-to-cart">
-				<%= form_for checkout_item, remote: true, htclass: "form-inline" do |f| %>
+				<%= form_for checkout_item, url: { controller: "checkout_items", action: "create" }, remote: true, class: "form-inline" do |f| %>
 					<%= f.hidden_field :item_id, value: i.id %>
 					<div class="form-group row">
 						<%= f.number_field :quantity, value: 1, min: 1, max: i.available, class: "form-control", style: "width: 75px" %>

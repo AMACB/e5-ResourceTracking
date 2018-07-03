@@ -22,6 +22,11 @@
 	</h2>
 	<hr>
 	<div class="d-flex justify-content-around flex-wrap" style="">
+		<div class="card text-black bg-light" style="width: 18rem; margin-bottom: 12px;">
+			<div class="card-body">
+				<h5 class="card-title text-center"><%= link_to "All", items_path %></h5>
+			</div>
+		</div>
 		<% @categories.each do |c| %>
 			<div class="card text-black bg-light" style="width: 18rem; margin-bottom: 12px;">
 				<div class="card-body">

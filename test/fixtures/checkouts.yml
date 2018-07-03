@@ -4,8 +4,9 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+checkout:
+  user: user
+  reason: "foo"
+  status: 0
+  need_by: Time.zone.today + 1.days
+  return_by: Time.zone.today + 2.days

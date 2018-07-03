@@ -11,8 +11,6 @@ class CreateItems < ActiveRecord::Migration[5.2]
 
       t.text        :tags
 
-      t.integer     :available, default: 0
-      t.integer     :checked_out, default: 0
       t.integer     :unavailable, default: 0
       t.integer     :total, default: 0
 

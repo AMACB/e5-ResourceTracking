@@ -44,6 +44,7 @@ Spam prevention
 
 
 BUGS
+When (thing)#index is empty, should display a message conveying the blankness of the thing (thing = checkouts#review	)
 When My Cart is removed to empty, the page is blank
 Email verification doesn't work when logged in to a different account
 Modifying item.unavailable by admin/approving a checkout needs to notify users, check for errors

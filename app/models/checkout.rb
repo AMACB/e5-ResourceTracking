@@ -2,16 +2,25 @@ class Checkout < ApplicationRecord
   has_many :checkout_items
   belongs_to :user
   validate :dates_are_valid
+  validate :reason_present
 
-  scope :approved, -> { where('status >= 2') }
+  validates :status, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+
+  scope :returned, -> { where(status: 4) }
+  scope :picked_up, -> { where(status: 3) }
+  scope :approved, -> { where('status = 2 OR status = 3') }
   scope :pending_approval, -> { where(status: 1) }
 
-  def dates_are_valid
+  def reason_present
     unless self.status == 0
       if self.reason.blank?
         errors.add :reason, "can't be blank"
       end
+    end
+  end
 
+  def dates_are_valid
+    unless self.status == 0
       if self.need_by.blank?
         errors.add :need_by, "can't be blank"
       elsif self.need_by < Time.zone.today

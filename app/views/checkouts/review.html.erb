@@ -1,22 +1,62 @@
 <% content_for :title, "Reviewing Requests - APRD Resource Management" %>
 <%= render 'layouts/navbar', active: 'review' %>
 
-<% @checkouts.each do |c| %>
-	<div class="card bg-light text-dark">
-		<div class="card-body">
-			<h5 class="card-title text-center"><%= c.user.email %> at <%= c.checkout_time.in_time_zone("Central Time (US & Canada)").strftime("%-I:%M %p %b %-d, %Y") %></h5>
-			<p class="lead">Reason: <%= c.reason %></p>
-			<% if c.notes.present? %>
-				<p>Notes: <%= c.notes %></p>
-			<% end %>
-			<p>Requested By: <%= c.need_by.strftime("%b %-d, %Y") %></p>
-			<p>Return By: <%= c.return_by.strftime("%b %-d, %Y") %></p>
-			<ul class="listgroup">
-				<% citems = c.checkout_items%>
-				<% citems.each do |i| %>
-					<li class="list-group-item"><%= i.item.name %> <span class="badge badge-pill badge-dark"><%= i.quantity %></span></li>
-				<% end %>
-			</ul>
-		</div>
+
+<!-- Nav pills -->
+<ul class="nav nav-pills">
+	<li class="nav-item">
+		<a class="nav-link active" data-toggle="pill" href="#checkouts-pending">Pending</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" data-toggle="pill" href="#checkouts-approved">Approved</a>
+	</li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+	<div class="tab-pane container active" id="checkouts-pending">
+		<% @checkouts.each do |c| %>
+			<div class="card bg-light text-dark">
+				<div class="card-body">
+					<h5 class="card-title text-center"><%= c.user.email %> at <%= c.checkout_time.in_time_zone("Central Time (US & Canada)").strftime("%-I:%M %p %b %-d, %Y") %></h5>
+					<p class="lead">Reason: <%= c.reason %></p>
+					<% if c.notes.present? %>
+						<p>Notes: <%= c.notes %></p>
+					<% end %>
+					<p>Requested By: <%= c.need_by.strftime("%b %-d, %Y") %></p>
+					<p>Return By: <%= c.return_by.strftime("%b %-d, %Y") %></p>
+					<ul class="listgroup">
+						<% citems = c.checkout_items%>
+						<% citems.each do |i| %>
+							<li class="list-group-item"><%= i.item.name %> <span class="badge badge-pill badge-dark"><%= i.quantity %></span></li>
+						<% end %>
+					</ul>
+					<%= link_to checkout_approve_path(c.id), class: "btn btn-success", role: "button", data: { method: 'post' } do %>
+						Approve
+					<% end %>
+				</div>
+			</div>
+		<% end %>
 	</div>
-<% end %>
+	<div class="tab-pane container fade" id="checkouts-approved">
+		<% @approved.each do |c| %>
+			<div class="card bg-light text-dark">
+				<div class="card-body">
+					<h5 class="card-title text-center"><%= c.user.email %> at <%= c.checkout_time.in_time_zone("Central Time (US & Canada)").strftime("%-I:%M %p %b %-d, %Y") %></h5>
+					<p class="lead">Reason: <%= c.reason %></p>
+					<% if c.notes.present? %>
+						<p>Notes: <%= c.notes %></p>
+					<% end %>
+					<p>Requested By: <%= c.need_by.strftime("%b %-d, %Y") %></p>
+					<p>Return By: <%= c.return_by.strftime("%b %-d, %Y") %></p>
+					<ul class="listgroup">
+						<% citems = c.checkout_items%>
+						<% citems.each do |i| %>
+							<li class="list-group-item"><%= i.item.name %> <span class="badge badge-pill badge-dark"><%= i.quantity %></span></li>
+						<% end %>
+					</ul>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>

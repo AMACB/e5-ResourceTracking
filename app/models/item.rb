@@ -15,4 +15,9 @@ class Item < ApplicationRecord
   def update_available
     self[:available] = self[:total] - self[:checked_out] - self[:unavailable]
   end
+
+  def is_available_from?(date_begin, date_end)
+    c = CheckoutItems.joins(:checkout_items).where('checkout_items.checkout.status = 2 OR 3')
+    return true # TODO
+  end
 end

@@ -5,7 +5,8 @@ class CheckoutItemsController < ApplicationController
     @checkout = current_checkout
     @checkout_item = @checkout.checkout_items.new(checkout_item_params)
     @checkout.save
-    @current_user.update_attribute :current_checkout_id, @checkout.id
+    @current_user.current_checkout_id = @checkout.id
+    @current_user.save
     @checkout_items = @checkout.checkout_items
 
     @checked_out_items = Array.new

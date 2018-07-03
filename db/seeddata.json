@@ -803,7 +803,7 @@
     {
         "category": "Sports: Fitness",
         "name": "Nutringo",
-        "description": null,
+        "description": "Nutringo",
         "age": "5+",
         "quantity": 1,
         "notes": null,
@@ -866,7 +866,7 @@
     {
         "category": "Sports: Team",
         "name": "Kickball Set",
-        "description": null,
+        "description": "Kickball set",
         "age": "5+",
         "quantity": 1,
         "notes": null,
@@ -938,7 +938,7 @@
     {
         "category": "Electronics",
         "name": "Black Mouse",
-        "description": null,
+        "description": "Black mouse",
         "age": null,
         "quantity": 1,
         "notes": null,
@@ -983,7 +983,7 @@
     {
         "category": "Electronics",
         "name": "Black Microphone Stand",
-        "description": null,
+        "description": "Black microphone stand",
         "age": null,
         "quantity": 1,
         "notes": null,
@@ -1622,7 +1622,7 @@
     {
         "category": "Books: Educational",
         "name": "Science Is...",
-        "description": null,
+        "description": "Science Is...",
         "age": "N/A",
         "quantity": 1,
         "notes": null,

@@ -19,11 +19,13 @@ Rails.application.routes.draw do
   get       'login'             => 'sessions#new'
   post      'login'             => 'sessions#create'
   delete    'logout'            => 'sessions#destroy'
+  get       'confirm_email'     => 'users#confirm_email', as: :confirm_email
+  get       'profile'           => 'users#show', as: :profile
 
 
   resources :checkout
 
-  get       'checkouts/review'         => 'checkouts#review', as: :checkout_review
+  get       'checkouts/review'  => 'checkouts#review', as: :checkout_review
   resources :checkout_items, only: [:create, :update, :destroy]
 
   get       'cart'              => 'checkouts#show', as: :cart

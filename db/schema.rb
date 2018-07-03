@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2018_06_25_133257) do
     t.text "description"
     t.text "notes"
     t.string "age"
-    t.integer "condition"
+    t.integer "condition", default: 4
     t.integer "price"
     t.string "image"
     t.text "tags"
@@ -79,6 +79,8 @@ ActiveRecord::Schema.define(version: 2018_06_25_133257) do
     t.integer "permission_level", default: 0
     t.integer "current_checkout_id"
     t.string "password_digest"
+    t.string "confirm_token"
+    t.boolean "email_confirmed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

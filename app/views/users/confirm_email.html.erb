@@ -1,0 +1,21 @@
+<% content_for :title, "Email Confirmation - APRD Resource Management" %>
+<%= render 'layouts/navbar', active: 'signup' %>
+
+<div class="card card-body card-fluid bg-light">
+	<h1>Email Confirmation</h1>
+	<div class="container">
+		<% if @confirmed == 2 %>
+		<div class="alert alert-secondary">
+			Email has already been confirmed.
+		</div>
+		<% elsif @confirmed == 1 %>
+		<div class="alert alert-success">
+			Email was confirmed successfully!
+		</div>
+		<% elsif @confirmed == 0 %>
+		<div class="alert alert-danger">
+			Email was not confirmed.
+		</div>
+		<% end %>
+	</div>
+</div>

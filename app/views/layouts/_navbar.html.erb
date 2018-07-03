@@ -38,7 +38,15 @@
 				<% else %>
 					<% notifs = current_user.notifications.size %>
 					<li class="nav-item <%= 'active' if active == 'notifications' %>"><%= button_tag type: "button", class: "text-center align-middle btn #{notifs > 0 ? 'btn-danger' : 'btn-disabled btn-primary'}" do %><span class="badge"><%= notifs == 0 ? nil : "#{notifs} " %></span> <span class="align-middle"><%= octicon 'bell', fill: "white"%></span><% end %></li>
-					<li class="nav-item active"><%= link_to "Log Out (#{current_user.email})", logout_path, class: "nav-link", method: "delete" %></li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="user-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<%= current_user.email %>
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<%= link_to "Profile", profile_path, class: "dropdown-item #{'active' if active == 'profile'}" %>
+							<%= link_to "Log Out", logout_path, class: "dropdown-item", method: "delete" %>
+						</div>
+					</li>
 				<% end %>
 			</ul>
 		</div>

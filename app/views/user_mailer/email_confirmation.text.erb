@@ -1,0 +1,6 @@
+Welcome to APRD Resource Management System!
+-------------------------------------------
+
+You recently signed up for an account under this email, <%= @user.email %> In order for you to use the system, you must first confirm your email address.
+
+Copy and paste this link into your browser: <%= url_for controller: "users", action: "confirm_email", only_path: false, token: @user.confirm_token %>

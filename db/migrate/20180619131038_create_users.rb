@@ -5,6 +5,9 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.integer :permission_level, :default => 0
       t.integer :current_checkout_id, :default => nil
       t.string  :password_digest
+
+      t.string  :confirm_token
+      t.boolean :email_confirmed, :default => false
       t.timestamps
     end
   end

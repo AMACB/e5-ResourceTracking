@@ -1,0 +1,16 @@
+<h1 style="text-align: center;">Welcome to APRD Resource Management System!</h1>
+<hr>
+<p>
+	You recently signed up for an account under this email, <strong><%= @user.email %></strong>. In order for you to use the system, you must first confirm your email address.
+</p>
+<div style="text-align: center;">
+	<div>
+		<%= link_to raw('<button style="margin: auto; text-align: center; border: none; background-color: #28a745; border-radius: 12px; font-size: 24px; padding: 12px; color: white">Confirm Your Email</button>'), controller: "users", action: "confirm_email", only_path: false, token: @user.confirm_token %>
+	</div>
+	<br>
+	<div>
+		<em>
+			Or, copy and paste this link into your browser: <%= link_to nil, controller: "users", action: "confirm_email", only_path: false, token: @user.confirm_token %>
+		</em>
+	</div>
+</div>

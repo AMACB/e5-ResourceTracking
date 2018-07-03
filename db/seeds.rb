@@ -16,7 +16,8 @@ data.each do |i|
   cat = i["category"]
   cat_id = categories[cat].id
   newitem = Item.create!(category_id: cat_id, name: i["name"], description: i["description"], condition: 4, notes: i["notes"], age: i["age"], price: (i["price"].nil? ? nil : (i["price"]*100).to_i), image: "", total: i["quantity"].nil? ? 0 : i["quantity"])
-  newitem.update_attribute :image, "/images/items/image_#{newitem.id}.jpeg"
+  newitem.image = "/images/items/image_#{newitem.id}.jpeg"
+  newitem.save!
   # puts newitem.id.to_s + ": " + newitem.name
 end
 

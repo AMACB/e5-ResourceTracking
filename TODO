@@ -3,6 +3,11 @@ TODO
 NOW - ADMIN APPROVING A CHECKOUT
 
 FEATURES
+When forced to login, redirect to the page you were attempting to access
+User profile page
+	- Resend email confirmation
+	- Reset password
+	- Notifications
 Category/item cards
 Search/filter items
 	- Show search/filters on /items

@@ -24,7 +24,8 @@ class CheckoutsController < ApplicationController
     cps[:status] = 1
     cps[:checkout_time] = Time.zone.now
     if @checkout.update(cps)
-      current_user.update_attribute :current_checkout_id, nil
+      current_user.current_checkout_id = nil
+      current_user.save
       redirect_to '/'
     else
       flash[:error] = @checkout.errors.full_messages

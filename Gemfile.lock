@@ -125,6 +125,7 @@ GEM
     octicons_helper (7.3.0)
       octicons (= 7.3.0)
       rails
+    pg (1.0.0)
     popper_js (1.12.9)
     public_suffix (3.0.2)
     puma (3.11.4)
@@ -225,6 +226,7 @@ DEPENDENCIES
   jquery-ui-rails
   listen (>= 3.0.5, < 3.2)
   octicons_helper
+  pg
   puma (~> 3.11)
   rails (~> 5.2.0)
   sass-rails (~> 5.0)

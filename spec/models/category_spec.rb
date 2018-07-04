@@ -2,15 +2,19 @@ require 'spec_helper'
 
 describe Category do
 
+  subject {
+    described_class.new(name: 'foo')
+  }
+
   describe '#name' do
     it 'should not allow blank' do
-      record = Category.new
-      record.name = nil
+      subject.name = nil
 
-      expect(record).to_not be_valid
+      expect(subject).to_not be_valid
     end
   end
 
+=begin
   describe '#items' do
     it 'should add items' do
       c = Category.create(name: 'foo', description: 'bar')
@@ -21,5 +25,6 @@ describe Category do
 
       expect(c.items.size).to eq(4)
     end
-  end 
+  end
+=end
 end

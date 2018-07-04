@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.3.1'
 
 gem 'validates_email_format_of'
+gem 'factory_bot'
 
 gem 'bootstrap'
 gem 'jquery-rails'

@@ -6,15 +6,15 @@
 #
 user:
   email: user@example.com
-  password: password
+  password_digest: <%= User.new.send(:password_digest, "password") %>
   permission_level: 0
 
 user2:
   email: user2@example.com
-  password: password
+  password_digest: <%= User.new.send(:password_digest, "password") %>
   permission_level: 0
 
 admin:
   email: admin@example.com
-  password: password
+  password_digest: <%= User.new.send(:password_digest, "password") %>
   permission_level: 1

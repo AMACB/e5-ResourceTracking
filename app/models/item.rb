@@ -4,20 +4,25 @@ class Item < ApplicationRecord
 
   validates_presence_of :name, :description, :category
 
-  validates :available, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :checked_out, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :unavailable, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :total, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validate :enough_total
+
   # validates :condition, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than: 5 }
-
-  before_validation :update_available
-
-  def update_available
-    self[:available] = self[:total] - self[:checked_out] - self[:unavailable]
-  end
 
   def is_available_from?(date_begin, date_end)
     c = CheckoutItems.joins(:checkout_items).where('checkout_items.checkout.status = 2 OR 3')
     return true # TODO
+  end
+
+  def available
+    self[:total] - self[:unavailable]
+  end
+
+  private
+  def enough_total
+    if self[:total] < self[:unavailable]
+      errors.add(:total, "is too small for unavailable")
+    end
   end
 end

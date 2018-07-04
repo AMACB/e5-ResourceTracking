@@ -4,7 +4,7 @@
 <div class="col-2 table-item notes"><%= i.notes %></div>
 <div class="col table-item age"><%= i.age %></div>
 <div class="col table-item price"><%= i.price.nil? ? nil : number_to_currency(i.price / 100.0) %></div>
-<div class="col table-item total"><%= i.total %> - <%= i.unavailable %> - <%= i.checked_out %> - <%= i.available %></div>
+<div class="col table-item available"><%= i.total %> - <%= i.unavailable %></div>
 <div class="col table-item">
 	<span class="edit-button "><button id="edit_form_toggle_<%= i.id %>" onclick="createEditForm(<%= i.id %>);" type="button" class="btn btn-primary" <% if edit_now %>data-toggle="modal"<% end %> data-target="#edit_form_<%= i.id %>"><%= octicon "pencil", fill: "white", class: "align-middle text-center" %></button></span>
 	<span class="delete-button"><%= link_to octicon("x", fill: "white", class: "align-middle text-center"), i, class: "btn btn-danger", role: "button", remote: true, data: {confirm: "Are you sure you want to delete \"#{i.name}\"?", method: "delete"} %></span>

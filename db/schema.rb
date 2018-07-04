@@ -53,8 +53,6 @@ ActiveRecord::Schema.define(version: 2018_06_25_133257) do
     t.integer "price"
     t.string "image"
     t.text "tags"
-    t.integer "available", default: 0
-    t.integer "checked_out", default: 0
     t.integer "unavailable", default: 0
     t.integer "total", default: 0
     t.integer "category_id"

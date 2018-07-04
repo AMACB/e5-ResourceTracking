@@ -13,6 +13,10 @@ class User < ApplicationRecord
     self.permission_level == 1
   end
 
+  def create_dummy_notification
+    self.notifications.create(user: self, importance: 4, notif_type: "dummy", head: "Dummy Notification", body: "Dummy notification body")
+  end
+
   private
   def generate_confirmation_token
     if self.confirm_token.nil?

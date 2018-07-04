@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 2018_06_25_133257) do
   create_table "notifications", force: :cascade do |t|
     t.integer "user_id"
     t.datetime "read_at"
+    t.integer "importance"
     t.string "notif_type"
     t.string "head"
     t.text "body"

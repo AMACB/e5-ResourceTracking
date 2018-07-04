@@ -23,11 +23,18 @@ Calendar-based availability for items
 	- On catalog page, prompt user to enter dates or just browse
 Item images
 	- Uploading images
-Password reset
 Email verification
 	- Ensure @austintexas.gov emails
 Items becoming unavailable
 	- Remove from checkout of users, unsubmit, notify user
+Test cases
+	- Models
+		- class (not instance) cases
+		- test scopes
+	- Controllers
+	- Integration (multiple controllers)
+	- Feature
+		- Sign up/log in (include wrong password/invalid inputs
 
 STYLING
 Homepage
@@ -44,7 +51,7 @@ Spam prevention
 
 
 BUGS
-When (thing)#index is empty, should display a message conveying the blankness of the thing (thing = checkouts#review	)
+When (thing)#index is empty, should display a message conveying the blankness of the thing (thing = checkouts#review)
 When My Cart is removed to empty, the page is blank
 Email verification doesn't work when logged in to a different account
 Modifying item.unavailable by admin/approving a checkout needs to notify users, check for errors

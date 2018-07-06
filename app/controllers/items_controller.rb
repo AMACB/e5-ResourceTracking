@@ -3,10 +3,14 @@ class ItemsController < ApplicationController
   after_action :update_available, only: [:edit]
 
   def index
-    if params[:category].nil?
+    @filters = params.permit(:category, :q, :begin_date, :end_date).to_h
+
+    if params[:category].blank?
       @items = Item.all
+      @category_name = "All"
     else
       cat = Category.find_by(id: params[:category])
+      @category_name = cat.nil? ? nil : cat.name
       if cat.nil?
         @items = []
       else
@@ -14,8 +18,8 @@ class ItemsController < ApplicationController
       end
     end
 
-    if not params[:search].nil?
-      @items = @items.select {|i| i.name.downcase.include? params[:search].downcase }
+    if not params[:q].nil?
+      @items = @items.select {|i| i.name.downcase.include? params[:q].downcase }
     end
 
     if !current_checkout.nil?

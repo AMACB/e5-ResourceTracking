@@ -1,0 +1,7 @@
+<%= form_with url: '/items', method: :get, local: true do |f| %>
+	<%= f.label(:q, "Search:") %>
+	<%= f.text_field :q, value: @filters[:q] %>
+	<%= f.label(:category, "Category") %>
+	<%= f.collection_select :category, Category.all, :id, :name, { selected: @filters[:category], include_blank: "All" } %>
+	<%= f.submit "Filter", name: nil %>
+<% end %>

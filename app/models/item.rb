@@ -11,7 +11,13 @@ class Item < ApplicationRecord
   # validates :condition, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than: 5 }
 
   def is_available_from?(date_begin, date_end)
-    c = CheckoutItems.joins(:checkout_items).where('checkout_items.checkout.status = 2 OR 3')
+    cis = self.checkout_items
+    cis.each do |ci|
+      c = ci.checkout
+      if [c.need_by, date_begin].max <= [c.return_by, date_end].min
+        return false
+      end 
+    end
     return true # TODO
   end
 

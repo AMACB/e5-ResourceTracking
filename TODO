@@ -1,32 +1,26 @@
 TODO
 
-NOW - ADMIN APPROVING A CHECKOUT
-
 FEATURES
-Checkout queue for admin approval
+Checkout
+	- Validate avaiabiity over date range
 When forced to login, redirect to the page you were attempting to access
 User profile page
 	- Resend email confirmation
 	- Reset password
 	- Notifications
-Category/item cards
 Search/filter items
 	- Show search/filters on /items
-	- Category-based index page
-	- API-like filtering/searching
+		- Filter by availability over date range
 Notifications
 	- For important notifications, show them as a banner below the navbar until dismissed
-	- Bell notifications dropdown in navbar
+	- Bell notifications dropdown (?) in navbar
 Confirmation page after submitting cart
-Calendar-based availability for items
-	- Ask for time required FIRST, then filter
-	- On catalog page, prompt user to enter dates or just browse
-Item images
-	- Uploading images
+Items
+	- Uploading images for image_url
+	- When items become unavailable, need to remove from checkout of users, unsubit, notify user
+	- Show calendar of number available
 Email verification
 	- Ensure @austintexas.gov emails
-Items becoming unavailable
-	- Remove from checkout of users, unsubmit, notify user
 Test cases
 	- Models
 		- class (not instance) cases
@@ -37,9 +31,13 @@ Test cases
 		- Sign up/log in (include wrong password/invalid inputs
 
 STYLING
-Homepage
-Items#show
-	- Make this a modal?
+Homepage restyle
+Indicate if a field is optional in placeholder text (edit/new item, checkout begin, etc.)
+Category cards
+	- Images?
+Items
+	- Table view looks ugly; use cards?
+	- Modal to items#show on each
 
 NICE-TO-HAVES
 Contact us page

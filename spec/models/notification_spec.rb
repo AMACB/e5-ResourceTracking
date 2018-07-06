@@ -34,7 +34,7 @@ describe Notification do
     end
 
     it 'should not allow greater than or equal to five' do
-      subject.important = 5
+      subject.importance = 5
 
       expect(subject).to_not be_valid
     end

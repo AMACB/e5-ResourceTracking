@@ -2,7 +2,7 @@ TODO
 
 FEATURES
 Checkout
-	- Validate avaiabiity over date range
+	- Validate avaiabiity over date range (base on quantity?)
 When forced to login, redirect to the page you were attempting to access
 User profile page
 	- Resend email confirmation

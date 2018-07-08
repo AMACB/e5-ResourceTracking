@@ -25,7 +25,7 @@ class Item < ApplicationRecord
           CheckoutItem.arel_table[:item_id].eq(self[:id]).and(Checkout.arel_table[:status].in([2, 3]))
         )
       ).join_sources
-    ).order(Checkout.arel_table[:return_by], Checkout.arel_table[:need_by]).collect {|x| [Date.parse(x.need_by), Date.parse(x.return_by), x.quantity, x.checkout_id] }
+    ).order(Checkout.arel_table[:return_by], Checkout.arel_table[:need_by]).collect {|x| [x.need_by, x.return_by, x.quantity, x.checkout_id] }
   end
 
   def max_used_between(date_begin, date_end)

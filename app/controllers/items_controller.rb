@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   after_action :update_available, only: [:edit]
 
   def index
-    @filters = params.permit(:category, :q, :begin_date, :end_date).to_h
+    @filters = params.permit(:category, :q, :date_begin, :date_end).to_h
 
     if params[:category].blank?
       @items = Item.all
@@ -20,6 +20,10 @@ class ItemsController < ApplicationController
 
     if not params[:q].nil?
       @items = @items.select {|i| i.name.downcase.include? params[:q].downcase }
+    end
+
+    if !params[:date_begin].nil? and !params[:date_end].nil?
+      # @items = @items.available_between(params[:date_begin], params[:date_end])
     end
 
     if !current_checkout.nil?

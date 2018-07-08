@@ -2,6 +2,8 @@ class Item < ApplicationRecord
   belongs_to :category
   has_many :checkout_items
 
+  # scope :available_between, (date_begin, date_end) -> { is_available_from(date_begin, date_end, 1) }
+
   validates_presence_of :name, :description, :category
 
   validates :unavailable, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
@@ -29,6 +31,12 @@ class Item < ApplicationRecord
   def max_used_between(date_begin, date_end)
     ranges = conflicting_ranges(date_begin, date_end)
 
+    puts ranges.inspect
+
+    if ranges.length == 0
+      return 0
+    end
+
     endpoints = (ranges.flat_map { |x| [x[0], x[1]] }).uniq.sort
 
     sums = Array.new(endpoints.length - 1, 0)
@@ -43,11 +51,15 @@ class Item < ApplicationRecord
   end
 
   def is_available_from?(date_begin, date_end, qty)
-    return available - max_used_between(date_begin, date_end) >= qty
+    available - max_used_between(date_begin, date_end) >= qty
   end
 
   def available
     self[:total] - self[:unavailable]
+  end
+
+  def available_date_range(date_begin, date_end)
+    return available - max_used_between(date_begin, date_end)
   end
 
   # private

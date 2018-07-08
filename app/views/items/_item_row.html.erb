@@ -1,13 +1,14 @@
+<% max_available = i.available_date_range(filters[:date_begin], filters[:date_end]) %>
 <div class="row zebra <%= cycle('bg-white', 'bg-light') %>">
 	<div class="col-2 table-item name"><%= link_to i.name, item_path(i) %></div>
 	<div class="col-2 table-item"><%= i.category.name %></div>
 	<div class="<%= current_user ? 'col-3' : 'col-4' %> table-item description" data-toggle="tooltip" data-placement="right" data-trigger="click" title="<%= i.description.nil? ? nil : i.description %>"><%= i.description.nil? ? nil : (i.description.size > 200 ? i.description[0..200].to_s + "..." : i.description) %></div>
-	<div class="<%= current_user ? 'col-2' : 'col-3' %> table-item notes"><%= i.notes %></div>
-	<div class="col-1 table-item available"><%= i.available %></div>
+	<div class="<%= current_user ? 'col-2' : 'col-3' %> table-item notes"><%= i.notes %></div>	
+	<div class="col-1 table-item available"><%= max_available %></div>
 	<%# <td class="price"><%= i.price.nil? ? nil : number_to_currency(i.price / 100.0) %>
 	</td>
 	<% if current_user %>
-		<% if i.available <= 0 %>
+		<% if max_available <= 0 %>
 			<div class="col-2 table-item add-to-cart text-muted">
 				<em>None available</em>
 			</div>

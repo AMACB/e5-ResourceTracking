@@ -31,3 +31,6 @@
 
 # Ignore email ENV setup
 /config/initializers/app_env_vars.rb
+
+# Ignore todo list
+/TODO

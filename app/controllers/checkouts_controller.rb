@@ -1,6 +1,6 @@
 class CheckoutsController < ApplicationController
   before_action :require_user
-  before_action :require_admin, only: [:review, :index, :approve]
+  before_action :require_admin, only: [:review, :approve]
 
   def review
     @checkouts = Checkout.pending_approval.order(:checkout_time)

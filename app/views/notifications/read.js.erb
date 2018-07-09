@@ -1,0 +1,2 @@
+$('#notif-<%= @notification.id %> [data-toggle="tooltip"]').tooltip("hide");
+$('#notif-<%= @notification.id %>').html('<%= j render "notifications/notification_show", notification: @notification %>');

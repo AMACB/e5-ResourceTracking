@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get       '/'                 => 'pages#home'
+  get       'info'              => 'pages#info'
 
   get       'items/manage'      => 'items#manage', as: :items_manage
   get       'catalog'           => 'items#catalog', as: :items_catalog
@@ -28,6 +29,8 @@ Rails.application.routes.draw do
   get       'checkouts/review'      => 'checkouts#review', as: :checkout_review
   post      'checkouts/approve/:id' => 'checkouts#approve', as: :checkout_approve
   post      'checkouts/reject/:id'  => 'checkouts#reject', as: :checkout_reject
+  get       'checkouts/check_in'    => 'checkouts#check_in', as: :checkout_check_in
+  get       'checkouts/check_out'   => 'checkouts#check_out', as: :checkout_check_out
   get       'requests'              => 'checkouts#index', as: :checkouts
   post      'checkout_items'        => 'checkout_items#create', as: :checkout_items_create
   patch     'checkout_items/:id'    => 'checkout_items#update', as: :checkout_items_update
@@ -39,6 +42,7 @@ Rails.application.routes.draw do
   get       'cart/checkout'     => 'checkouts#checkout_begin', as: :checkout_begin
   patch     'cart/checkout'     => 'checkouts#checkout_end', as: :checkout_end
 
-  get       'notifications'     => 'notifications#index', as: :notifications
+  get       'notifications'           => 'notifications#index', as: :notifications
+  post      'notifications/read/:id'  => 'notifications#read', as: :notifications_read
 
 end

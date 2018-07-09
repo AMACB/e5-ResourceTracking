@@ -18,10 +18,12 @@ class ApplicationController < ActionController::Base
       if c.user_id != @current_user.id
         raise "User does not own the checkout under their current_checkout_id."
       else
-        c
+        return c
       end
     else
-      Checkout.new(user_id: @current_user.id, status: 0)
+      c = Checkout.create(user_id: @current_user.id, status: 0)
+      current_user.current_checkout_id = c.id
+      return c
     end
   end
 

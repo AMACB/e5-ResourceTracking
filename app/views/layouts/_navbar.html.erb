@@ -9,6 +9,7 @@
 		<div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse-2" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item <%= 'active' if active == 'home' %>"><%= link_to "Home", "/", class: "nav-link" %></li>
+				<li class="nav-item <%= 'active' if active == 'info' %>"><%= link_to "Info", info_path, class: "nav-link" %></li>
 				<li class="nav-item <%= 'active' if active == 'catalog' %>"><%= link_to "Catalog", items_catalog_path, class: "nav-link" %></li>
 				<li class="nav-item cart-text <%= 'active' if active == 'cart' %>"><%= render 'layouts/cart_text' %></li>
 				<li class="nav-item <%= 'active' if active == 'requests' %>"><%= link_to "Requests", checkouts_path, class: "nav-link" %></li>

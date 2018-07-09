@@ -1,0 +1,20 @@
+<div class="list-group-item list-group-item-action flex-column align-items-start <%= notification.read_at.nil? ? 'bg-light' : 'bg-light notif-read' %>">
+	<div class="d-flex w-100 justify-content-between">
+		<h5 class="mb-1">
+			<% if notification.read_at.nil? %>
+				<%= link_to notifications_read_path(id: notification.id), method: "post", remote: true, class: "btn btn-light text-center align-middle", title: "Mark as read", "data-placement": "right", "data-toggle": "tooltip" do %>
+					<%= octicon 'check', fill: "gray" %>
+				<% end %>
+			<% end %>
+			<strong><%= notification.head %></strong></h5>
+		<p class="small">
+			<%= time_ago_in_words(notification.created_at) %> ago
+		</p>
+	</div>
+	<p class="mb-1"><%= notification.body %></p>
+	<% if !notification.read_at.nil? %>
+		<span class="small">Read <%= time_ago_in_words(notification.read_at) %> ago</span>
+		<br>
+	<% end %>
+	<span class="small"><%= notification.notif_type %></span>
+</div>

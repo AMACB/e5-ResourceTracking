@@ -43,9 +43,10 @@ class CheckoutsController < ApplicationController
 
   def update
     @checkout = current_checkout
-    puts "UPDATING..."
     if @checkout.update(cart_change_params)
       flash[:success] = 'Update was successful!'
+      current_user.current_checkout_id = @checkout.id
+      current_user.save
       redirect_to cart_path
     else
       flash[:error] = 'Update failed. Error(s): ' + @checkout.errors.full_messages.to_sentence

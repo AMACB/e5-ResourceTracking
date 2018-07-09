@@ -1,15 +1,14 @@
 TODO
 
 FEATURES
-When forced to login, redirect to the page you were attempting to access
 Require phone number
+Admin check-in and check-out page
+Notifications
+	- Mark as read
 User profile page
 	- Resend email confirmation
 	- Reset password
 	- Notification settings
-Notifications
-	- For important notifications, show them as a banner below the navbar until dismissed
-	- Bell notifications dropdown (?) in navbar
 Cart
 	- Confirmation page after submitting
 	- My Cart errors need to be AJAX'd in when updating/removing items or changing the dates
@@ -29,6 +28,8 @@ Test cases
 		- Add item to cart
 I18N
 	- Move all error/info messages to locales
+Pages
+	- Info page needs info
 
 ISSUE - cart/checkout text at bottom needs updating
 
@@ -42,16 +43,17 @@ Items
 	- Modal to items#show on each
 
 NICE-TO-HAVES
+When forced to login, redirect to the page you were attempting to access
 Contact us page
 Moderation of users
-	- Disable account, reset password, etc.
+	- Disable account, reset password manually, etc.
 Popularity index for items
 reCAPTCHA integration
 Spam prevention
 
 
 BUGS
-When (thing)#index is empty, should display a message conveying the blankness of the thing (thing = checkouts#review)
+When (thing)#index is empty, should display a message conveying the blankness of the thing (thing = checkouts#review, notifications#index)
 When My Cart is removed to empty, the page is blank
 Email verification doesn't work when logged in to a different account
 Modifying item.unavailable by admin/approving a checkout needs to notify users, check for errors

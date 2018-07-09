@@ -16,8 +16,7 @@ class User < ApplicationRecord
   def create_dummy_notification
     self.notifications.create(user: self, importance: 4, notif_type: "dummy", head: "Dummy Notification", body: "Dummy notification body")
   end
-
-  private
+  
   def generate_confirmation_token
     if self.confirm_token.nil?
       self.confirm_token = SecureRandom.urlsafe_base64.to_s

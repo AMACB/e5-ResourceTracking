@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get       'login'             => 'sessions#new'
   post      'login'             => 'sessions#create'
   delete    'logout'            => 'sessions#destroy'
+  post      'email_resend'      => 'users#email_resend', as: :email_resend
   get       'confirm_email'     => 'users#confirm_email', as: :confirm_email
   get       'profile'           => 'users#show', as: :profile
 

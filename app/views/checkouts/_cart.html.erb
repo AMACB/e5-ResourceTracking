@@ -38,9 +38,8 @@
 				<%= f.text_field :return_by, value: checkout.return_by, class: "form-control", 'data-provide': "datepicker", 'data-date-format': 'yyyy-mm-dd', required: true %>
 			</div>
 		</div>
-		<div class="row">
-			<%= f.submit "Update Dates", class: "btn btn-primary" %>
-		</div>
+		<%= f.submit "Update Dates", class: "btn btn-primary" %>
+		<hr>
 	<% end %>
 	<div class="align-left">
 		<% if checkout_items.size != 0 %>

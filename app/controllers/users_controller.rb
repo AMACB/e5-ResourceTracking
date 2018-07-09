@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_user, only: [:confirm_email, :show]
+  before_action :require_user, only: [:confirm_email, :show, :email_resend]
 
   def new
     redirect_to '/' if current_user
@@ -32,6 +32,14 @@ class UsersController < ApplicationController
       @confirmed = 1
     else
       @confirmed = 0
+    end
+  end
+
+  def email_resend
+    if !current_user.email_confirmed
+      current_user.generate_confirmation_token
+      current_user.save
+      UserMailer.email_confirmation(current_user).deliver
     end
   end
 

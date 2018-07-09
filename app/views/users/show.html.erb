@@ -33,7 +33,10 @@
 			</ul>
 		</div>
 		<div class="tab-pane fade" id="pills-account" role="tabpanel" aria-labelledby="pills-account-tab">
-			b
+			<ul class="list-group">
+				<li class="list-group-item"><%= button_to email_resend_path, method: "post", class: "btn btn-primary #{@current_user.email_confirmed ? 'disabled' : nil}" do %>Resend Email Verification<% end %></li>
+				<li class="list-group-item"><%= link_to "Reset Password", '/', class: "btn btn-primary disabled" %></li>
+			</ul>
 		</div>
 		<div class="tab-pane fade" id="pills-notifications" role="tabpanel" aria-labelledby="pills-notifications-tab">
 			c

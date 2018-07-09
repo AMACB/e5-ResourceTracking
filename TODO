@@ -1,14 +1,12 @@
 TODO
 
 FEATURES
-Require phone number
+User
+	- Require phone number, other info
 Admin check-in and check-out page
-Notifications
-	- Mark as read
 User profile page
-	- Resend email confirmation
 	- Reset password
-	- Notification settings
+	- Notification settings - send email?
 Cart
 	- Confirmation page after submitting
 	- My Cart errors need to be AJAX'd in when updating/removing items or changing the dates

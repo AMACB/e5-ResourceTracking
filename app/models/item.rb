@@ -62,7 +62,7 @@ class Item < ApplicationRecord
     return available - max_used_between(date_begin, date_end)
   end
 
-  # private
+  private
   def enough_total
     if self[:total] < self[:unavailable]
       errors.add(:total, "is too small for unavailable")

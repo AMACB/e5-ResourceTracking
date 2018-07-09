@@ -21,6 +21,8 @@ require 'rspec/rails'
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
 
+  config.use_transactional_fixtures = true
+
   config.before(:suite) do
     FactoryBot.find_definitions
   end

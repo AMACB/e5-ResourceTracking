@@ -11,6 +11,7 @@
 				<li class="nav-item <%= 'active' if active == 'home' %>"><%= link_to "Home", "/", class: "nav-link" %></li>
 				<li class="nav-item <%= 'active' if active == 'catalog' %>"><%= link_to "Catalog", items_catalog_path, class: "nav-link" %></li>
 				<li class="nav-item cart-text <%= 'active' if active == 'cart' %>"><%= render 'layouts/cart_text' %></li>
+				<li class="nav-item <%= 'active' if active == 'requests' %>"><%= link_to "Requests", checkouts_path, class: "nav-link" %></li>
 
 				<% if current_user && current_user.admin? %>
 					<li class="nav-item dropdown">
@@ -30,19 +31,25 @@
 		<div class="mx-auto order-0">
 			<%= link_to "APRD Resource Management", '/', class: "navbar-brand" %>
 		</div>
-		<div class="navbar-collapse collapse w-100 order-2 dual-collapse-2">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">User Info <span><%= octicon 'chevron-down', fill: 'white' %></span></button>
+		<div class="navbar-collapse collapse w-100 order-2 dual-collapse-2" id="navbarSupportedContent2">
 			<ul class="navbar-nav ml-auto">
 				<% unless current_user %>
 					<li class="nav-item <%= 'active' if active == 'login' %>"><%= link_to "Log In", login_path, class: "nav-link" %></li>
 					<li class="nav-item <%= 'active' if active == 'signup' %>"><%= link_to "Sign Up", signup_path, class: "nav-link" %></li>
 				<% else %>
-					<% notifs = current_user.notifications.size %>
-					<li class="nav-item <%= 'active' if active == 'notifications' %>"><%= button_tag type: "button", class: "text-center align-middle btn #{notifs > 0 ? 'btn-danger' : 'btn-disabled btn-primary'}" do %><span class="badge"><%= notifs == 0 ? nil : "#{notifs} " %></span> <span class="align-middle"><%= octicon 'bell', fill: "white"%></span><% end %></li>
+					<% notifs = current_user.notifications.unread.size %>
+					<li class="nav-item dropdown <%= 'active' if active == 'notifications' %>">
+						<%= link_to notifications_path, class: "text-center align-middle btn #{notifs > 0 && active != 'notifications' ? 'btn-danger' : 'btn-disabled btn-primary'}" do %>
+							<span class="badge"><%= notifs == 0 ? nil : "#{notifs} " %></span> 
+							<span class="align-middle"><%= octicon 'bell', fill: "white"%></span>
+						<% end %>
+					</li>
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="user-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<%= current_user.email %>
 						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<div class="dropdown-menu" aria-labelledby="userDropdown">
 							<%= link_to "Profile", profile_path, class: "dropdown-item #{'active' if active == 'profile'}" %>
 							<%= link_to "Log Out", logout_path, class: "dropdown-item", method: "delete" %>
 						</div>

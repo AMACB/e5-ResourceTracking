@@ -1,43 +1,85 @@
 <div class="card card-body">
-  <h1>My Cart</h1>
-  <div class="align-left">
-    <% if checkout_items.size != 0 %>
-      <%= link_to "Check Out", checkout_begin_path, class: "btn btn-primary" %>
-    <% else %>
-      <p class="text-center">
-        There are no items in your cart.  Please <%= link_to "go back", items_path %> and add some items to your cart.
-      </p>
-    <% end %>
-  </div>
+	<h1>My Cart</h1>
+
+	<% if flash[:success].present? %>
+		<div class="alert alert-success">
+			<%= flash[:success] %>
+		</div>
+	<% end %>
+
+	<% if flash[:error].present? %>
+		<div class="alert alert-error">
+			<%= flash[:error] %>
+		</div>
+	<% end %>
+
+	<% if checkout_errors.any? %>
+		<ul class="list-group">
+		<% checkout_errors[:checkout_items].each do |ce| %>
+			<li class="list-group-item list-group-item-danger">Your checkout <%= ce %></li>
+		<% end %>
+		</ul>
+		<br>
+	<% end %>
+	<%= form_with url: "cart", method: "patch" do |f| %>
+		<div class="row">
+			<div class="col-2">
+				<%= f.label :need_by, "Need by date:" %>
+			</div>
+			<div class="col">
+				<%= f.text_field :need_by, value: checkout.need_by, class: "form-control", 'data-provide': "datepicker", 'data-date-format': 'yyyy-mm-dd', 'data-startDate': '0', 'data-todayHighlight': true, required: true %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-2">
+				<%= f.label :return_by, "Return by date:" %>
+			</div>
+			<div class="col">
+				<%= f.text_field :return_by, value: checkout.return_by, class: "form-control", 'data-provide': "datepicker", 'data-date-format': 'yyyy-mm-dd', required: true %>
+			</div>
+		</div>
+		<div class="row">
+			<%= f.submit "Update Dates", class: "btn btn-primary" %>
+		</div>
+	<% end %>
+	<div class="align-left">
+		<% if checkout_items.size != 0 %>
+			<%= link_to "Check Out", checkout_begin_path, class: "btn btn-primary" %>
+		<% else %>
+			<p class="text-center">
+				There are no items in your cart.  Please <%= link_to "go back", items_path %> and add some items to your cart.
+			</p>
+		<% end %>
+	</div>
 </div>
 
 <% if !@order_item.nil? && @order_item.errors.any? %>
-  <div class="alert alert-danger">
-    <ul>
-    <% @order_item.errors.full_messages.each do |e| %>
-      <li><%= e %></li>
-    <% end %>
-    </ul>
-  </div>
+	<div class="alert alert-danger">
+		<ul>
+		<% @order_item.errors.full_messages.each do |e| %>
+			<li><%= e %></li>
+		<% end %>
+		</ul>
+	</div>
 <% end %>
 <% if checkout_items.size == 0 %>
-  
+	
 <% else %>
 <div class="carttable container-fluid">
-  <div class="row bg-primary text-light">
-    <div class="col-6 table-item table-item-head">Item Name</div>
-    <div class="col table-item table-item-head">Category</div>
-    <div class="col table-item table-item-head">No. Available</div>
-    <div class="col table-item table-item-head">Quantity</div>
-    <div class="col table-item table-item-head"></div>
-    <div class="col table-item table-item-head"></div>
-  </div>
-  <div class="cartbody">
-  <% checkout_items.each do |c| %>
-    <div id="cart_row_<%= c.id %>">
-      <%= render 'cart_row', c: c %>
-    </div>
-  <% end %>
-  </div>
+	<div class="row bg-primary text-light">
+		<div class="col-6 table-item table-item-head">Item Name</div>
+		<div class="col table-item table-item-head">Category</div>
+		<div class="col table-item table-item-head">No. Available</div>
+		<div class="col table-item table-item-head">Quantity</div>
+		<div class="col table-item table-item-head"></div>
+		<div class="col table-item table-item-head"></div>
+	</div>
+	<div class="cartbody">
+	<% checkout_items.each do |c| %>
+		<div id="cart_row_<%= c.id %>">
+			<%= render 'cart_row', c: c %>
+		</div>
+	<% end %>
+	</div>
 </div>
 <% end %>

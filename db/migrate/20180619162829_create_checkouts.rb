@@ -12,6 +12,7 @@ class CreateCheckouts < ActiveRecord::Migration[5.2]
 
       t.date        :need_by
       t.date        :return_by
+
       t.references  :user
       t.timestamps
     end

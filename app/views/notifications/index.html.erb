@@ -1,0 +1,22 @@
+<% content_for :title, "Notifications - APRD Resource Management" %>
+<%= render 'layouts/navbar', active: 'notifications' %>
+
+<div class="card card-body card-fluid bg-light">
+	<h1>Notifications</h1>
+	<ul class="list-group">
+		<% @notifications.each do |n| %>
+			<div class="list-group-item list-group-item-action flex-column align-items-start <%= n.read_at.nil? ? 'bg-light' : 'bg-white disabled' %>">
+				<div class="d-flex w-100 justify-content-between">
+					<h5 class="mb-1"><strong><%= n.head %></strong></h5>
+					<p class="small"><%= time_ago_in_words(n.created_at) %> ago</p>
+				</div>
+				<p class="mb-1"><%= n.body %></p>
+				<% if !n.read_at.nil? %>
+					<span class="small">Read <%= time_ago_in_words(n.read_at) %> ago</span>
+					<br>
+				<% end %>
+				<span class="small"><%= n.notif_type %></span>
+			</div>
+		<% end %>
+	</ul>
+</div>

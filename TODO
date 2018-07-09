@@ -1,23 +1,21 @@
 TODO
 
 FEATURES
-Checkout
-	- Validate avaiabiity over date range (base on quantity?)
 When forced to login, redirect to the page you were attempting to access
+Require phone number
 User profile page
 	- Resend email confirmation
 	- Reset password
-	- Notifications
-Search/filter items
-	- Show search/filters on /items
-		- Filter by availability over date range
+	- Notification settings
 Notifications
 	- For important notifications, show them as a banner below the navbar until dismissed
 	- Bell notifications dropdown (?) in navbar
-Confirmation page after submitting cart
+Cart
+	- Confirmation page after submitting
+	- My Cart errors need to be AJAX'd in when updating/removing items or changing the dates
 Items
 	- Uploading images for image_url
-	- When items become unavailable, need to remove from checkout of users, unsubit, notify user
+	- When items become unavailable, need to remove from checkout of users, unsubmit, notify user
 	- Show calendar of number available
 Email verification
 	- Ensure @austintexas.gov emails
@@ -28,7 +26,11 @@ Test cases
 	- Controllers
 	- Integration (multiple controllers)
 	- Feature
-		- Sign up/log in (include wrong password/invalid inputs
+		- Add item to cart
+I18N
+	- Move all error/info messages to locales
+
+ISSUE - cart/checkout text at bottom needs updating
 
 STYLING
 Homepage restyle

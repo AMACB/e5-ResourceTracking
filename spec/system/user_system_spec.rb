@@ -11,7 +11,7 @@ describe "User Management", type: :system do
 
     click_button "Create an account"
 
-    expect(page).to have_selector("#user-dropdown", text: "testsignup@example.com")
+    expect(page).to have_selector("#userDropdown", text: "testsignup@example.com")
 
     User.destroy(User.find_by_email("testsignup@example.com").id)
   end
@@ -25,7 +25,7 @@ describe "User Management", type: :system do
 
     click_button "Login"
 
-    expect(page).to have_selector("#user-dropdown", text: "testlogin@example.com")
+    expect(page).to have_selector("#userDropdown", text: "testlogin@example.com")
   end
 
   it "allows email to be confirmed" do

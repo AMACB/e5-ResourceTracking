@@ -7,6 +7,6 @@ class Notification < ApplicationRecord
   scope :unread, -> { where(read_at: nil) }
 
   def mark_as_read
-    self['read_at'] = Time.zone.now
+    self.update_attribute :read_at, Time.zone.now
   end
 end

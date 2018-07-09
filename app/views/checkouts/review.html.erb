@@ -34,6 +34,9 @@
 					<%= link_to checkout_approve_path(c.id), class: "btn btn-success", role: "button", data: { method: 'post' } do %>
 						Approve
 					<% end %>
+					<%= link_to checkout_reject_path(c.id), class: "btn btn-danger", role: "button", data: { method: 'post' } do %>
+						Reject
+					<% end %>
 				</div>
 			</div>
 		<% end %>
@@ -55,6 +58,7 @@
 							<li class="list-group-item"><%= i.item.name %> <span class="badge badge-pill badge-dark"><%= i.quantity %></span></li>
 						<% end %>
 					</ul>
+					<small>Approved <%= time_ago_in_words(c.checkout_time) %> ago</small>
 				</div>
 			</div>
 		<% end %>

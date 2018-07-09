@@ -2,6 +2,6 @@
 	alert("Error(s) occurred:\n<%= @checkout_item.errors.full_messages.join('\n') %>\nRefresh the page, then try again.");
 <% else %>
 	$('.cart-text').html("<%= j render 'layouts/cart_text' %>");
-	$('#item_row_<%= @checkout_item.item_id %>').html("<%= j render 'items/item_row', i: @checkout_item.item, checkout_item: @checkout_item, checked_out_items: @checked_out_items, newly_added: true %>");
+	$('#item_row_<%= @checkout_item.item_id %>').html("<%= j render 'items/item_row', i: @checkout_item.item, checkout_item: @checkout_item, checked_out_items: @checked_out_items, newly_added: true, filters: nil %>");
 	updateColors();
 <% end %>

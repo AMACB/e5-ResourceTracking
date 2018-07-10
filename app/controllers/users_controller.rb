@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    redirect_to '/' if current_user
     @user = User.new(user_params)
     if @user.save
       UserMailer.email_confirmation(@user).deliver

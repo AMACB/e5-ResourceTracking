@@ -30,6 +30,17 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  notifications:
+    types:
+      checkout_invalidated: "Checkout was rejected automatically"
+      checkout_rejected: "Checkout was rejected by admin"
+      checkout_approved: "Checkout was approved"
   checkouts:
     date_begin: "Date range (begin)"
     date_end: "Date range (end)"
+  info:
+    email: "PARDLendingLibrary@austintexas.gov"
+    hours: "Tuesday and Thursday from 10:30am to 1:30pm"
+    address: "2209 Rosewood Avenue, 211, Austin, TX 78702"
+#    legal:
+#      checkout: "Undersigned agrees that the equipment shall be returned to CPD – Dewitty office by date provided above. The undersigned also agrees that if item(s) are returned damaged, dirty, late, wet, moldy or missing parts while in use; replacement, cleaning fees or repair of item will be charged to facility FDU. More than 3 violations will result in being suspended from reserving Lending Library Commodities for 3 months."

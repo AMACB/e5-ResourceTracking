@@ -3,6 +3,13 @@ TODO
 FEATURES
 User
 	- Require phone number, other info
+		- Facility name
+		- Phone
+		- Email
+		- FUND
+		- DEPARTMENT
+		- UNIT
+		- OBJECT CODE
 Admin check-in and check-out page
 Info page
 	- Check in dates, times, locations
@@ -28,6 +35,7 @@ Test cases
 		- class (not instance) cases
 		- test scopes
 	- Controllers
+		- expect redirect (require_user, require_admin)
 	- Integration (multiple controllers)
 	- Feature
 		- Add item to cart
@@ -36,7 +44,7 @@ I18N
 Pages
 	- Info page needs info
 
-ISSUE - cart/checkout text at bottom needs updating
+ISSUE - search by tag doesn't work
 
 STYLING
 Homepage restyle
@@ -49,11 +57,12 @@ Items
 	- Modal to items#show on each
 
 NICE-TO-HAVES
+Back up the database
 When forced to login, redirect to the page you were attempting to access
 Better search engine: https://devcamp.com/site_blogs/implementing-a-search-engine-in-a-rails-application
 Contact us page
 Moderation of users
-	- Disable account, reset password manually, etc.
+	- Disable account, reset password manually, verify email manually, etc.
 Popularity index for items
 reCAPTCHA integration
 Spam prevention
@@ -63,7 +72,7 @@ BUGS
 When date range length = 0, errors with checking validity
 When (thing)#index is empty, should display a message conveying the blankness of the thing (thing = checkouts#review, notifications#index)
 When My Cart is removed to empty, the page is blank
-Email verification doesn't work when logged in to a different account
+Email verification doesn't work when logged in to a different account ??
 Modifying item.unavailable by admin/approving a checkout needs to notify users, check for errors
 	- Unsubmits cart if necessary
 Item can be destroyed while checked out

@@ -1,6 +1,7 @@
 class CheckoutsController < ApplicationController
   before_action :require_user
-  before_action :require_admin, only: [:review, :approve]
+  before_action :require_confirmed_user, only: [:checkout_begin, :checkout_end]
+  before_action :require_admin, only: [:review, :approve, :reject]
 
   def review
     @checkouts = Checkout.pending_approval.order(:checkout_time)
@@ -12,6 +13,10 @@ class CheckoutsController < ApplicationController
     @checkout.status = 2
     if @checkout.save
       @checkout.user.notifications.create(notif_type: "checkout_approved", importance: 4, head: "Your Request was Approved", body: "Your recent checkout for \"#{@checkout.reason}\" was approved!")
+      errs = Checkout.check_for_invalid
+      if errs.size > 0
+        flash[:notice] = "There were #{errs.size} other request(s) that were automatically rejected due to an item in the approved request being present in a pending request."
+      end
       flash[:success] = 'Checkout approved!'
       redirect_to checkout_review_path
     else 

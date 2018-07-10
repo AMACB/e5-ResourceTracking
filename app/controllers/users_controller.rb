@@ -20,6 +20,7 @@ class UsersController < ApplicationController
 
   def show
     current_user
+    @require_email = params[:require_email]
   end
 
   def confirm_email

@@ -1,5 +1,5 @@
 <% items.each do |i| %>
 <span id="item_row_<%= i.id %>">
-	<%= render "items/item_row", i: i, checkout_item: @checkout_item, checked_out_items: @checked_out_items, newly_added: false, filters: filters %>
+	<%= render "items/item_row", i: i, checkout_item: checkout_item, checked_out_items: checked_out_items, newly_added: false, filters: filters %>
 </span>
 <% end %>

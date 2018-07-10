@@ -1,6 +1,12 @@
 <% content_for :title, "Profile - APRD Resource Management" %>
 <%= render 'layouts/navbar', active: 'profile' %>
 
+<% if @require_email %>
+<div class="alert alert-warning mg12">
+	In order to use that feature, you must first confirm your email address. If you did not receive the email (check your spam folder!), you can resend the email verification in the "Account" tab of your profile.
+</div>
+<% end %>
+
 <div class="card card-body card-fluid bg-light">
 	<h1>User Profile</h1>
 	<ul class="nav nav-pills nav-fill mb-3" id="pills-tab" role="tablist">

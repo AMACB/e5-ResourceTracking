@@ -1,5 +1,5 @@
 <% content_for :title, "All Items - APRD Resource Management" %>
-<%= render 'layouts/navbar', active: '' %>
+<%= render 'layouts/navbar', active: 'catalog' %>
 
 <div class="filters">
 	<%= render 'items/filters' %>
@@ -29,7 +29,7 @@
 				</div>
 			</div>
 		<% else %>
-			<%= render 'items/items_all', items: @items, checked_out_items: @checked_out_items, filters: @filters %>
+			<%= render 'items/items_all', items: @items, checkout_item: @checkout_item, checked_out_items: @checked_out_items, filters: @filters %>
 		<% end %>
 	</span>
 </table>

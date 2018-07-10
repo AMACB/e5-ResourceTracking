@@ -19,7 +19,19 @@ class ItemsController < ApplicationController
     end
 
     if not params[:q].nil?
-      @items = @items.select {|i| i.name.downcase.include? params[:q].downcase }
+      @items = @items.select do |i|
+        nmdc = i.name.downcase
+        select = false
+        if nmdc.include? params[:q].downcase
+          select = true
+        end
+        params[:q].split(" ").each do |t|
+          if nmdc.include? t.downcase
+            select = true
+          end
+        end
+        select
+      end
     end
 
     if !params[:date_begin].nil? and !params[:date_end].nil?

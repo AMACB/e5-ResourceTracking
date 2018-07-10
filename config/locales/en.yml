@@ -30,4 +30,6 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  checkouts:
+    date_begin: "Date range (begin)"
+    date_end: "Date range (end)"

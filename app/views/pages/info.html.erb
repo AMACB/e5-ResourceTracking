@@ -1,9 +1,109 @@
 <% content_for :title, "APRD Resource Management" %>
 <%= render 'layouts/navbar', active: 'info' %>
 
-<div class="card card-body">
-	<h4>Location and Times</h4>
-	<p>
-		...
-	</p>
+<div class="mg24">
+	<h1>How it Works</h1>
+	<div id="accordion">
+		<div class="card mg12">
+			<div class="card-header" id="card-header-1">
+				<h5 class="mb-0">
+					<button class="btn btn-link" data-toggle="collapse" data-target="#card-collapse-1" aria-expanded="false" aria-controls="card-collapse-1">
+						The Catalog
+					</button>
+				</h5>
+			</div>
+			<div id="card-collapse-1" class="collapse" aria-labelledby="card-collapse-1" data-parent="#accordion">
+				<div class="card-body">
+					At the <%= link_to "Catalog Page", items_catalog_path %>, you can search for items directly or choose a category to browse. From here, you can view the information about an item, or if you are logged in, add the desired item to the cart. Using the filters, you can further refine your search, such as to only show items available during a certain time period.
+					<br><br>
+					Before you begin adding items to your cart, it is recommended that you first go to <%= link_to "your cart", cart_path %> and set a need by and return by date for the items you need. This way, the system will automatically set the filter to the time period specified in order to help you avoid accidentally adding items not available when you want them.
+				</div>
+			</div>
+		</div>
+
+		<div class="card mg12">
+			<div class="card-header" id="card-header-2">
+				<h5 class="mb-0">
+					<button class="btn btn-link" data-toggle="collapse" data-target="#card-collapse-2" aria-expanded="false" aria-controls="card-collapse-2">
+						Requesting Items
+					</button>
+				</h5>
+			</div>
+			<div id="card-collapse-2" class="collapse" aria-labelledby="card-collapse-2" data-parent="#accordion">
+				<div class="card-body">
+					At the <%= link_to "Cart Page", cart_path %>, you can view the items that you have added to your cart. Here, you can also modify the quantity of or delete certain items in your cart, update the date range, and when ready, check out.
+					<br><br>
+					After pressing "Check Out" on your <%= link_to "Cart Page", cart_path %>, you will be able to review your cart to ensure that your items are correct, and modify the date range for your request if necessary. Make sure to fill in a reason for requesting these items (e.g. event name), as well as any other notes as needed. Once you press submit, your items will be put into a queue for admin review. You will be able to review the status of your requests <%= link_to "here", checkouts_path %>.
+				</div>
+			</div>
+		</div>
+
+		<div class="card mg12">
+			<div class="card-header" id="card-header-4">
+				<h5 class="mb-0">
+					<button class="btn btn-link" data-toggle="collapse" data-target="#card-collapse-4" aria-expanded="false" aria-controls="card-collapse-4">
+						Checking Out
+					</button>
+				</h5>
+			</div>
+			<div id="card-collapse-4" class="collapse" aria-labelledby="card-collapse-4" data-parent="#accordion">
+				<div class="card-body">
+					This feature is work in progress.
+				</div>
+			</div>
+		</div>
+
+		<div class="card mg12">
+			<div class="card-header" id="card-header-5">
+				<h5 class="mb-0">
+					<button class="btn btn-link" data-toggle="collapse" data-target="#card-collapse-5" aria-expanded="false" aria-controls="card-collapse-5">
+						Checking In
+					</button>
+				</h5>
+			</div>
+			<div id="card-collapse-5" class="collapse" aria-labelledby="card-collapse-5" data-parent="#accordion">
+				<div class="card-body">
+					This feature is work in progress.
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+
+	<h1>Your Account</h1>
+	<div id="accordion-2">
+		<div class="card mg12">
+			<div class="card-header" id="card-header-2-1">
+				<h5 class="mb-0">
+					<button class="btn btn-link" data-toggle="collapse" data-target="#card-collapse-2-1" aria-expanded="false" aria-controls="card-collapse-2-1">
+						Account Settings
+					</button>
+				</h5>
+			</div>
+			<div id="card-collapse-2-1" class="collapse" aria-labelledby="card-collapse-2-1" data-parent="#accordion-2">
+				<div class="card-body">
+					Email verification, Notification settings, etc.
+				</div>
+			</div>
+		</div>
+
+		<div class="card mg12">
+			<div class="card-header" id="card-header-2-2">
+				<h5 class="mb-0">
+					<button class="btn btn-link" data-toggle="collapse" data-target="#card-collapse-2-2" aria-expanded="false" aria-controls="card-collapse-2-2">
+						Notifications
+					</button>
+				</h5>
+			</div>
+			<div id="card-collapse-2-2" class="collapse" aria-labelledby="card-collapse-2-2" data-parent="#accordion-2">
+				<div class="card-body">
+					If you are logged in, at the top right hand corner of the screen next to your username, you should see a bell icon. Clicking on this icon will take you to your notifications page.
+					<br><br>
+					The bell icon will turn red and show the number of unread notifications if you have any. To mark a notification as read, click the small check button in the top left hand of the notification.
+					<br><br>
+					<strike>By default you will also be notified by email of some notifications. You can change your email notification settings in your user settings.</strike> (Work in progress)
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

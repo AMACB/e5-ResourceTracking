@@ -37,7 +37,11 @@ class ApplicationController < ActionController::Base
   end 
 
   def require_user
-    redirect_to '/login' unless current_user
+    redirect_to login_path unless current_user
+  end
+
+  def require_confirmed_user
+    redirect_to profile_path(require_email: true) unless current_user && current_user.email_confirmed
   end
 
   def require_admin

@@ -1,9 +1,25 @@
 <% content_for :title, "Reviewing Requests - APRD Resource Management" %>
 <%= render 'layouts/navbar', active: 'review' %>
 
+<% if flash[:error].present? %>
+	<div class="alert alert-danger">
+		<%= flash[:error] %>
+	</div>
+<% end %>
 
+<% if flash[:success].present? %>
+	<div class="alert alert-success">
+		<%= flash[:success] %>
+	</div>
+<% end %>
+
+<% if flash[:notice].present? %>
+	<div class="alert alert-info">
+		<%= flash[:notice] %>
+	</div>
+<% end %>
 <!-- Nav pills -->
-<ul class="nav nav-pills">
+<ul class="nav nav-pills mg12">
 	<li class="nav-item">
 		<a class="nav-link active" data-toggle="pill" href="#checkouts-pending">Pending</a>
 	</li>

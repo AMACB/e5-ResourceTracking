@@ -17,7 +17,7 @@
 				<div class="col-2 table-item add-to-cart text-muted">
 					<em>None available</em>
 				</div>
-			<% elsif checked_out_items.include? i.id %>
+			<% elsif !checked_out_items.nil? and checked_out_items.include? i.id %>
 				<div class="col-2 table-item add-to-cart text-muted">
 					<% if newly_added %>
 						<em>Added</em>

@@ -19,6 +19,23 @@ class Checkout < ApplicationRecord
   scope :approved, -> { where('status = 2 OR status = 3') }
   scope :pending_approval, -> { where(status: 1) }
 
+  def self.check_for_invalid
+    checkouts = Checkout.pending_approval
+    errs = Array.new
+    checkouts.each do |c|
+      if !c.valid?
+        errs << c.errors
+        c.status = 0
+        if c.save
+          c.user.notifications.create(notif_type: "checkout_invalidated", importance: 4, head: "Your Request was Automatically Rejected", body: "Your recent checkout for \"#{c.reason}\" was rejected because an item you reserved was checked out by another user. Checkout ID: #{c.id}")
+        else
+          raise "Previously valid checkout was invalid when status was updated to 0 during auto-rejection."
+        end
+      end
+    end
+    return errs
+  end
+
   def reason_present
     unless self.status == 0
       if self.reason.blank?

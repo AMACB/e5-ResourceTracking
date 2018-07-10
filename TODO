@@ -4,9 +4,15 @@ FEATURES
 User
 	- Require phone number, other info
 Admin check-in and check-out page
+Info page
+	- Check in dates, times, locations
+	- Master calendar (?)
 User profile page
 	- Reset password
 	- Notification settings - send email?
+		- By notif_type
+Notifications
+	- AJAX update the number in navbar when marking read
 Cart
 	- Confirmation page after submitting
 	- My Cart errors need to be AJAX'd in when updating/removing items or changing the dates
@@ -16,6 +22,7 @@ Items
 	- Show calendar of number available
 Email verification
 	- Ensure @austintexas.gov emails
+Trim and squish strings
 Test cases
 	- Models
 		- class (not instance) cases
@@ -25,7 +32,7 @@ Test cases
 	- Feature
 		- Add item to cart
 I18N
-	- Move all error/info messages to locales
+	- Move all error/info messages and other texts to locales
 Pages
 	- Info page needs info
 
@@ -33,6 +40,7 @@ ISSUE - cart/checkout text at bottom needs updating
 
 STYLING
 Homepage restyle
+Change card card-body to mg12
 Indicate if a field is optional in placeholder text (edit/new item, checkout begin, etc.)
 Category cards
 	- Images?
@@ -42,6 +50,7 @@ Items
 
 NICE-TO-HAVES
 When forced to login, redirect to the page you were attempting to access
+Better search engine: https://devcamp.com/site_blogs/implementing-a-search-engine-in-a-rails-application
 Contact us page
 Moderation of users
 	- Disable account, reset password manually, etc.
@@ -51,6 +60,7 @@ Spam prevention
 
 
 BUGS
+When date range length = 0, errors with checking validity
 When (thing)#index is empty, should display a message conveying the blankness of the thing (thing = checkouts#review, notifications#index)
 When My Cart is removed to empty, the page is blank
 Email verification doesn't work when logged in to a different account

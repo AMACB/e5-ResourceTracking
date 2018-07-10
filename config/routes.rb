@@ -16,8 +16,8 @@ Rails.application.routes.draw do
 
 
   resources :users, only: [:create]
-  get       'signup'            => 'users#new'
-  get       'login'             => 'sessions#new'
+  get       'signup'            => 'users#new', as: :signup
+  get       'login'             => 'sessions#new', as: :login
   post      'login'             => 'sessions#create'
   delete    'logout'            => 'sessions#destroy'
   post      'email_resend'      => 'users#email_resend', as: :email_resend

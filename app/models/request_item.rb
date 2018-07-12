@@ -1,24 +1,24 @@
-class CheckoutItem < ApplicationRecord
+class RequestItem < ApplicationRecord
   belongs_to :item
-  belongs_to :checkout
+  belongs_to :request
 
   validates :quantity, numericality: {only_integer: true, greater_than: 0}
   validate :item_present
-  validate :checkout_present
+  validate :request_present
   # validate :enough_available
 
-  validates_uniqueness_of :item_id, scope: :checkout_id
+  validates_uniqueness_of :item_id, scope: :request_id
 
   private
   def item_present
     if item.nil?
-      errors.add(:item, " is not valid")
+      errors.add(:item, " is not present")
     end
   end
 
-  def checkout_present
-    if checkout.nil?
-      errors.add(:checkout, " is not valid")
+  def request_present
+    if request.nil?
+      errors.add(:request, " is not present")
     end
   end
 

@@ -1,10 +1,10 @@
 class User < ApplicationRecord
   has_many :notifications
-  has_many :checkouts
+  has_many :requests
 
-  has_many :checkouts_reviewed,     class_name: "Checkout", foreign_key: "reviewed_by_id"
-  has_many :checkouts_checked_in,   class_name: "Checkout", foreign_key: "checked_in_by_id"
-  has_many :checkouts_checked_out,  class_name: "Checkout", foreign_key: "checked_out_by_id"
+  has_many :requests_reviewed,     class_name: "Request", foreign_key: "reviewed_by_id"
+  has_many :requests_checked_in,   class_name: "Request", foreign_key: "checked_in_by_id"
+  has_many :requests_checked_out,  class_name: "Request", foreign_key: "checked_out_by_id"
 
   has_secure_password
 

@@ -14,14 +14,14 @@
 				<br>
 			<% end %>
 		<ul class="list-group">
-			<% @checkout_items.each do |c| %>
-				<li class="list-group-item"><%= c.item.name %> <span class="badge badge-pill badge-dark"><%= c.quantity %></span></li>
+			<% @request_items.each do |r| %>
+				<li class="list-group-item"><%= r.item.name %> <span class="badge badge-pill badge-dark"><%= r.quantity %></span></li>
 			<% end %>
 		</ul>
 	</div>
 	<br>
 	<div class="container">
-		<%= form_for @checkout, url: checkout_end_path do |f| %>
+		<%= form_for @request, url: checkout_end_path do |f| %>
 		<div class="row">
 			<div class="col">
 				<%= f.label :need_by, "When do you need these items by?" %>
@@ -63,7 +63,7 @@
 		<br>
 		<% end %>
 		<div class="alert alert-dark">
-			Once you press submit, your items will be put into a queue for admin review. You will be able to review the status of your requests <%= link_to "here", checkouts_path, class: "alert-link" %>. 
+			Once you press submit, your items will be put into a queue for admin review. You will be able to review the status of your requests <%= link_to "here", requests_path, class: "alert-link" %>. 
 		</div>
 	</div>
 </div>

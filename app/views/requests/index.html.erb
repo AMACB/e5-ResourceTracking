@@ -1,26 +1,26 @@
-<% content_for :title, "Your Checkout Requests - APRD Resource Management" %>
+<% content_for :title, "Your Requests - APRD Resource Management" %>
 <%= render 'layouts/navbar', active: 'requests' %>
 
 <div class="card card-body">
 	<h1>My Requests</h1>
 
-	<% @checkouts.each do |c| %>
+	<% @requests.each do |r| %>
 		<div class="card bg-light text-dark">
 			<div class="card-body">
-				<h5 class="card-title text-center"><%= c.checkout_time.in_time_zone("Central Time (US & Canada)").strftime("%-I:%M %p %b %-d, %Y") %></h5>
-				<p class="lead">Reason: <%= c.reason %></p>
-				<% if c.notes.present? %>
-					<p>Notes: <%= c.notes %></p>
+				<h5 class="card-title text-center"><%= r.checkout_time.in_time_zone("Central Time (US & Canada)").strftime("%-I:%M %p %b %-d, %Y") %></h5>
+				<p class="lead">Reason: <%= r.reason %></p>
+				<% if r.notes.present? %>
+					<p>Notes: <%= r.notes %></p>
 				<% end %>
-				<p>Requested By: <%= c.need_by.strftime("%b %-d, %Y") %></p>
-				<p>Return By: <%= c.return_by.strftime("%b %-d, %Y") %></p>
+				<p>Requested By: <%= r.need_by.strftime("%b %-d, %Y") %></p>
+				<p>Return By: <%= r.return_by.strftime("%b %-d, %Y") %></p>
 				<ul class="listgroup">
-					<% citems = c.checkout_items%>
-					<% citems.each do |i| %>
+					<% ritems = r.request_items %>
+					<% ritems.each do |i| %>
 						<li class="list-group-item"><%= i.item.name %> <span class="badge badge-pill badge-dark"><%= i.quantity %></span></li>
 					<% end %>
 				</ul>
-				<% case (c.status) %>
+				<% case (r.status) %>
 				<% when 1 %>
 					<div class="alert alert-warning">
 						Status: Pending approval

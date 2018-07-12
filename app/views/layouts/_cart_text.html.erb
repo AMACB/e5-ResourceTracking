@@ -1,4 +1,4 @@
 <% if current_user %>
-	<% numitems = current_checkout.checkout_items.size %>
+	<% numitems = current_request.request_items.size %>
 	<%= link_to (numitems > 0 ? "Cart (#{numitems})" : "Cart"), cart_path, class: "nav-link" %>
 <% end %>

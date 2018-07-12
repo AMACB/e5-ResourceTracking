@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Checkout do
+describe Request do
 
   subject {
     described_class.new(user: User.new, reason: "foo", status: 1, need_by: Time.zone.today + 1.days, return_by: Time.zone.today + 3.days)
@@ -16,18 +16,18 @@ describe Checkout do
 =begin
     it 'should allow scopes' do
       t = Time.zone.today
-      Checkout.destroy_all
-      Checkout.create(user: User.first, reason: "foo", status: 0, need_by: Time.zone.now + 1.days, return_by: Time.zone.now + 2.days)
-      Checkout.create(user: User.first, reason: "foo", status: 1, need_by: Time.zone.now + 1.days, return_by: Time.zone.now + 2.days)
-      Checkout.create(user: User.first, reason: "foo", status: 1, need_by: Time.zone.now + 1.days, return_by: Time.zone.now + 2.days)
-      Checkout.create(user: User.first, reason: "foo", status: 2, need_by: Time.zone.now + 1.days, return_by: Time.zone.now + 2.days)
-      Checkout.create(user: User.first, reason: "foo", status: 3, need_by: Time.zone.now + 1.days, return_by: Time.zone.now + 2.days)
-      Checkout.create(user: User.first, reason: "foo", status: 4, need_by: Time.zone.now + 1.days, return_by: Time.zone.now + 2.days)
+      Request.destroy_all
+      Request.create(user: User.first, reason: "foo", status: 0, need_by: Time.zone.now + 1.days, return_by: Time.zone.now + 2.days)
+      Request.create(user: User.first, reason: "foo", status: 1, need_by: Time.zone.now + 1.days, return_by: Time.zone.now + 2.days)
+      Request.create(user: User.first, reason: "foo", status: 1, need_by: Time.zone.now + 1.days, return_by: Time.zone.now + 2.days)
+      Request.create(user: User.first, reason: "foo", status: 2, need_by: Time.zone.now + 1.days, return_by: Time.zone.now + 2.days)
+      Request.create(user: User.first, reason: "foo", status: 3, need_by: Time.zone.now + 1.days, return_by: Time.zone.now + 2.days)
+      Request.create(user: User.first, reason: "foo", status: 4, need_by: Time.zone.now + 1.days, return_by: Time.zone.now + 2.days)
 
-      expect(Checkout.pending_approval.size).to eq(2)
-      expect(Checkout.approved.size).to eq(2)
-      expect(Checkout.picked_up.size).to eq(1)
-      expect(Checkout.returned.size).to eq(1)
+      expect(Request.pending_approval.size).to eq(2)
+      expect(Request.approved.size).to eq(2)
+      expect(Request.picked_up.size).to eq(1)
+      expect(Request.returned.size).to eq(1)
     end
 =end
   end

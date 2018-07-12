@@ -1,0 +1,81 @@
+<% content_for :title, "Reviewing Requests - APRD Resource Management" %>
+<%= render 'layouts/navbar', active: 'review' %>
+
+<% if flash[:error].present? %>
+	<div class="alert alert-danger">
+		<%= flash[:error] %>
+	</div>
+<% end %>
+
+<% if flash[:success].present? %>
+	<div class="alert alert-success">
+		<%= flash[:success] %>
+	</div>
+<% end %>
+
+<% if flash[:notice].present? %>
+	<div class="alert alert-info">
+		<%= flash[:notice] %>
+	</div>
+<% end %>
+
+<ul class="nav nav-pills mg12">
+	<li class="nav-item">
+		<a class="nav-link active" data-toggle="pill" href="#requests-pending">Pending</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" data-toggle="pill" href="#requests-approved">Approved</a>
+	</li>
+</ul>
+
+<div class="tab-content">
+	<div class="tab-pane container active" id="requests-pending">
+		<% @requests.each do |r| %>
+			<div class="card bg-light text-dark">
+				<div class="card-body">
+					<h5 class="card-title text-center"><%= r.user.email %> at <%= r.checkout_time.in_time_zone("Central Time (US & Canada)").strftime("%-I:%M %p %b %-d, %Y") %></h5>
+					<p class="lead">Reason: <%= r.reason %></p>
+					<% if r.notes.present? %>
+						<p>Notes: <%= r.notes %></p>
+					<% end %>
+					<p>Requested By: <%= r.need_by.strftime("%b %-d, %Y") %></p>
+					<p>Return By: <%= r.return_by.strftime("%b %-d, %Y") %></p>
+					<ul class="listgroup">
+						<% ritems = r.request_items %>
+						<% ritems.each do |i| %>
+							<li class="list-group-item"><%= i.item.name %> <span class="badge badge-pill badge-dark"><%= i.quantity %></span></li>
+						<% end %>
+					</ul>
+					<%= link_to request_approve_path(r.id), class: "btn btn-success", role: "button", data: { method: 'post' } do %>
+						Approve
+					<% end %>
+					<%= link_to request_reject_path(r.id), class: "btn btn-danger", role: "button", data: { method: 'post' } do %>
+						Reject
+					<% end %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+	<div class="tab-pane container fade" id="requests-approved">
+		<% @approved.each do |r| %>
+			<div class="card bg-light text-dark">
+				<div class="card-body">
+					<h5 class="card-title text-center"><%= r.user.email %> at <%= r.checkout_time.in_time_zone("Central Time (US & Canada)").strftime("%-I:%M %p %b %-d, %Y") %></h5>
+					<p class="lead">Reason: <%= r.reason %></p>
+					<% if r.notes.present? %>
+						<p>Notes: <%= r.notes %></p>
+					<% end %>
+					<p>Requested By: <%= r.need_by.strftime("%b %-d, %Y") %></p>
+					<p>Return By: <%= r.return_by.strftime("%b %-d, %Y") %></p>
+					<ul class="listgroup">
+						<% ritems = r.request_items %>
+						<% ritems.each do |i| %>
+							<li class="list-group-item"><%= i.item.name %> <span class="badge badge-pill badge-dark"><%= i.quantity %></span></li>
+						<% end %>
+					</ul>
+					<small>Approved <%= time_ago_in_words(r.checkout_time) %> ago<%= r.reviewed_by.nil? ? nil : " by " + r.reviewed_by.email %></small>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>

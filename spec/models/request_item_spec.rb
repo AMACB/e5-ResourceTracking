@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe CheckoutItem do
+describe RequestItem do
 
   subject {
-    described_class.new(item: Item.new, checkout: Checkout.new, quantity: 1)
+    described_class.new(item: Item.new, request: Request.new, quantity: 1)
   }
 
   before(:each) do
-    CheckoutItem.destroy_all
+    RequestItem.destroy_all
   end
 
   describe '#item' do
@@ -25,23 +25,23 @@ describe CheckoutItem do
 
 =begin
     it 'should be unique within checkout' do
-      c1 = CheckoutItem.create(item: Item.first, checkout: Checkout.first, quantity: 1)
-      c2 = CheckoutItem.create(item: Item.first, checkout: Checkout.first, quantity: 1)
+      c1 = RequestItem.create(item: Item.first, checkout: Checkout.first, quantity: 1)
+      c2 = RequestItem.create(item: Item.first, checkout: Checkout.first, quantity: 1)
 
       expect(c2).to_not be_valid
     end
 =end
   end
 
-  describe '#checkout' do
+  describe '#request' do
     it 'should not allow absence' do
-      subject.checkout = nil
+      subject.request = nil
 
       expect(subject).to_not be_valid
     end
 
     it 'should allow presence' do
-      subject.checkout = Checkout.new
+      subject.request = Request.new
 
       expect(subject).to be_valid
     end

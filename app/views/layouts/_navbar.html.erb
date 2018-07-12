@@ -12,7 +12,7 @@
 				<li class="nav-item <%= 'active' if active == 'info' %>"><%= link_to "Info", info_path, class: "nav-link" %></li>
 				<li class="nav-item <%= 'active' if active == 'catalog' %>"><%= link_to "Catalog", items_catalog_path, class: "nav-link" %></li>
 				<li class="nav-item cart-text <%= 'active' if active == 'cart' %>"><%= render 'layouts/cart_text' %></li>
-				<li class="nav-item <%= 'active' if active == 'requests' %>"><%= link_to "Requests", checkouts_path, class: "nav-link" %></li>
+				<li class="nav-item <%= 'active' if active == 'requests' %>"><%= link_to "Requests", requests_path, class: "nav-link" %></li>
 
 				<% if current_user && current_user.admin? %>
 					<li class="nav-item dropdown">
@@ -20,9 +20,9 @@
 							Admin Tools
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<% pending = Checkout.pending_approval.size %>
+							<% pending = Request.pending_approval.size %>
 							<%= link_to "Manage Items", items_manage_path, class: "dropdown-item #{'active' if active == 'manage-items'}" %>
-							<%= link_to (pending == 0 ? "Review Requests" : "Review Requests (#{pending})"), checkout_review_path, class: "dropdown-item #{'active' if active == 'review'}" %>
+							<%= link_to (pending == 0 ? "Review Requests" : "Review Requests (#{pending})"), request_review_path, class: "dropdown-item #{'active' if active == 'review'}" %>
 						</div>
 					</li>
 				<% end %>

@@ -1,5 +1,5 @@
 <% content_for :title, "Cart - APRD Resource Management" %>
 <%= render 'layouts/navbar', active: 'cart' %>
 <div class="shopping-cart">
-	<%= render 'cart', checkout: @checkout, checkout_items: @checkout_items, checkout_errors: @checkout_errors %>
+	<%= render 'cart', request: @request, request_items: @request_items, request_errors: @request_errors %>
 </div>

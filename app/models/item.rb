@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :category
-  has_many :checkout_items
+  has_many :request_items
 
   # scope :available_between, (date_begin, date_end) -> { is_available_from(date_begin, date_end, 1) }
 
@@ -13,25 +13,23 @@ class Item < ApplicationRecord
   # validates :condition, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than: 5 }
 
   def conflicting_ranges(date_begin, date_end)
-    CheckoutItem.select(
-      'checkout_items.quantity, checkouts.need_by AS need_by, checkouts.return_by AS return_by, checkouts.id AS checkout_id'
+    RequestItem.select(
+      'request_items.quantity, requests.need_by AS need_by, requests.return_by AS return_by, requests.id AS request_id'
     ).where(
-      Checkout.arel_table[:need_by].lteq(date_end).and(
-        Checkout.arel_table[:return_by].gt(date_begin)
+      Request.arel_table[:need_by].lteq(date_end).and(
+        Request.arel_table[:return_by].gt(date_begin)
       )
     ).joins(
-      CheckoutItem.arel_table.join(Checkout.arel_table).on(
-        Checkout.arel_table[:id].eq(CheckoutItem.arel_table[:checkout_id]).and(
-          CheckoutItem.arel_table[:item_id].eq(self[:id]).and(Checkout.arel_table[:status].in([2, 3]))
+      RequestItem.arel_table.join(Request.arel_table).on(
+        Request.arel_table[:id].eq(RequestItem.arel_table[:request_id]).and(
+          RequestItem.arel_table[:item_id].eq(self[:id]).and(Request.arel_table[:status].in([2, 3]))
         )
       ).join_sources
-    ).order(Checkout.arel_table[:return_by], Checkout.arel_table[:need_by]).collect {|x| [x.need_by, x.return_by, x.quantity, x.checkout_id] }
+    ).order(Request.arel_table[:return_by], Request.arel_table[:need_by]).collect {|x| [x.need_by, x.return_by, x.quantity, x.request_id] }
   end
 
   def max_used_between(date_begin, date_end)
     ranges = conflicting_ranges(date_begin, date_end)
-
-    puts ranges.inspect
 
     if ranges.length == 0
       return 0

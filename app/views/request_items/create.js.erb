@@ -1,0 +1,7 @@
+<% if @request.errors.any? || @request_item.errors.any? %>
+	alert("Error(s) occurred:\n<%= @request_item.errors.full_messages.join('\n') %>\nRefresh the page, then try again.");
+<% else %>
+	$('.cart-text').html("<%= j render 'layouts/cart_text' %>");
+	$('#item_row_<%= @request_item.item_id %>').html("<%= j render 'items/item_row', i: @request_item.item, request_item: @request_item, requested_items: @requested_items, newly_added: true, filters: nil %>");
+	updateColors();
+<% end %>

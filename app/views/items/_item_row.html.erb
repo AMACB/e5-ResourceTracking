@@ -4,7 +4,7 @@
 	<div class="col-2 table-item"><%= i.category.name %></div>
 	<div class="<%= current_user ? 'col-3' : 'col-4' %> table-item description" data-toggle="tooltip" data-placement="right" data-trigger="click" title="<%= i.description.nil? ? nil : i.description %>"><%= i.description.nil? ? nil : (i.description.size > 200 ? i.description[0..200].to_s + "..." : i.description) %></div>
 	<div class="<%= current_user ? 'col-2' : 'col-3' %> table-item notes"><%= i.notes %></div>	
-	<div class="col-1 table-item available"><%= !checked_out_items.nil? and checked_out_items.include?(i.id) ?  nil : max_available%></div>
+	<div class="col-1 table-item available"><%= !requested_items.nil? and requested_items.include?(i.id) ?  nil : max_available%></div>
 	<%# <td class="price"><%= i.price.nil? ? nil : number_to_currency(i.price / 100.0) %>
 	</td>
 	<% if current_user %>
@@ -17,7 +17,7 @@
 				<div class="col-2 table-item add-to-cart text-muted">
 					<em>None available</em>
 				</div>
-			<% elsif !checked_out_items.nil? and checked_out_items.include? i.id %>
+			<% elsif !requested_items.nil? and requested_items.include? i.id %>
 				<div class="col-2 table-item add-to-cart text-muted">
 					<% if newly_added %>
 						<em>Added</em>
@@ -27,7 +27,7 @@
 				</div>
 			<% else %>
 				<div class="col-2 form-row table-item add-to-cart">
-					<%= form_for checkout_item, url: { controller: "checkout_items", action: "create" }, remote: true, class: "form-inline" do |f| %>
+					<%= form_for request_item, url: { controller: "request_items", action: "create" }, remote: true, class: "form-inline" do |f| %>
 						<%= f.hidden_field :item_id, value: i.id %>
 						<div class="form-group row">
 							<%= f.number_field :quantity, value: 1, min: 1, max: i.available, class: "form-control", style: "width: 75px" %>

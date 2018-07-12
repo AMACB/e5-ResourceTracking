@@ -14,6 +14,9 @@ User
 		- UNIT
 		- OBJECT CODE
 Admin check-in and check-out page
+Review items
+	- Allow reason for rejection
+	- Column for rejected
 Info page
 	- Check in dates, times, locations
 	- Master calendar (?)
@@ -29,7 +32,7 @@ Items
 	- When checkout is auto-rejected, allow user to recover items
 	- Show calendar of number available
 Email verification
-	- Ensure @austintexas.gov emails
+	- Ensure @austintexas.gov emails (?)
 Trim and squish strings
 Test cases
 	- ENSURE PAGES DON'T ERROR (both as non-user, user, confirmed, and admin)
@@ -62,6 +65,7 @@ ISSUE - search by tag doesn't work
 
 STYLING
 Homepage restyle
+Center the icons
 Change card card-body to mg12
 Indicate if a field is optional in placeholder text (edit/new item, checkout begin, etc.)
 Category cards

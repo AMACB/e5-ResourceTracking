@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user
-  helper_method :current_checkout
+  helper_method :current_request
 
   def render_404
     respond_to do |format|
@@ -10,20 +10,20 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def current_checkout
+  def current_request
     if not current_user
       nil
-    elsif !@current_user.current_checkout_id.nil?
-      c = Checkout.find(@current_user.current_checkout_id)
-      if c.user_id != @current_user.id
-        raise "User does not own the checkout under their current_checkout_id."
+    elsif !@current_user.current_request_id.nil?
+      r = Request.find(@current_user.current_request_id)
+      if r.user_id != @current_user.id
+        raise "User does not own the request under their current_request_id: " + r.user_id.to_s
       else
-        return c
+        return r
       end
     else
-      c = Checkout.create(user_id: @current_user.id, status: 0)
-      current_user.current_checkout_id = c.id
-      return c
+      r = Request.create(user_id: @current_user.id, status: 0)
+      current_user.current_request_id = r.id
+      return r
     end
   end
 

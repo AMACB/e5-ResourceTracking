@@ -1,6 +1,6 @@
-class CreateCheckouts < ActiveRecord::Migration[5.2]
+class CreateRequests < ActiveRecord::Migration[5.2]
   def change
-    create_table :checkouts do |t|
+    create_table :requests do |t|
       t.integer     :status, default: 0
       t.datetime    :checkout_time
 

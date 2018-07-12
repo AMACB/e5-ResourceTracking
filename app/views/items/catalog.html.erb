@@ -1,7 +1,7 @@
 <% content_for :title, "Catalog - APRD Resource Management" %>
 <%= render 'layouts/navbar', active: 'catalog' %>
 
-<% if current_user and current_checkout.return_by.blank? and current_checkout.need_by.blank? %>
+<% if current_user and current_request.return_by.blank? and current_request.need_by.blank? %>
 <div class="mg12">
 <div class="alert alert-warning">
 	Before you begin adding items to your cart, it is recommended that you first go to <%= link_to "your cart", cart_path, class: "alert-link" %> and set a need by and return by date for the items you need.
@@ -15,9 +15,9 @@
 		<p class="lead">
 			<div class="input-group mb-3">
 				<input name="q" type="text" class="form-control form-control-lg" placeholder="Search" aria-label="Recipient's username" aria-describedby="search-btn">
-				<% if current_user and current_checkout.present? %>
-					<input name="date_begin" type="hidden" value="<%= current_checkout.need_by %>">
-					<input name="date_end" type="hidden" value="<%= current_checkout.return_by %>">
+				<% if current_user and current_request.present? %>
+					<input name="date_begin" type="hidden" value="<%= current_request.need_by %>">
+					<input name="date_end" type="hidden" value="<%= current_request.return_by %>">
 				<% end %>
 				<div class="input-group-append">
 					<button id="search-btn" class="btn btn-primary" type="submit"><%= octicon 'search', fill: 'white', class: 'align-middle' %></button></span>
@@ -41,7 +41,7 @@
 		<% @categories.each do |c| %>
 			<div class="card text-black bg-light" style="width: 18rem; margin-bottom: 12px;">
 				<div class="card-body">
-					<h5 class="card-title text-center"><%= link_to c.name, items_path(category: c.id, date_begin: current_checkout.nil? ? nil : current_checkout.need_by, date_end: current_checkout.nil? ? nil : current_checkout.return_by) %></h5>
+					<h5 class="card-title text-center"><%= link_to c.name, items_path(category: c.id, date_begin: current_request.nil? ? nil : current_request.need_by, date_end: current_request.nil? ? nil : current_request.return_by) %></h5>
 					<p class="card-text"><%= c.description %></p>
 				</div>
 			</div>

@@ -38,11 +38,11 @@ class ItemsController < ApplicationController
       # @items = @items.available_between(params[:date_begin], params[:date_end])
     end
 
-    if !current_checkout.nil?
-      @checkout_item = current_checkout.checkout_items.new
-      @checked_out_items = Array.new
-      current_checkout.checkout_items.each do |i|
-        @checked_out_items.push(i.item_id)
+    if !current_request.nil?
+      @request_item = current_request.request_items.new
+      @requested_items = Array.new
+      current_request.request_items.each do |i|
+        @requested_items.push(i.item_id)
       end
     end
   end
@@ -104,13 +104,13 @@ class ItemsController < ApplicationController
 
   def destroy
     @items = Item.all
-    if !current_checkout.nil?
-      @checkout_item = current_checkout.checkout_items.new
+    if !current_request.nil?
+      @request_item = current_request.request_items.new
     end
 
     @item = Item.find(params[:id])
     # instead of just destroying, go and notify users of removal
-    @item.checkout_items.destroy_all
+    @item.request_items.destroy_all
     @item.destroy
   end
 

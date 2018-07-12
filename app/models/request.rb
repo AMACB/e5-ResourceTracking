@@ -1,5 +1,5 @@
-class Checkout < ApplicationRecord
-  has_many :checkout_items
+class Request < ApplicationRecord
+  has_many :request_items
 
   belongs_to :user
   belongs_to :reviewed_by,    class_name: "User", required: false, foreign_key: "reviewed_by_id"
@@ -25,16 +25,16 @@ class Checkout < ApplicationRecord
   scope :pending_approval, -> { where(status: 1) }
 
   def self.check_for_invalid
-    checkouts = Checkout.pending_approval
+    request = Request.pending_approval
     errs = Array.new
-    checkouts.each do |c|
-      if !c.valid?
-        errs << c.errors
-        c.status = 0
-        if c.save
-          c.user.notifications.create(notif_type: "checkout_invalidated", importance: 4, head: "Your Request was Automatically Rejected", body: "Your recent checkout for \"#{c.reason}\" was rejected because an item you reserved was checked out by another user. Checkout ID: #{c.id}")
+    request.each do |r|
+      if !r.valid?
+        errs << r.errors
+        r.status = 0
+        if r.save
+          r.user.notifications.create(notif_type: "request_invalidated", importance: 4, head: "Your Request was Automatically Rejected", body: "Your recent request for \"#{r.reason}\" was rejected because an item you reserved was checked out by another user. Request ID: #{r.id}")
         else
-          raise "Previously valid checkout was invalid when status was updated to 0 during auto-rejection."
+          raise "Previously valid request was invalid when status was updated to 0 during auto-rejection."
         end
       end
     end
@@ -49,7 +49,7 @@ class Checkout < ApplicationRecord
     end
   end
 
-  def errors_on_checkout
+  def errors_on_request
     self.status = 1
     self.reason = 'foo'
     self.valid?
@@ -78,10 +78,10 @@ class Checkout < ApplicationRecord
 
   def items_available
     if self.status == 1
-      checkout_items.each do |ci|
+      request_items.each do |ci|
         puts need_by, return_by, ci.quantity
         if !ci.item.is_available_from?(need_by, return_by, ci.quantity)
-          errors.add :checkout_items, "contains a item that is not available: " + ci.quantity.to_s + " x " + ci.item.name
+          errors.add :request_items, "contains a item that is not available: " + ci.quantity.to_s + " x " + ci.item.name
         end
       end
     end

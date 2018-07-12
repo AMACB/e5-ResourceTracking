@@ -25,23 +25,23 @@ Rails.application.routes.draw do
   get       'profile'           => 'users#show', as: :profile
 
 
-  resources :checkout
+  resources :request
 
-  get       'checkouts/review'      => 'checkouts#review', as: :checkout_review
-  post      'checkouts/approve/:id' => 'checkouts#approve', as: :checkout_approve
-  post      'checkouts/reject/:id'  => 'checkouts#reject', as: :checkout_reject
-  get       'checkouts/check_in'    => 'checkouts#check_in', as: :checkout_check_in
-  get       'checkouts/check_out'   => 'checkouts#check_out', as: :checkout_check_out
-  get       'requests'              => 'checkouts#index', as: :checkouts
-  post      'checkout_items'        => 'checkout_items#create', as: :checkout_items_create
-  patch     'checkout_items/:id'    => 'checkout_items#update', as: :checkout_items_update
-  put       'checkout_items/:id'    => 'checkout_items#update', as: :checkout_items_update2
-  delete    'checkout_items/:id'    => 'checkout_items#destroy', as: :checkout_items_destroy
+  get       'requests/review'       => 'requests#review', as: :request_review
+  post      'requests/approve/:id'  => 'requests#approve', as: :request_approve
+  post      'requests/reject/:id'   => 'requests#reject', as: :request_reject
+  get       'requests/check_in'     => 'requests#check_in', as: :request_check_in
+  get       'requests/check_out'    => 'requests#check_out', as: :request_check_out
+  get       'requests'              => 'requests#index', as: :requests
+  post      'request_items'          => 'request_items#create', as: :request_items_create
+  patch     'request_items/:id'      => 'request_items#update', as: :request_items_update
+  put       'request_items/:id'      => 'request_items#update', as: :request_items_update2
+  delete    'request_items/:id'      => 'request_items#destroy', as: :request_items_destroy
 
-  get       'cart'              => 'checkouts#show', as: :cart
-  patch     'cart'              => 'checkouts#update', as: :cart_update
-  get       'cart/checkout'     => 'checkouts#checkout_begin', as: :checkout_begin
-  patch     'cart/checkout'     => 'checkouts#checkout_end', as: :checkout_end
+  get       'cart'              => 'requests#show', as: :cart
+  patch     'cart'              => 'requests#update', as: :cart_update
+  get       'cart/checkout'     => 'requests#checkout_begin', as: :checkout_begin
+  patch     'cart/checkout'     => 'requests#checkout_end', as: :checkout_end
 
   get       'notifications'           => 'notifications#index', as: :notifications
   post      'notifications/read/:id'  => 'notifications#read', as: :notifications_read

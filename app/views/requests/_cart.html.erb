@@ -13,10 +13,10 @@
 		</div>
 	<% end %>
 
-	<% if checkout_errors.any? %>
+	<% if request_errors.any? %>
 		<ul class="list-group">
-		<% checkout_errors[:checkout_items].each do |ce| %>
-			<li class="list-group-item list-group-item-danger">Your checkout <%= ce %></li>
+		<% request_errors[:request_items].each do |ce| %>
+			<li class="list-group-item list-group-item-danger">Your request <%= ce %></li>
 		<% end %>
 		</ul>
 		<br>
@@ -27,7 +27,7 @@
 				<%= f.label :need_by, "Need by date:" %>
 			</div>
 			<div class="col">
-				<%= f.text_field :need_by, value: checkout.need_by, class: "form-control", 'data-provide': "datepicker", 'data-date-format': 'yyyy-mm-dd', 'data-startDate': '0', 'data-todayHighlight': true, required: true %>
+				<%= f.text_field :need_by, value: request.need_by, class: "form-control", 'data-provide': "datepicker", 'data-date-format': 'yyyy-mm-dd', 'data-startDate': '0', 'data-todayHighlight': true, required: true %>
 			</div>
 		</div>
 		<div class="row">
@@ -35,14 +35,14 @@
 				<%= f.label :return_by, "Return by date:" %>
 			</div>
 			<div class="col">
-				<%= f.text_field :return_by, value: checkout.return_by, class: "form-control", 'data-provide': "datepicker", 'data-date-format': 'yyyy-mm-dd', required: true %>
+				<%= f.text_field :return_by, value: request.return_by, class: "form-control", 'data-provide': "datepicker", 'data-date-format': 'yyyy-mm-dd', required: true %>
 			</div>
 		</div>
 		<%= f.submit "Update Dates", class: "btn btn-primary" %>
 		<hr>
 	<% end %>
 	<div class="align-left">
-		<% if checkout_items.size != 0 %>
+		<% if request_items.size != 0 %>
 			<%= link_to "Check Out", checkout_begin_path, class: "btn btn-primary" %>
 		<% else %>
 			<p class="text-center">
@@ -61,7 +61,7 @@
 		</ul>
 	</div>
 <% end %>
-<% if checkout_items.size == 0 %>
+<% if request_items.size == 0 %>
 	
 <% else %>
 <div class="carttable container-fluid">
@@ -74,9 +74,9 @@
 		<div class="col table-item table-item-head"></div>
 	</div>
 	<div class="cartbody">
-	<% checkout_items.each do |c| %>
-		<div id="cart_row_<%= c.id %>">
-			<%= render 'cart_row', c: c %>
+	<% request_items.each do |r| %>
+		<div id="cart_row_<%= r.id %>">
+			<%= render 'cart_row', r: r  %>
 		</div>
 	<% end %>
 	</div>

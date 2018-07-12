@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_09_135952) do
+ActiveRecord::Schema.define(version: 2018_07_12_140510) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -43,6 +43,10 @@ ActiveRecord::Schema.define(version: 2018_07_09_135952) do
     t.datetime "updated_at", null: false
     t.boolean "rejected", default: false
     t.text "rejected_msg"
+    t.string "return_condition"
+    t.integer "reviewed_by_id"
+    t.integer "checked_in_by_id"
+    t.integer "checked_out_by_id"
     t.index ["user_id"], name: "index_checkouts_on_user_id"
   end
 

@@ -11,6 +11,7 @@ class CheckoutsController < ApplicationController
   def approve
     @checkout = Checkout.pending_approval.find(params[:id])
     @checkout.status = 2
+    @checkout.reviewed_by = current_user
     if @checkout.save
       @checkout.user.notifications.create(notif_type: "checkout_approved", importance: 4, head: "Your Request was Approved", body: "Your recent checkout for \"#{@checkout.reason}\" was approved!")
       errs = Checkout.check_for_invalid
@@ -30,6 +31,7 @@ class CheckoutsController < ApplicationController
     @checkout.status = 0
     @checkout.rejected = true
     @checkout.rejected_msg = params[:rejected_msg]
+    @checkout.reviewed_by = current_user
     if @checkout.save
       @checkout.user.notifications.create(notif_type: "checkout_rejected", importance: 4, head: "Your Request was Rejected", body: "Your recent checkout for \"#{@checkout.reason}\" was rejected. Reason given: \"#{@checkout.rejected_msg}\"")
       flash[:success] = 'Checkout rejected!'

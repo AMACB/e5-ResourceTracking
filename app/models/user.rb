@@ -2,7 +2,12 @@ class User < ApplicationRecord
   has_many :notifications
   has_many :checkouts
 
+  has_many :checkouts_reviewed,     class_name: "Checkout", foreign_key: "reviewed_by_id"
+  has_many :checkouts_checked_in,   class_name: "Checkout", foreign_key: "checked_in_by_id"
+  has_many :checkouts_checked_out,  class_name: "Checkout", foreign_key: "checked_out_by_id"
+
   has_secure_password
+
   validates_uniqueness_of :email
   validates_email_format_of :email, message: "is invalid"
   validates :password, length: {within: 8..32}, on: :create

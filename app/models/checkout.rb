@@ -1,6 +1,11 @@
 class Checkout < ApplicationRecord
   has_many :checkout_items
+
   belongs_to :user
+  belongs_to :reviewed_by,    class_name: "User", required: false, foreign_key: "reviewed_by_id"
+  belongs_to :checked_in_by,  class_name: "User", required: false, foreign_key: "checked_in_by_id"
+  belongs_to :checked_out_by, class_name: "User", required: false, foreign_key: "checked_out_by_id"
+
   validate :dates_are_valid
   validate :reason_present
   validate :items_available

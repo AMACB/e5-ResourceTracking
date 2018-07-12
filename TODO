@@ -80,6 +80,7 @@ Spam prevention
 
 
 BUGS
+Need to enforce 255 max length for string type
 When date range length = 0, errors with checking validity
 When (thing)#index is empty, should display a message conveying the blankness of the thing (thing = checkouts#review, notifications#index)
 When My Cart is removed to empty, the page is blank

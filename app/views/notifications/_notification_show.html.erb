@@ -16,5 +16,5 @@
 		<span class="small">Read <%= time_ago_in_words(notification.read_at) %> ago</span>
 		<br>
 	<% end %>
-	<span class="small" style="display: none;"><%= I18n.t "notifications.types.#{notification.notif_type}" %></span>
+	<span class="small" style="display: none;"><%= t "notifications.types.#{notification.notif_type}" %></span>
 </div>

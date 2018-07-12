@@ -1,6 +1,9 @@
 TODO
 
 FEATURES
+Rejection reason for admin
+Remove ID from auto-reject notification
+Accordion generator
 User
 	- Require phone number, other info
 		- Facility name
@@ -18,19 +21,18 @@ User profile page
 	- Reset password
 	- Notification settings - send email?
 		- By notif_type
-Notifications
-	- AJAX update the number in navbar when marking read
 Cart
 	- Confirmation page after submitting
 	- My Cart errors need to be AJAX'd in when updating/removing items or changing the dates
 Items
 	- Uploading images for image_url
-	- When items become unavailable, need to remove from checkout of users, unsubmit, notify user
+	- When checkout is auto-rejected, allow user to recover items
 	- Show calendar of number available
 Email verification
 	- Ensure @austintexas.gov emails
 Trim and squish strings
 Test cases
+	- ENSURE PAGES DON'T ERROR (both as non-user, user, confirmed, and admin)
 	- Models
 		- class (not instance) cases
 		- test scopes
@@ -38,11 +40,18 @@ Test cases
 		- expect redirect (require_user, require_admin)
 	- Integration (multiple controllers)
 	- Feature
-		- Add item to cart
-I18N
-	- Move all error/info messages and other texts to locales
+		- Checkout
+			- Add items to cart
+			- Update qty
+			- Remove item
+			- Quantity
+			- File request
+		- Admin Item Mgmt
+			- Edit
+			- New
+			- Delete
 Pages
-	- Info page needs info
+	- Info page
 
 ISSUE - search by tag doesn't work
 
@@ -57,6 +66,8 @@ Items
 	- Modal to items#show on each
 
 NICE-TO-HAVES
+I18N
+	- Move all error/info messages and other texts to locales
 Back up the database
 When forced to login, redirect to the page you were attempting to access
 Better search engine: https://devcamp.com/site_blogs/implementing-a-search-engine-in-a-rails-application

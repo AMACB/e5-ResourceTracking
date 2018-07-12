@@ -1,0 +1,5 @@
+<% notifs = current_user.notifications.unread.size %>
+<%= link_to notifications_path, class: "text-center align-middle btn #{notifs > 0 && !active ? 'btn-danger' : 'btn-disabled btn-primary'}" do %>
+	<span class="badge"><%= notifs == 0 ? nil : "#{notifs} " %></span> 
+	<span class="align-middle"><%= octicon 'bell', fill: "white"%></span>
+<% end %>

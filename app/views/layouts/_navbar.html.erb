@@ -39,12 +39,8 @@
 					<li class="nav-item <%= 'active' if active == 'login' %>"><%= link_to "Log In", login_path, class: "nav-link" %></li>
 					<li class="nav-item <%= 'active' if active == 'signup' %>"><%= link_to "Sign Up", signup_path, class: "nav-link" %></li>
 				<% else %>
-					<% notifs = current_user.notifications.unread.size %>
-					<li class="nav-item dropdown <%= 'active' if active == 'notifications' %>">
-						<%= link_to notifications_path, class: "text-center align-middle btn #{notifs > 0 && active != 'notifications' ? 'btn-danger' : 'btn-disabled btn-primary'}" do %>
-							<span class="badge"><%= notifs == 0 ? nil : "#{notifs} " %></span> 
-							<span class="align-middle"><%= octicon 'bell', fill: "white"%></span>
-						<% end %>
+					<li class="nav-item dropdown <%= 'active' if active == 'notifications' %>" id="notifications-text">
+						<%= render 'layouts/notifications_text', active: (active == 'notifications') %>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

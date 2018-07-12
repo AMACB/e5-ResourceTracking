@@ -88,6 +88,12 @@ class CheckoutsController < ApplicationController
     end
   end
 
+  def checkout
+  end
+
+  def checkin
+  end
+
   private
   def checkout_params
     params.require(:checkout).permit(:need_by, :return_by, :reason, :notes)

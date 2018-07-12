@@ -52,6 +52,11 @@ Test cases
 			- Delete
 Pages
 	- Info page
+Enforce maximums
+	- # of notis
+	- # of checkouts total, checkout attempts per day
+	- # of additions, updates, and removals
+Specify when/where at checkout time
 
 ISSUE - search by tag doesn't work
 

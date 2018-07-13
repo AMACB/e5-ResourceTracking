@@ -23,6 +23,8 @@
 							<% pending = Request.pending_approval.size %>
 							<%= link_to "Manage Items", items_manage_path, class: "dropdown-item #{'active' if active == 'manage-items'}" %>
 							<%= link_to (pending == 0 ? "Review Requests" : "Review Requests (#{pending})"), request_review_path, class: "dropdown-item #{'active' if active == 'review'}" %>
+							<%= link_to "Check Out Items", check_out_all_path, class: "dropdown-item #{'active' if active == 'check-out'}" %>
+							<%= link_to "Check In Items", check_in_all_path, class: "dropdown-item #{'active' if active == 'check-in'}" %>
 						</div>
 					</li>
 				<% end %>

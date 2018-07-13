@@ -4,8 +4,9 @@ class RequestsController < ApplicationController
   before_action :require_admin, only: [:review, :approve, :reject]
 
   def review
-    @requests = Request.pending_approval.order(:checkout_time)
+    @pending = Request.pending_approval.order(:checkout_time)
     @approved = Request.approved.order('checkout_time DESC')
+    @rejected = Request.rejected.order('checkout_time DESC')
   end
 
   def approve
@@ -88,10 +89,69 @@ class RequestsController < ApplicationController
     end
   end
 
-  def checkout
+  def check_out_all
+    if params[:request_id].present?
+      redirect_to check_out_path(params[:request_id])
+    end
   end
 
-  def checkin
+  def check_in_all
+    if params[:request_id].present?
+      redirect_to check_in_path(params[:request_id])
+    end
+  end
+
+  def check_out
+    @request = Request.awaiting_pickup.find_by_id(params[:id])
+    if @request.nil?
+      flash[:error] = 'Could not find a request with a pending check out with the given ID'
+      redirect_to check_out_all_path
+    end
+  end
+
+  def check_in
+    @request = Request.awaiting_return.find_by_id(params[:id])
+    if @request.nil?
+      flash[:error] = 'Could not find a request with a pending check in with the given ID'
+      redirect_to check_in_all_path
+    end
+  end
+
+  def check_out_final
+    @request = Request.awaiting_pickup.find_by_id(params[:id])
+    if @request.nil?
+      flash[:error] = 'Could not find a request with a pending check out with the given ID'
+      redirect_to check_out_all_path
+    else
+      @request.status = 3
+      @request.checked_out_by = current_user
+      @request.picked_up_at = Time.zone.now
+      if @request.save
+        flash[:success] = 'Success!'
+        redirect_to check_out_all_path
+      else
+        flash[:error] = 'An error occurred: ' + @request.errors.full_messages.to_sentence
+        redirect_to check_out_all_path
+      end
+    end
+  end
+
+  def check_in_final
+    @request = Request.awaiting_return.find_by_id(params[:id])
+    if @request.nil?
+      flash[:error] = 'Could not find a request with a pending check in with the given ID'
+      redirect_to check_in_all_path
+    end
+    @request.status = 4
+    @request.checked_in_by = current_user
+    @request.returned_at = Time.zone.now
+    if @request.save
+      flash[:success] = 'Success!'
+      redirect_to check_in_all_path
+    else
+      flash[:error] = 'An error occurred: ' + @request.errors.full_messages.to_sentence
+      redirect_to check_in_all_path
+    end
   end
 
   private

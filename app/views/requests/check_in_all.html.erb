@@ -1,0 +1,22 @@
+<% content_for :title, "Checking In - APRD Resource Management" %>
+<%= render 'layouts/navbar', active: 'check-in' %>
+
+<% if flash[:error].present? %>
+	<div class="alert alert-danger mg12">
+		<%= flash[:error] %>
+	</div>
+<% end %>
+
+<% if flash[:success].present? %>
+	<div class="alert alert-success mg12">
+		<%= flash[:success] %>
+	</div>
+<% end %>
+
+<div class="container-fluid mgtop12">
+	<h4>Enter a Request ID:</h4>
+	<%= form_tag check_in_all_path, method: 'get', class: "mg12" do %>
+		<input name="request_id" type="number" min="1" class="form-control form-control-lg" placeholder="Request ID" aria-label="Request ID">
+		<button class="btn btn-primary mgtop12" type="submit">Go</button>
+	<% end %>
+</div>

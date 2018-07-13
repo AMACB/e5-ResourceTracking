@@ -1,0 +1,27 @@
+<% content_for :title, "Checking Out #{params[:id]} - APRD Resource Management" %>
+<%= render 'layouts/navbar', active: 'check-out' %>
+<div class="container-fluid">
+	<h1 class="mg12">Reviewing Request</h1>
+	<div class="card bg-light text-dark mg12">
+		<div class="card-body">
+			<h5 class="card-title text-center"><%= @request.user.email %> at <%= @request.checkout_time.in_time_zone("Central Time (US & Canada)").strftime("%-I:%M %p %b %-d, %Y") %></h5>
+			<p class="lead">Reason: <%= @request.reason %></p>
+			<% if @request.notes.present? %>
+				<p>Notes: <%= @request.notes %></p>
+			<% end %>
+			<p>Requested By: <%= @request.need_by.strftime("%b %-d, %Y") %></p>
+			<p>Return By: <%= @request.return_by.strftime("%b %-d, %Y") %></p>
+			<ul class="listgroup">
+				<% ritems = @request.request_items %>
+				<% ritems.each do |i| %>
+					<li class="list-group-item"><%= i.item.name %> <span class="badge badge-pill badge-dark"><%= i.quantity %></span></li>
+				<% end %>
+			</ul>
+			<small>Approved <%= time_ago_in_words(@request.checkout_time) %> ago<%= @request.reviewed_by.nil? ? nil : " by " + @request.reviewed_by.email %></small>
+		</div>
+	</div>
+
+	<%= form_with url: check_out_final_path(@request.id), local: true do |f| %>
+		<%= f.submit "Confirm Check Out", class: "btn btn-primary btn-lg" %>
+	<% end %>
+</div>

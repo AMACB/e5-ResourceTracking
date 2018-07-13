@@ -8,6 +8,7 @@
 		<div class="card bg-light text-dark">
 			<div class="card-body">
 				<h5 class="card-title text-center"><%= r.checkout_time.in_time_zone("Central Time (US & Canada)").strftime("%-I:%M %p %b %-d, %Y") %></h5>
+				<p class="lead"><span title="Your Request ID is necessary when you are checking out the items physically." data-toggle="tooltip" data-placement="right">Request ID: <%= r.id %></span></p>
 				<p class="lead">Reason: <%= r.reason %></p>
 				<% if r.notes.present? %>
 					<p>Notes: <%= r.notes %></p>

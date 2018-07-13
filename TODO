@@ -34,6 +34,10 @@ Items
 Email verification
 	- Ensure @austintexas.gov emails (?)
 Trim and squish strings
+Replace form_tag and form_for with form_with
+W3C HTML validator
+Remove inline styles
+In production users, should not be able to trigger a 500 internal server error
 Test cases
 	- ENSURE PAGES DON'T ERROR (both as non-user, user, confirmed, and admin)
 	- Models

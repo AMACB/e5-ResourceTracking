@@ -8,7 +8,13 @@ class UserMailer < ApplicationMailer
 
   def email_confirmation(user)
     @user = user
-    mail(to: @user.email, subject: 'Verify Your Email')
+    mail(to: @user.email, subject: 'Verify Your Email - APRD Resource Management')
+  end
+
+  def password_reset(user, token)
+    @user = user
+    @token = token
+    mail(to: @user.email, subject: "Password Reset - APRD Resource Management")
   end
 
   def test_email(user)

@@ -1,5 +1,6 @@
 <% content_for :title, "Log In - APRD Resource Management" %>
 <%= render 'layouts/navbar', active: 'login' %>
+
 <div class="card card-body card-fluid bg-light">
 	<h1>Log In</h1>
 	<div class="container-fluid col-4">
@@ -17,10 +18,13 @@
 				<%= f.email_field :email, placeholder: "Email", class: "form-control", required: true %>
 			</div>
 			<div class="password">
-			 	<%= f.password_field :password, placeholder: "Password", class: "form-control", required: true %>
-			 </div>
-			 <br>
-			 <div class="submit">
+				<%= f.password_field :password, placeholder: "Password", class: "form-control", required: true %>
+			</div>
+			<div class="reset-link mgtop12 d-flex justify-content-between">
+				<%= link_to "Need an account?", signup_path %>
+				<%= link_to "Forgot your password?", password_reset_path %>
+			</div>
+			<div class="submit mgtop12">
 				<%= f.submit "Login", class: "form-control btn btn-primary" %>
 			</div>
 			<% end %>

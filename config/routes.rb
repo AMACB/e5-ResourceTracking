@@ -20,6 +20,11 @@ Rails.application.routes.draw do
   post      'login'                 => 'sessions#create'
   delete    'logout'                => 'sessions#destroy'
   post      'email_resend'          => 'users#email_resend', as: :email_resend
+  get       'password_reset'        => 'users#password_reset', as: :password_reset
+  post      'password_reset'        => 'users#password_reset_send', as: :password_reset_send
+  get       'password_reset_final'  => 'users#password_reset_final', as: :password_reset_final
+  patch     'password_reset_final'  => 'users#password_reset_update', as: :password_reset_update
+  put       'password_reset_final'  => 'users#password_reset_update'
   get       'confirm_email'         => 'users#confirm_email', as: :confirm_email
   get       'profile'               => 'users#show', as: :profile
   post      'profile/email_notifs'  => 'users#update_email_notifs', as: :update_email_notifs

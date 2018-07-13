@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_13_135421) do
+ActiveRecord::Schema.define(version: 2018_07_13_152533) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 2018_07_13_135421) do
     t.integer "reviewed_by_id"
     t.integer "checked_in_by_id"
     t.integer "checked_out_by_id"
+    t.datetime "reviewed_at"
     t.index ["user_id"], name: "index_requests_on_user_id"
   end
 
@@ -89,6 +90,7 @@ ActiveRecord::Schema.define(version: 2018_07_13_135421) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "receive_email_notifications", default: true
+    t.string "password_reset_token_digest"
   end
 
 end

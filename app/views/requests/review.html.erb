@@ -89,7 +89,7 @@
 								<li class="list-group-item"><%= i.item.name %> <span class="badge badge-pill badge-dark"><%= i.quantity %></span></li>
 							<% end %>
 						</ul>
-						<small>Approved <%= time_ago_in_words(r.checkout_time) %> ago<%= r.reviewed_by.nil? ? nil : " by " + r.reviewed_by.email %></small>
+						<small>Approved <%= r.reviewed_at.nil? ? nil : time_ago_in_words(r.reviewed_at)  + ' ago' %><%= r.reviewed_by.nil? ? nil : " by " + r.reviewed_by.email %></small>
 					</div>
 				</div>
 			<% end %>
@@ -118,7 +118,7 @@
 								<li class="list-group-item"><%= i.item.name %> <span class="badge badge-pill badge-dark"><%= i.quantity %></span></li>
 							<% end %>
 						</ul>
-						<small>Rejected <%= time_ago_in_words(r.checkout_time) %> ago<%= r.reviewed_by.nil? ? nil : " by " + r.reviewed_by.email %> for reason: "<%= r.rejected_msg.to_s %>"</small>
+						<small>Rejected <%= r.reviewed_at.nil? ? nil : time_ago_in_words(r.reviewed_at)  + ' ago' %><%= r.reviewed_by.nil? ? nil : " by " + r.reviewed_by.email %> for reason: "<%= r.rejected_msg.to_s %>"</small>
 					</div>
 				</div>
 			<% end %>

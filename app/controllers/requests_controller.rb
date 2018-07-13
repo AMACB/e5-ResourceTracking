@@ -12,6 +12,7 @@ class RequestsController < ApplicationController
   def approve
     @request = Request.pending_approval.find(params[:id])
     @request.status = 2
+    @request.reviewed_at = Time.zone.now
     @request.reviewed_by = current_user
     if @request.save
       @request.user.notifications.create(notif_type: "request_approved", importance: 4, head: "Your Request was Approved", body: "Your recent request for \"#{@request.reason}\" was approved! You can pick up your items on #{@request.need_by.strftime('%b %-d, %Y')}.")
@@ -32,6 +33,7 @@ class RequestsController < ApplicationController
     @request.status = 0
     @request.rejected = true
     @request.rejected_msg = params[:rejected_msg]
+    @request.reviewed_at = Time.zone.now
     @request.reviewed_by = current_user
     if @request.save
       @request.user.notifications.create(notif_type: "request_rejected", importance: 4, head: "Your Request was Rejected", body: "Your recent request for \"#{@request.reason}\" was rejected. Reason given: \"#{@request.rejected_msg}\"")

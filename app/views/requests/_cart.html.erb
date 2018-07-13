@@ -1,26 +1,10 @@
 <div class="card card-body">
 	<h1>My Cart</h1>
 
-	<% if flash[:success].present? %>
-		<div class="alert alert-success">
-			<%= flash[:success] %>
-		</div>
-	<% end %>
+	<div id="cart-errors">
+		<%= render 'cart_errors', request_errors: request_errors %>
+	</div>
 
-	<% if flash[:error].present? %>
-		<div class="alert alert-error">
-			<%= flash[:error] %>
-		</div>
-	<% end %>
-
-	<% if request_errors.any? %>
-		<ul class="list-group">
-		<% request_errors[:request_items].each do |ce| %>
-			<li class="list-group-item list-group-item-danger">Your request <%= ce %></li>
-		<% end %>
-		</ul>
-		<br>
-	<% end %>
 	<%= form_with url: "cart", method: "patch" do |f| %>
 		<div class="row">
 			<div class="col-2">

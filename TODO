@@ -17,11 +17,9 @@ Info page
 	- Master calendar (?)
 User profile page
 	- Reset password
-	- Notification settings - send email?
-		- By notif_type
+	- Notification settings by notif_type
 Cart
 	- Confirmation page after submitting
-	- My Cart errors need to be AJAX'd in when updating/removing items or changing the dates
 Items
 	- Uploading images for image_url
 	- When checkout is auto-rejected, allow user to recover items

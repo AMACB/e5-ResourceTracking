@@ -51,14 +51,18 @@ class RequestsController < ApplicationController
 
   def update
     @request = current_request
-    if @request.update(cart_change_params)
-      flash[:success] = 'Update was successful!'
-      current_user.current_request_id = @request.id
-      current_user.save
-      redirect_to cart_path
-    else
-      flash[:error] = 'Update failed. Error(s): ' + @request.errors.full_messages.to_sentence
-      redirect_to cart_path
+    respond_to do |format|
+      if @request.update(cart_change_params)
+        current_user.current_request_id = @request.id
+        current_user.save
+
+        format.html { redirect_to @request, notice: "Dates updated successfully"}
+        format.js
+        format.json { render json: @request, status: :updated, location: @request }
+      else
+        flash[:error] = 'Update failed. Error(s): ' + @request.errors.full_messages.to_sentence
+        redirect_to cart_path
+      end
     end
   end
 

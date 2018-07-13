@@ -1,0 +1,20 @@
+<% if flash[:success].present? %>
+	<div class="alert alert-success">
+		<%= flash[:success] %>
+	</div>
+<% end %>
+
+<% if flash[:error].present? %>
+	<div class="alert alert-error">
+		<%= flash[:error] %>
+	</div>
+<% end %>
+
+<% if request_errors.any? %>
+	<ul class="list-group">
+	<% request_errors.full_messages.each do |re| %>
+		<li class="list-group-item list-group-item-danger"><%= re %></li>
+	<% end %>
+	</ul>
+	<br>
+<% end %>

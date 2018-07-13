@@ -14,7 +14,7 @@ class RequestsController < ApplicationController
     @request.status = 2
     @request.reviewed_by = current_user
     if @request.save
-      @request.user.notifications.create(notif_type: "request_approved", importance: 4, head: "Your Request was Approved", body: "Your recent request for \"#{@request.reason}\" was approved!")
+      @request.user.notifications.create(notif_type: "request_approved", importance: 4, head: "Your Request was Approved", body: "Your recent request for \"#{@request.reason}\" was approved! You can pick up your items on #{@request.need_by.strftime('%b %-d, %Y')}.")
       errs = Request.check_for_invalid
       if errs.size > 0
         flash[:notice] = "There were #{errs.size} other request(s) that were automatically rejected due to an item in the approved request being present in a pending request."
@@ -127,6 +127,7 @@ class RequestsController < ApplicationController
       @request.checked_out_by = current_user
       @request.picked_up_at = Time.zone.now
       if @request.save
+        @request.user.notifications.create(notif_type: "request_checked_out", importance: 4, head: "Your Items were Checked Out", body: "Your checked out items for reason \"#{@request.reason}\" have successfully been registered in the system. Remember to return your items by #{@request.return_by.strftime("%b %-d, %Y")}.")
         flash[:success] = 'Success!'
         redirect_to check_out_all_path
       else

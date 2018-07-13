@@ -22,6 +22,7 @@ class UsersController < ApplicationController
   def show
     current_user
     @require_email = params[:require_email]
+    @show_tab = params[:show_tab]
   end
 
   def confirm_email
@@ -42,6 +43,14 @@ class UsersController < ApplicationController
       current_user.generate_confirmation_token
       current_user.save
       UserMailer.email_confirmation(current_user).deliver
+    end
+  end
+
+  def update_email_notifs
+    current_user
+    @current_user.receive_email_notifications = params[:receive_email_notifications]
+    if @current_user.save
+      redirect_to profile_path(show_tab: "notifications")
     end
   end
 

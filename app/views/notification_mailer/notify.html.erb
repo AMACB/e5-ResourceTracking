@@ -1,0 +1,7 @@
+<h1 style="text-align: center;"><%= @notif.head %></h1>
+<p>
+	<%= @notif.body %>
+</p>
+<div style="text-align: center;">
+	<small><em>You received this email because you have email notifications enabled for your account. To change this setting, go to <%= link_to "your notifications settings", profile_url(show_tab: "notifications") %> and change "Receive email notifications" to "No".</em></small>
+</div>

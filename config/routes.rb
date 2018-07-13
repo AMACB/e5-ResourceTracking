@@ -15,19 +15,21 @@ Rails.application.routes.draw do
 
 
   resources :users, only: [:create]
-  get       'signup'            => 'users#new', as: :signup
-  get       'login'             => 'sessions#new', as: :login
-  post      'login'             => 'sessions#create'
-  delete    'logout'            => 'sessions#destroy'
-  post      'email_resend'      => 'users#email_resend', as: :email_resend
-  get       'confirm_email'     => 'users#confirm_email', as: :confirm_email
-  get       'profile'           => 'users#show', as: :profile
+  get       'signup'                => 'users#new', as: :signup
+  get       'login'                 => 'sessions#new', as: :login
+  post      'login'                 => 'sessions#create'
+  delete    'logout'                => 'sessions#destroy'
+  post      'email_resend'          => 'users#email_resend', as: :email_resend
+  get       'confirm_email'         => 'users#confirm_email', as: :confirm_email
+  get       'profile'               => 'users#show', as: :profile
+  post      'profile/email_notifs'  => 'users#update_email_notifs', as: :update_email_notifs
 
 
   get       'requests/review'       => 'requests#review', as: :request_review
   post      'requests/approve/:id'  => 'requests#approve', as: :request_approve
   post      'requests/reject/:id'   => 'requests#reject', as: :request_reject
   get       'requests'              => 'requests#index', as: :requests
+# get       'requests/show_deleted' => 'requests#show_deleted', as: :requests_show_deleted
   get       'check_in'              => 'requests#check_in_all', as: :check_in_all
   get       'check_out'             => 'requests#check_out_all', as: :check_out_all
   get       'check_in/:id'          => 'requests#check_in', as: :check_in

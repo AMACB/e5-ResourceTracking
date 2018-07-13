@@ -7,21 +7,24 @@
 </div>
 <% end %>
 
+<% if not ["info", "account", "notifications"].include? @show_tab %>
+	<% @show_tab = "info" %>
+<% end %>
 <div class="card card-body card-fluid bg-light">
 	<h1>User Profile</h1>
 	<ul class="nav nav-pills nav-fill mb-3" id="pills-tab" role="tablist">
 		<li class="nav-item">
-			<a class="nav-link active" id="pills-info-tab" data-toggle="pill" href="#pills-info" role="tab" aria-controls="pills-info" aria-selected="true">Info</a>
+			<a class="nav-link <%= @show_tab == 'info' ? 'active' : nil %>" id="pills-info-tab" data-toggle="pill" href="#pills-info" role="tab" aria-controls="pills-info" aria-selected="true">Info</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" id="pills-account-tab" data-toggle="pill" href="#pills-account" role="tab" aria-controls="pills-account" aria-selected="false">Account</a>
+			<a class="nav-link <%= @show_tab == 'account' ? 'active' : nil %>" id="pills-account-tab" data-toggle="pill" href="#pills-account" role="tab" aria-controls="pills-account" aria-selected="false">Account</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" id="pills-notifications-tab" data-toggle="pill" href="#pills-notifications" role="tab" aria-controls="pills-notifications" aria-selected="false">Notifications</a>
+			<a class="nav-link <%= @show_tab == 'notifications' ? 'active' : nil %>" id="pills-notifications-tab" data-toggle="pill" href="#pills-notifications" role="tab" aria-controls="pills-notifications" aria-selected="false">Notifications</a>
 		</li>
 	</ul>
 	<div class="tab-content" id="pills-tabContent">
-		<div class="tab-pane fade show active" id="pills-info" role="tabpanel" aria-labelledby="pills-info-tab">
+		<div class="tab-pane fade <%= @show_tab == 'info' ? 'show active' : nil %>" id="pills-info" role="tabpanel" aria-labelledby="pills-info-tab">
 			<ul class="list-group">
 				<li class="list-group-item">Email: <%= @current_user.email %>
 					<% if @current_user.email_confirmed %>
@@ -38,14 +41,22 @@
 				<li class="list-group-item">Created At: <%= @current_user.created_at.in_time_zone("Central Time (US & Canada)").strftime("%-I:%M %p, %b %-d, %Y") %></li>
 			</ul>
 		</div>
-		<div class="tab-pane fade" id="pills-account" role="tabpanel" aria-labelledby="pills-account-tab">
+		<div class="tab-pane fade <%= @show_tab == 'account' ? 'show active' : nil %>" id="pills-account" role="tabpanel" aria-labelledby="pills-account-tab">
 			<ul class="list-group">
 				<li class="list-group-item"><%= button_to email_resend_path, method: "post", class: "btn btn-primary #{@current_user.email_confirmed ? 'disabled' : nil}" do %>Resend Email Verification<% end %></li>
 				<li class="list-group-item"><%= link_to "Reset Password", '/', class: "btn btn-primary disabled" %></li>
 			</ul>
 		</div>
-		<div class="tab-pane fade" id="pills-notifications" role="tabpanel" aria-labelledby="pills-notifications-tab">
-			c
+		<div class="tab-pane fade <%= @show_tab == 'notifications' ? 'show active' : nil %>" id="pills-notifications" role="tabpanel" aria-labelledby="pills-notifications-tab">
+			<ul class="list-group">
+				<li class="list-group-item">
+					Receive email notifications:
+					<%= form_with url: update_email_notifs_url, local: true, class: "form-inline" do |f| %>
+						<%= f.select :receive_email_notifications, options_for_select( [["No", "0"], ["Yes", "1"]], selected: @current_user.receive_email_notifications ? "1" : "0" ), {}, {class: "form-control"} %>
+						<%= f.submit "Save", class: "form-control" %>
+					<% end %>
+				</li>
+			</ul>
 		</div>
 	</div>
 </div>

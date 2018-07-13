@@ -6,8 +6,16 @@ class Notification < ApplicationRecord
 
   scope :unread, -> { where(read_at: nil) }
 
+  after_create :try_send_email_notif
+
   def mark_as_read
     self.read_at = Time.zone.now
     self.save
+  end
+
+  def try_send_email_notif
+    if user.receive_email_notifications
+      NotificationMailer.notify(self).deliver
+    end
   end
 end

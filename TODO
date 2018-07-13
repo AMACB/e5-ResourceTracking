@@ -1,9 +1,6 @@
 TODO
 
 FEATURES
-Rejection reason for admin
-Remove ID from auto-reject notification
-Accordion generator
 User
 	- Require phone number, other info
 		- Facility name
@@ -13,10 +10,8 @@ User
 		- DEPARTMENT
 		- UNIT
 		- OBJECT CODE
-Admin check-in and check-out page
 Review items
 	- Allow reason for rejection
-	- Column for rejected
 Info page
 	- Check in dates, times, locations
 	- Master calendar (?)
@@ -68,6 +63,7 @@ Specify when/where at checkout time
 ISSUE - search by tag doesn't work
 
 STYLING
+Accordion generator
 Homepage restyle
 Center the icons
 Change card card-body to mg12

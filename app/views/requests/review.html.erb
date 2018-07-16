@@ -47,8 +47,8 @@
 						<% if r.notes.present? %>
 							<p>Notes: <%= r.notes %></p>
 						<% end %>
-						<p>Requested By: <%= r.need_by.strftime("%b %-d, %Y") %></p>
-						<p>Return By: <%= r.return_by.strftime("%b %-d, %Y") %></p>
+						<p>Requested By: <%= r.requested_pick_up_date.strftime("%b %-d, %Y") %></p>
+						<p>Return By: <%= r.requested_return_date.strftime("%b %-d, %Y") %></p>
 						<ul class="listgroup">
 							<% ritems = r.request_items %>
 							<% ritems.each do |i| %>
@@ -81,8 +81,8 @@
 						<% if r.notes.present? %>
 							<p>Notes: <%= r.notes %></p>
 						<% end %>
-						<p>Requested By: <%= r.need_by.strftime("%b %-d, %Y") %></p>
-						<p>Return By: <%= r.return_by.strftime("%b %-d, %Y") %></p>
+						<p>Requested By: <%= r.requested_pick_up_date.strftime("%b %-d, %Y") %></p>
+						<p>Return By: <%= r.requested_return_date.strftime("%b %-d, %Y") %></p>
 						<ul class="listgroup">
 							<% ritems = r.request_items %>
 							<% ritems.each do |i| %>
@@ -110,8 +110,8 @@
 						<% if r.notes.present? %>
 							<p>Notes: <%= r.notes %></p>
 						<% end %>
-						<p>Requested By: <%= r.need_by.strftime("%b %-d, %Y") %></p>
-						<p>Return By: <%= r.return_by.strftime("%b %-d, %Y") %></p>
+						<p>Requested By: <%= r.requested_pick_up_date.strftime("%b %-d, %Y") %></p>
+						<p>Return By: <%= r.requested_return_date.strftime("%b %-d, %Y") %></p>
 						<ul class="listgroup">
 							<% ritems = r.request_items %>
 							<% ritems.each do |i| %>

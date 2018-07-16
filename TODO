@@ -2,10 +2,6 @@ TODO
 
 FEATURES
 
-Cart
-	- Before submitting, tell user when and where they can pick up/return items
-		- Unless special case, only open on Tuesday & Thursday 10:30am - 1:30pm
-	- Confirmation page after submitting
 User
 	- Require phone number, other info
 		- Facility name
@@ -16,14 +12,13 @@ User
 		- UNIT
 		- OBJECT CODE
 Review items
-	- Allow reason for rejection
+	- Allow reason for rejection/notes for approval
 Enforce maximums
 	- # of notifs
 	- # of checkouts total, checkout attempts per day
 	- # of additions, updates, and removals
 	- # of password resets/confirmation emails
 Info page
-	- Check in dates, times, locations
 	- Master calendar (?)
 Items
 	- Uploading images for image_url
@@ -34,7 +29,11 @@ Email verification
 User profile page
 	- Reset password
 	- Notification settings by notif_type
-
+Change
+	- "Need by" to "pick up date"
+	- "Return by" to "return date"
+	- "Confirm your email" to "verify your email"
+	- current_checkout_id to has_one :checkout
 Trim and squish strings
 Replace form_tag and form_for with form_with
 W3C HTML validator

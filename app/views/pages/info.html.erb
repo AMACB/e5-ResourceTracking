@@ -9,6 +9,8 @@
 		<% when "request"; tid = "2"; %>
 		<% when "checkout"; tid = "4"; %>
 		<% when "checkin"; tid = "4"; %>
+		<% when "location"; tid = "5"; %>
+		<% when "hours"; tid = "5"; %>
 		<% when "account"; tid = "2-1"; %>
 		<% when "notifications"; tid = "2-3"; %>
 		<% end %>
@@ -71,6 +73,23 @@
 					After your request has been approved, you will be able to go to the designated pick up location and pick up your items. Make sure that you know your request ID (which can be found <%= link_to "here", requests_path %>) in order for the pick up process run smoothly. Make sure you return your items promptly.
 					<br><br>
 					When you return your items at the designated location, make sure to again have your request ID to ensure that the process runs smoothly.
+				</div>
+			</div>
+		</div>
+
+		<div class="card mg12">
+			<div class="card-header" id="card-header-5">
+				<h5 class="mb-0">
+					<button class="btn btn-link" data-toggle="collapse" data-target="#card-collapse-5" aria-expanded="false" aria-controls="card-collapse-5">
+						Locations and Hours
+					</button>
+				</h5>
+			</div>
+			<div id="card-collapse-5" class="collapse" aria-labelledby="card-collapse-5" data-parent="#accordion">
+				<div class="card-body">
+					Currently, the only location available for picking up and returning items is the DeWitty Center, <strong><%= t 'info.address' %></strong>.
+					<br><br>
+					Barring special circumstances, you will only be able to pick up and return items on <strong><%= t 'info.hours' %></strong>. The DeWitty Center will also be closed on <%= link_to "City of Austin Holidays", "http://www.austintexas.gov/department/official-city-holidays" %>.
 				</div>
 			</div>
 		</div>

@@ -55,26 +55,28 @@ class Request < ApplicationRecord
   def errors_on_request
     self.status = 1
     self.reason = 'foo'
+    self.requested_pick_up_date = Date.today + 1.days
+    self.requested_return_date = Date.today + 2.days
     self.valid?
     return self.errors
   end
 
   def dates_are_valid
     unless self.status == 0
-      if self.need_by.blank?
-        errors.add :need_by, "can't be blank"
-      elsif self.need_by < Time.zone.today
-        errors.add :need_by, "can't be in the past"
+      if self.requested_pick_up_date.blank?
+        errors.add :requested_pick_up_date, "can't be blank"
+      elsif self.requested_pick_up_date < Time.zone.today
+        errors.add :requested_pick_up_date, "can't be in the past"
       end
 
-      if self.return_by.blank?
-        errors.add :return_by, "can't be blank"
-      elsif self.return_by < Time.zone.today
-        errors.add :return_by, "can't be in the past"
+      if self.requested_return_date.blank?
+        errors.add :requested_return_date, "can't be blank"
+      elsif self.requested_return_date < Time.zone.today
+        errors.add :requested_return_date, "can't be in the past"
       end
 
-      if self.return_by.present? and self.need_by.present? and self.return_by < self.need_by
-        errors.add :return_by, "must be after the need by date"
+      if self.requested_return_date.present? and self.requested_pick_up_date.present? and self.requested_return_date < self.requested_pick_up_date
+        errors.add :requested_return_date, "must be after the need by date"
       end
     end
   end
@@ -82,8 +84,7 @@ class Request < ApplicationRecord
   def items_available
     if self.status == 1
       request_items.each do |ci|
-        puts need_by, return_by, ci.quantity
-        if !ci.item.is_available_from?(need_by, return_by, ci.quantity)
+        if !ci.item.is_available_from?(requested_pick_up_date, requested_return_date, ci.quantity)
           errors.add :request_items, "contains a item that is not available: " + ci.quantity.to_s + " x " + ci.item.name
         end
       end

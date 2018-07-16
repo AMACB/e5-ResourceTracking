@@ -5,14 +5,25 @@
 	<h1>Reviewing Your Cart</h1>
 	<hr>
 	<div class="align-left container container-fluid">
-		<% if flash[:error] %>
+		<div id="cart-errors">
+			<% if flash[:error] %>
 				<ul class="list-group">
-				<% flash[:error].to_a.each do |e| %>
+				<% flash[:error].each do |e| %>
 					<li class="list-group-item list-group-item-danger"><%= e %></li>
 				<% end %>
 				</ul>
 				<br>
 			<% end %>
+		</div>
+
+		<div class="alert alert-warning">
+			Currently, the only location available for picking up and returning items is the DeWitty Center, <strong><%= t 'info.address' %></strong>.
+			<br><br>
+			Barring special circumstances, you will only be able to pick up and return items on <strong><%= t 'info.hours' %></strong>.
+			The DeWitty Center will also be closed on <%= link_to "City of Austin Holidays", "http://www.austintexas.gov/department/official-city-holidays", class: "alert-link" %>.
+			<br><br>
+			If you request your items on a date other than the ones specified above, be sure to explain why in the Notes section.
+		</div>
 		<ul class="list-group">
 			<% @request_items.each do |r| %>
 				<li class="list-group-item"><%= r.item.name %> <span class="badge badge-pill badge-dark"><%= r.quantity %></span></li>
@@ -24,18 +35,18 @@
 		<%= form_for @request, url: checkout_end_path do |f| %>
 		<div class="row">
 			<div class="col">
-				<%= f.label :need_by, "When do you need these items by?" %>
+				<%= f.label :requested_pick_up_date, "When will you pick up these items?" %>
 			</div>
 			<div class="col">
-				<%= f.text_field :need_by, class: "form-control", 'data-provide': "datepicker", 'data-date-format': 'yyyy-mm-dd', 'data-startDate': '0', 'data-todayHighlight': true, required: true %>
+				<%= f.text_field :requested_pick_up_date, class: "form-control", 'data-provide': "datepicker", 'data-date-format': 'yyyy-mm-dd', 'data-startDate': '0', 'data-todayHighlight': true, required: true %>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col">
-				<%= f.label :return_by, "When can you first return these items by?" %>
+				<%= f.label :requested_return_date, "When will you return these items?" %>
 			</div>
 			<div class="col">
-				<%= f.text_field :return_by, class: "form-control", 'data-provide': "datepicker", 'data-date-format': 'yyyy-mm-dd', required: true %>
+				<%= f.text_field :requested_return_date, class: "form-control", 'data-provide': "datepicker", 'data-date-format': 'yyyy-mm-dd', required: true %>
 			</div>
 		</div>
 		<div class="row">

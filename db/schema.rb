@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_16_061748) do
+ActiveRecord::Schema.define(version: 2018_07_16_133725) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -65,8 +65,8 @@ ActiveRecord::Schema.define(version: 2018_07_16_061748) do
     t.datetime "returned_at"
     t.text "reason"
     t.text "notes"
-    t.date "need_by"
-    t.date "return_by"
+    t.date "requested_pick_up_date"
+    t.date "requested_return_date"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

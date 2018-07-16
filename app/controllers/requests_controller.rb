@@ -15,7 +15,7 @@ class RequestsController < ApplicationController
     @request.reviewed_at = Time.zone.now
     @request.reviewed_by = current_user
     if @request.save
-      @request.user.notifications.create(notif_type: "request_approved", importance: 4, head: "Your Request was Approved", body: "Your recent request for \"#{@request.reason}\" was approved! You can pick up your items on #{@request.need_by.strftime('%b %-d, %Y')}.")
+      @request.user.notifications.create(notif_type: "request_approved", importance: 4, head: "Your Request was Approved", body: "Your recent request for \"#{@request.reason}\" was approved! You can pick up your items on #{@request.requested_pick_up_date.strftime('%b %-d, %Y')}.")
       errs = Request.check_for_invalid
       if errs.size > 0
         flash[:notice] = "There were #{errs.size} other request(s) that were automatically rejected due to an item in the approved request being present in a pending request."
@@ -86,12 +86,13 @@ class RequestsController < ApplicationController
     cps[:status] = 1
     cps[:checkout_time] = Time.zone.now
     if @request.update(cps)
+      flash[:success] = 'Your request was successfully submitted!'
       current_user.current_request_id = nil
       current_user.save
-      redirect_to '/'
+      redirect_to requests_path
     else
       flash[:error] = @request.errors.full_messages
-      redirect_to request_begin_path
+      redirect_to checkout_begin_path
     end
   end
 
@@ -133,7 +134,7 @@ class RequestsController < ApplicationController
       @request.checked_out_by = current_user
       @request.picked_up_at = Time.zone.now
       if @request.save
-        @request.user.notifications.create(notif_type: "request_checked_out", importance: 4, head: "Your Items were Checked Out", body: "Your checked out items for reason \"#{@request.reason}\" have successfully been registered in the system. Remember to return your items by #{@request.return_by.strftime("%b %-d, %Y")}.")
+        @request.user.notifications.create(notif_type: "request_checked_out", importance: 4, head: "Your Items were Checked Out", body: "Your checked out items for reason \"#{@request.reason}\" have successfully been registered in the system. Remember to return your items by #{@request.requested_return_date.strftime("%b %-d, %Y")}.")
         flash[:success] = 'Success!'
         redirect_to check_out_all_path
       else
@@ -163,10 +164,10 @@ class RequestsController < ApplicationController
 
   private
   def request_params
-    params.require(:request).permit(:need_by, :return_by, :reason, :notes)
+    params.require(:request).permit(:requested_pick_up_date, :requested_return_date, :reason, :notes)
   end
 
   def cart_change_params
-    params.permit(:need_by, :return_by)
+    params.permit(:requested_pick_up_date, :requested_return_date)
   end
 end

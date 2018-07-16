@@ -14,10 +14,10 @@ class Item < ApplicationRecord
 
   def conflicting_ranges(date_begin, date_end)
     RequestItem.select(
-      'request_items.quantity, requests.need_by AS need_by, requests.return_by AS return_by, requests.id AS request_id'
+      'request_items.quantity, requests.requested_pick_up_date AS requested_pick_up_date, requests.requested_return_date AS requested_return_date, requests.id AS request_id'
     ).where(
-      Request.arel_table[:need_by].lteq(date_end).and(
-        Request.arel_table[:return_by].gt(date_begin)
+      Request.arel_table[:requested_pick_up_date].lteq(date_end).and(
+        Request.arel_table[:requested_return_date].gt(date_begin)
       )
     ).joins(
       RequestItem.arel_table.join(Request.arel_table).on(
@@ -25,7 +25,7 @@ class Item < ApplicationRecord
           RequestItem.arel_table[:item_id].eq(self[:id]).and(Request.arel_table[:status].in([2, 3]))
         )
       ).join_sources
-    ).order(Request.arel_table[:return_by], Request.arel_table[:need_by]).collect {|x| [x.need_by, x.return_by, x.quantity, x.request_id] }
+    ).order(Request.arel_table[:requested_return_date], Request.arel_table[:requested_pick_up_date]).collect {|x| [x.requested_pick_up_date, x.requested_return_date, x.quantity, x.request_id] }
   end
 
   def max_used_between(date_begin, date_end)

@@ -1,6 +1,24 @@
 <% content_for :title, "APRD Resource Management" %>
 <%= render 'layouts/navbar', active: 'info' %>
 
+<% if params[:show].present? %>
+<script>
+	$(function() {
+		<% case (params[:show]) %>
+		<% when "catalog"; tid = 1; %>
+		<% when "request"; tid = 2; %>
+		<% when "checkout"; tid = 4; %>
+		<% when "checkin"; tid = 5; %>
+		<% end %>
+		$('#card-header-<%= tid %> h5 button').attr('aria-expanded', 'true');
+		$('#card-collapse-<%= tid %>').addClass('show');
+		$([document.documentElement, document.body]).animate({
+			scrollTop: $("#card-header-<%= tid %>").offset().top
+		}, 2000);
+	});
+</script>
+<% end %>
+
 <div class="mg24">
 	<h1>How it Works</h1>
 	<div id="accordion">

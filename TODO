@@ -12,6 +12,10 @@ User
 		- OBJECT CODE
 Review items
 	- Allow reason for rejection
+Enforce maximums
+	- # of notifs
+	- # of checkouts total, checkout attempts per day
+	- # of additions, updates, and removals
 Info page
 	- Check in dates, times, locations
 	- Master calendar (?)
@@ -50,13 +54,6 @@ Test cases
 			- Edit
 			- New
 			- Delete
-Pages
-	- Info page
-Enforce maximums
-	- # of notis
-	- # of checkouts total, checkout attempts per day
-	- # of additions, updates, and removals
-Specify when/where at checkout time
 
 ISSUE - search by tag doesn't work
 

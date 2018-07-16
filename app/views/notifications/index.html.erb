@@ -3,11 +3,11 @@
 
 <div class="card card-body card-fluid bg-light">
 	<h1>Notifications</h1>
-	<ul class="list-group">
+	<div class="list-group">
 		<% @notifications.each do |n| %>
 			<div id="notif-<%= n.id %>">
 				<%= render 'notifications/notification_show', notification: n %>
 			</div>
 		<% end %>
-	</ul>
+	</div>
 </div>

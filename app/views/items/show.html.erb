@@ -1,8 +1,4 @@
 <p class="back"><%= link_to "Back", items_path %></p>
-<% if current_user && current_user.admin? %>
-	<p class="edit"><%# link_to "Edit", edit_item_path(@item) %></p>
-	<p class="delete"><%= link_to "Delete", item_path(@item), data: {confirm: "Are you sure you want to delete #{@item.name}?", method: "delete"} %></p>
-<% end %>
 <p class="id"><b>ID: </b><%= @item.id %></p>
 <p class="name"><b>Name: </b><%= @item.name %></p>
 <p class="category"><b>Category: </b><%= @item.category.name %></p>

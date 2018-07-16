@@ -19,7 +19,7 @@
 						<a class="nav-link dropdown-toggle" href="#" id="admintools-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							Admin Tools
 						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<div class="dropdown-menu">
 							<% pending = Request.pending_approval.size %>
 							<%= link_to "Manage Items", items_manage_path, class: "dropdown-item #{'active' if active == 'manage-items'}" %>
 							<%= link_to (pending == 0 ? "Review Requests" : "Review Requests (#{pending})"), request_review_path, class: "dropdown-item #{'active' if active == 'review'}" %>

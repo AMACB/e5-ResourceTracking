@@ -6,7 +6,6 @@
 	<div class="<%= current_user ? 'col-2' : 'col-3' %> table-item notes"><%= i.notes %></div>	
 	<div class="col-1 table-item available"><%= !requested_items.nil? and requested_items.include?(i.id) ?  nil : max_available%></div>
 	<%# <td class="price"><%= i.price.nil? ? nil : number_to_currency(i.price / 100.0) %>
-	</td>
 	<% if current_user %>
 		<% if max_available.nil? %>
 			<div class="col-2 table-item add-to-cart text-muted">

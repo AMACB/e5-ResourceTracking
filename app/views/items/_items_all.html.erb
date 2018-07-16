@@ -1,5 +1,5 @@
 <% items.each do |i| %>
-<span id="item_row_<%= i.id %>">
+<div id="item_row_<%= i.id %>">
 	<%= render "items/item_row", i: i, request_item: request_item, requested_items: requested_items, newly_added: false, filters: filters %>
-</span>
+</div>
 <% end %>

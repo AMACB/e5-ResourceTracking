@@ -11,8 +11,6 @@ User
 		- DEPARTMENT
 		- UNIT
 		- OBJECT CODE
-Review items
-	- Allow reason for rejection/notes for approval
 Enforce maximums
 	- # of notifs
 	- # of checkouts total, checkout attempts per day
@@ -21,6 +19,7 @@ Enforce maximums
 Info page
 	- Master calendar (?)
 Items
+	- Items#show is very ugly
 	- Uploading images for image_url
 	- When checkout is auto-rejected, allow user to recover items
 	- Show calendar of number available
@@ -65,6 +64,7 @@ Homepage restyle
 Center the icons
 Change card card-body to mg12
 Indicate if a field is optional in placeholder text (edit/new item, checkout begin, etc.)
+Form fields respond to inputs (use XHR to verify?)
 Category cards
 	- Images?
 Items
@@ -86,14 +86,13 @@ Spam prevention
 
 
 BUGS
+** Modifying item.unavailable by admin/approving a checkout needs to notify users, check for errors
+	- Unsubmits cart if necessary
 Need to enforce 255 max length for string type
 When date range length = 0, errors with checking validity
-When (thing)#index is empty, should display a message conveying the blankness of the thing (thing = checkouts#review, notifications#index)
-When My Cart is removed to empty, the page is blank
+When (thing) is empty, should display a message conveying the blankness of the thing (thing = checkouts#review, notifications#index, carts#show)
 Email verification doesn't work when logged in to a different account ??
-Modifying item.unavailable by admin/approving a checkout needs to notify users, check for errors
-	- Unsubmits cart if necessary
-Item can be destroyed while checked out
+
 Optimize the "already added" detection in item indexing
 Item manager
 	- Edit/new forms need labels, close when submitting, clear after cancel/submit

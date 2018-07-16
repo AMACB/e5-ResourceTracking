@@ -12,8 +12,7 @@
 	<div class="container">
 		<h1>Item Catalog</h1>
 		<%= form_tag items_path, method: 'get' do %>
-		<p class="lead">
-			<div class="input-group mb-3">
+			<div class="input-group mb-3 lead">
 				<input name="q" type="text" class="form-control form-control-lg" placeholder="Search" aria-label="Search" aria-describedby="search-btn">
 				<% if current_user and current_request.present? %>
 					<input name="date_begin" type="hidden" value="<%= current_request.requested_pick_up_date %>">
@@ -23,7 +22,6 @@
 					<button id="search-btn" class="btn btn-primary" type="submit"><%= octicon 'search', fill: 'white', class: 'align-middle' %></button>
 				</div>
 			</div>
-		</p>
 		<% end %>
 	</div>
 </div>

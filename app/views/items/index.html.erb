@@ -16,7 +16,7 @@
 			<div class="col-2 table-item table-item-head"></div>
 		<% end %>
 	</div>
-	<span class="items-body"> 
+	<div class="items-body"> 
 		<% if @items.size == 0 %>
 			<div class="jumbotron" style="display: inline-flex; width: 100%; height: 100%">
 				<div class="container">
@@ -31,5 +31,5 @@
 		<% else %>
 			<%= render 'items/items_all', items: @items, request_item: @request_item, requested_items: @requested_items, filters: @filters %>
 		<% end %>
-	</span>
-</table>
+	</div>
+</div>

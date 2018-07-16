@@ -14,13 +14,11 @@
 		<% end %>
 		<div class="signup container card card-body bg-faded">
 			<%= form_for(@user) do |f| %>
-			<div class="email">
+			<div class="email form-group">
 				<%= f.email_field :email, placeholder: "Email", class: "form-control", required: true %>
 			</div>
-			<div class="password">
+			<div class="password form-group">
 				<%= f.password_field :password, id: "password", placeholder: "Password", class: "form-control", required: true, pattern: ".{8,}", title: "Password must be at least 8 characters long" %>
-			</div>
-			<div class="password-confirm">
 				<%= f.password_field :password_confirmation, placeholder: "Confirm Password", class: "form-control", oninput: "check(this)" %>
 			</div>
 			 <script language='javascript' type='text/javascript'>
@@ -33,8 +31,7 @@
 					}
 				}
 			</script>
-			 <br>
-			 <div class="submit">
+			<div class="submit form-group">
 				<%= f.submit "Create an account", class: "form-control btn btn-primary" %>
 			</div>
 			<% end %>

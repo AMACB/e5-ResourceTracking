@@ -30,8 +30,6 @@ User profile page
 	- Reset password
 	- Notification settings by notif_type
 Change
-	- "Need by" to "pick up date"
-	- "Return by" to "return date"
 	- "Confirm your email" to "verify your email"
 	- current_checkout_id to has_one :checkout
 Trim and squish strings

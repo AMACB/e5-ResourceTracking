@@ -25,7 +25,7 @@ class Request < ApplicationRecord
   scope :awaiting_return, -> { where(status: 3) }
   scope :approved, -> { where('status = 2 OR status = 3') }
   scope :pending_approval, -> { where(status: 1) }
-  scope :rejected, -> { where(status: 0, rejected:true ) }
+  scope :rejected, -> { where(status: 0, rejected: true ) }
 
   def self.check_for_invalid
     request = Request.pending_approval

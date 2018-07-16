@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_16_133725) do
+ActiveRecord::Schema.define(version: 2018_07_16_135659) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 2018_07_16_133725) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "rejected", default: false
-    t.text "rejected_msg"
+    t.text "review_notes"
     t.string "return_condition"
     t.integer "reviewed_by_id"
     t.integer "checked_in_by_id"

@@ -55,11 +55,15 @@
 								<li class="list-group-item"><%= i.item.name %> <span class="badge badge-pill badge-dark"><%= i.quantity %></span></li>
 							<% end %>
 						</ul>
-						<%= link_to request_approve_path(r.id), class: "btn btn-success", role: "button", data: { method: 'post' } do %>
-							Approve
-						<% end %>
-						<%= link_to request_reject_path(r.id), class: "btn btn-danger", role: "button", data: { method: 'post' } do %>
-							Reject
+						<hr>
+						<%= form_with url: request_review_final_path, method: "post", local: true do |f| %>
+							<%= f.hidden_field :request_id, value: r.id %>
+							<div class="form-group">
+								<%= f.label :review_notes, "Review Notes:" %>
+								<%= f.text_field :review_notes, placeholder: "Notes/reason", class: "form-control" %>
+							</div>
+							<%= f.submit "Approve", class: "btn btn-success" %>
+							<%= f.submit "Reject", class: "btn btn-danger" %>
 						<% end %>
 					</div>
 				</div>
@@ -89,7 +93,9 @@
 								<li class="list-group-item"><%= i.item.name %> <span class="badge badge-pill badge-dark"><%= i.quantity %></span></li>
 							<% end %>
 						</ul>
-						<small>Approved <%= r.reviewed_at.nil? ? nil : time_ago_in_words(r.reviewed_at)  + ' ago' %><%= r.reviewed_by.nil? ? nil : " by " + r.reviewed_by.email %></small>
+						<small>Approved <%= r.reviewed_at.nil? ? nil : time_ago_in_words(r.reviewed_at)  + ' ago' %><%= r.reviewed_by.nil? ? nil : " by " + r.reviewed_by.email %>.</small>
+						<br>
+						<% if r.review_notes.present? %><small>Review notes: <%= r.review_notes.to_s %></small><% end %>
 					</div>
 				</div>
 			<% end %>
@@ -118,7 +124,9 @@
 								<li class="list-group-item"><%= i.item.name %> <span class="badge badge-pill badge-dark"><%= i.quantity %></span></li>
 							<% end %>
 						</ul>
-						<small>Rejected <%= r.reviewed_at.nil? ? nil : time_ago_in_words(r.reviewed_at)  + ' ago' %><%= r.reviewed_by.nil? ? nil : " by " + r.reviewed_by.email %> for reason: "<%= r.rejected_msg.to_s %>"</small>
+						<small>Rejected <%= r.reviewed_at.nil? ? nil : time_ago_in_words(r.reviewed_at)  + ' ago' %><%= r.reviewed_by.nil? ? nil : " by " + r.reviewed_by.email %>.</small>
+						<br>
+						<% if r.review_notes.present? %><small>Review notes: <%= r.review_notes.to_s %></small><% end %>
 					</div>
 				</div>
 			<% end %>

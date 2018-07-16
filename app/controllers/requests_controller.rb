@@ -9,39 +9,38 @@ class RequestsController < ApplicationController
     @rejected = Request.rejected.order('checkout_time DESC')
   end
 
-  def approve
-    @request = Request.pending_approval.find(params[:id])
-    @request.status = 2
-    @request.reviewed_at = Time.zone.now
-    @request.reviewed_by = current_user
-    if @request.save
-      @request.user.notifications.create(notif_type: "request_approved", importance: 4, head: "Your Request was Approved", body: "Your recent request for \"#{@request.reason}\" was approved! You can pick up your items on #{@request.requested_pick_up_date.strftime('%b %-d, %Y')}.")
-      errs = Request.check_for_invalid
-      if errs.size > 0
-        flash[:notice] = "There were #{errs.size} other request(s) that were automatically rejected due to an item in the approved request being present in a pending request."
-      end
-      flash[:success] = 'Request approved!'
-      redirect_to request_review_path
-    else 
-      flash[:error] = 'Request failed to approve. Error(s): ' + @request.errors.full_messages.to_sentence
-      redirect_to request_review_path
-    end
-  end
+  def review_final
+    is_approve = params[:commit] == "Approve"
 
-  def reject
-    @request = Request.pending_approval.find(params[:id])
-    @request.status = 0
-    @request.rejected = true
-    @request.rejected_msg = params[:rejected_msg]
+    @request = Request.pending_approval.find(params[:request_id])
+    @request.status = is_approve ? 2 : 0
     @request.reviewed_at = Time.zone.now
     @request.reviewed_by = current_user
-    if @request.save
-      @request.user.notifications.create(notif_type: "request_rejected", importance: 4, head: "Your Request was Rejected", body: "Your recent request for \"#{@request.reason}\" was rejected. Reason given: \"#{@request.rejected_msg}\"")
-      flash[:success] = 'Request rejected!'
-      redirect_to request_review_path
-    else 
-      flash[:error] = 'Request failed to reject. Error(s): ' + @request.errors.full_messages.to_sentence
-      redirect_to request_review_path
+    @request.review_notes = params[:review_notes]
+
+    if is_approve
+      if @request.save
+        @request.user.notifications.create(notif_type: "request_approved", importance: 4, head: "Your Request was Approved", body: "Your recent request for \"#{@request.reason}\" was approved! You can pick up your items on #{@request.requested_pick_up_date.strftime('%b %-d, %Y')}. Approval notes: \"#{@request.review_notes}\"")
+        errs = Request.check_for_invalid
+        if errs.size > 0
+          flash[:notice] = "There were #{errs.size} other request(s) that were automatically rejected due to an item in the approved request being present in a pending request."
+        end
+        flash[:success] = 'Request approved!'
+        redirect_to request_review_path
+      else 
+        flash[:error] = 'Request failed to approve. Error(s): ' + @request.errors.full_messages.to_sentence
+        redirect_to request_review_path
+      end
+    else
+      @request.rejected = true
+      if @request.save
+        @request.user.notifications.create(notif_type: "request_rejected", importance: 4, head: "Your Request was Rejected", body: "Your recent request for \"#{@request.reason}\" was rejected. Rejection notes: \"#{@request.review_notes}\"")
+        flash[:success] = 'Request rejected!'
+        redirect_to request_review_path
+      else 
+        flash[:error] = 'Request failed to reject. Error(s): ' + @request.errors.full_messages.to_sentence
+        redirect_to request_review_path
+      end
     end
   end
 

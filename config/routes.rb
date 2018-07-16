@@ -31,8 +31,7 @@ Rails.application.routes.draw do
 
 
   get       'requests/review'       => 'requests#review', as: :request_review
-  post      'requests/approve/:id'  => 'requests#approve', as: :request_approve
-  post      'requests/reject/:id'   => 'requests#reject', as: :request_reject
+  post      'requests/review'       => 'requests#review_final', as: :request_review_final
   get       'requests'              => 'requests#index', as: :requests
 # get       'requests/show_deleted' => 'requests#show_deleted', as: :requests_show_deleted
   get       'check_in'              => 'requests#check_in_all', as: :check_in_all

@@ -59,6 +59,7 @@ class UsersController < ApplicationController
       token = SecureRandom.urlsafe_base64.to_s
       UserMailer.password_reset(user, token).deliver
       user.password_reset_token_digest = BCrypt::Password.create(token)
+      user.password_reset_token_expires_at = Time.zone.now + 1.days
       user.save
     end
     flash[:success] = 'An email was sent to the email address entered (if an account is associated with it) containing password reset instructions.'
@@ -74,7 +75,7 @@ class UsersController < ApplicationController
     @user = User.find_by_id(params[:user_id])
     @password_reset_token = params[:password_reset_token]
 
-    if @user.nil? || @user.password_reset_token_digest.nil?
+    if @user.nil? || @user.password_reset_token_digest.nil? || Time.zone.now > @user.password_reset_token_expires_at
       flash[:error] = 'Invalid password reset URL.'
       redirect_to password_reset_path and return
     end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_13_152533) do
+ActiveRecord::Schema.define(version: 2018_07_16_061748) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 2018_07_13_152533) do
     t.datetime "updated_at", null: false
     t.boolean "receive_email_notifications", default: true
     t.string "password_reset_token_digest"
+    t.datetime "password_reset_token_expires_at"
   end
 
 end

@@ -3,7 +3,7 @@ TODO
 FEATURES
 
 Password reset
-	- Password reset token expiration
+	- Allow to disable password reset through notification
 User
 	- Require phone number, other info
 		- Facility name
@@ -19,12 +19,10 @@ Enforce maximums
 	- # of notifs
 	- # of checkouts total, checkout attempts per day
 	- # of additions, updates, and removals
+	- # of password resets/confirmation emails
 Info page
 	- Check in dates, times, locations
 	- Master calendar (?)
-User profile page
-	- Reset password
-	- Notification settings by notif_type
 Cart
 	- Confirmation page after submitting
 Items
@@ -33,6 +31,10 @@ Items
 	- Show calendar of number available
 Email verification
 	- Ensure @austintexas.gov emails (?)
+User profile page
+	- Reset password
+	- Notification settings by notif_type
+
 Trim and squish strings
 Replace form_tag and form_for with form_with
 W3C HTML validator

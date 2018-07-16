@@ -58,6 +58,7 @@ class UsersController < ApplicationController
     if !user.nil?
       token = SecureRandom.urlsafe_base64.to_s
       UserMailer.password_reset(user, token).deliver
+      # user.notifications.create(notif_type: "password_reset_requested", importance: 4, head: "A Password Reset was Requested for Your Account", body: ".")
       user.password_reset_token_digest = BCrypt::Password.create(token)
       user.password_reset_token_expires_at = Time.zone.now + 1.days
       user.save

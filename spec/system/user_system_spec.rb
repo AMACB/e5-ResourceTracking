@@ -23,7 +23,7 @@ describe "User Management", type: :system do
     fill_in "Email", with: "testlogin@example.com"
     fill_in "Password", with: "password123"
 
-    click_button "Login"
+    click_button "Log In"
 
     expect(page).to have_selector("#userDropdown", text: "testlogin@example.com")
   end

@@ -2,8 +2,10 @@ TODO
 
 FEATURES
 
-Password reset
-	- Allow to disable password reset through notification
+Cart
+	- Before submitting, tell user when and where they can pick up/return items
+		- Unless special case, only open on Tuesday & Thursday 10:30am - 1:30pm
+	- Confirmation page after submitting
 User
 	- Require phone number, other info
 		- Facility name
@@ -23,8 +25,6 @@ Enforce maximums
 Info page
 	- Check in dates, times, locations
 	- Master calendar (?)
-Cart
-	- Confirmation page after submitting
 Items
 	- Uploading images for image_url
 	- When checkout is auto-rejected, allow user to recover items
@@ -39,7 +39,7 @@ Trim and squish strings
 Replace form_tag and form_for with form_with
 W3C HTML validator
 Remove inline styles
-In production users, should not be able to trigger a 500 internal server error
+In production users, should not be able to trigger a 500 internal server error (?)
 Test cases
 	- ENSURE PAGES DON'T ERROR (both as non-user, user, confirmed, and admin)
 	- Models

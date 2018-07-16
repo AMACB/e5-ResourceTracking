@@ -1,6 +1,9 @@
 TODO
 
 FEATURES
+
+Password reset
+	- Password reset token expiration
 User
 	- Require phone number, other info
 		- Facility name

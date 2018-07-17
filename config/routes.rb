@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get       'items/manage'      => 'items#manage', as: :items_manage
   get       'catalog'           => 'items#catalog', as: :items_catalog
   get       'items/editform/:id'=> 'items#editform'
-  resources :items, only: [:index, :create, :show, :update, :destroy]
+  resources :items, only: [:index, :create, :update, :destroy]
 # get       'items'             => 'items#index'
 # post      'items'             => 'items#create'
 # get       'items/:id'         => 'items#show'
